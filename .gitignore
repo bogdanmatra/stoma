@@ -1,7 +1,8 @@
 *.class
+.idea
+stoma.iml
 
 # Package Files #
 *.jar
 *.war
-.idea
-stoma.iml
+*.ear
