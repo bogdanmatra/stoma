@@ -3,6 +3,5 @@
 # Package Files #
 *.jar
 *.war
-*.ear
 .idea
 stoma.iml
