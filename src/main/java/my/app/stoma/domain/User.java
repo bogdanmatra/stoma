@@ -1,18 +1,14 @@
-package my.licenta.model;
+package my.app.stoma.domain;
 
 
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
-
-    @Id
-    @GeneratedValue
-    @Column(name="id")
-    private int id;
+public class User extends BaseEntity {
 
     @Column(name="username")
     private String username;
@@ -23,25 +19,15 @@ public class User {
     @Column(name="email")
     private String email;
 
-    @Column(name="created_date")
-    private DateTime createdDate;
-
-    @Column(name="updated_date")
-    private DateTime updatedDate;
-
     @Column(name="first_name")
     private String firstName;
 
     @Column(name="last_name")
     private String lastName;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "USERS_ID", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "ROLES_ID", nullable = false, updatable = false)})
+    private List<Role> roles;
 
     public String getUsername() {
         return username;
@@ -67,22 +53,6 @@ public class User {
         this.email = email;
     }
 
-    public DateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(DateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public DateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(DateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -97,5 +67,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
