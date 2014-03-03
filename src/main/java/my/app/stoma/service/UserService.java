@@ -18,6 +18,7 @@ import java.util.List;
  * Created by bmatragociu on 2/25/14.
  */
 
+
 @Service
 public class UserService {
 
@@ -26,7 +27,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private static final int RESULTSONPAGE = 10;
 
     /**
      * Find a user using it's database id;
