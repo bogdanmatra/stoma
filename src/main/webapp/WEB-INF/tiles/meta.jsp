@@ -4,4 +4,4 @@
 
 <link href="${resources}bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
 <link href="${resources}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen"/>
-<script src="${resources}js/jquery-1.10.2.js"></script>
+<script src="${resources}jquery/jquery-1.10.2.js"></script>
