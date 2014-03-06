@@ -2,6 +2,11 @@
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/"/>
 
 
-<link href="${resources}bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
-<link href="${resources}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen"/>
-<script src="${resources}jquery/jquery-1.10.2.js"></script>
+<!-- CSS -->
+<link href="${resources}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+
+
+<!-- JavaScript -->
+<script src="${resources}jquery/jquery.min.js"></script>
+<script src="${resources}bootstrap/js/bootstrap.min.js"></script>
+
