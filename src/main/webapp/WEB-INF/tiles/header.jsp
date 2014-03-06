@@ -37,6 +37,16 @@
 
             </sec:authorize>
 
+<sec:authorize access="isAuthenticated()">
+
+
+    <div class="pull-right">
+        <a href="<c:url value="/j_spring_security_logout" />">
+        <button type="submit" class="btn btn-success" href="<c:url value="/j_spring_security_logout" />"> Sign Out </button>
+        </a>
+    </div>
+
+</sec:authorize>
 
 
 
