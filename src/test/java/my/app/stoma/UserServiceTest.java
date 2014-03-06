@@ -50,6 +50,8 @@ public class UserServiceTest {
 
         Assert.assertTrue(returnedUser.getUsername().equals("bogdanmatra"));
 
+        LOGGER.debug(">--------------------------------" + user.getRoles().get(0).getAuthority() + "-------------------------<");
+
         LOGGER.info("Exiting Test!");
 
 

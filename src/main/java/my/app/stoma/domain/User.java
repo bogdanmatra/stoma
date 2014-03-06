@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "USERS_ID", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "ROLES_ID", nullable = false, updatable = false)})
+    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
     private List<Role> roles;
 
     public String getUsername() {

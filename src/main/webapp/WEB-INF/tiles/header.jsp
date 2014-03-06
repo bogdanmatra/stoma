@@ -1,3 +1,6 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -10,15 +13,34 @@
             <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div class="navbar-collapse collapse">
+            <sec:authorize access="isAnonymous()">
             <form class="navbar-form navbar-right" role="form" action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control">
+                    <input type="text" placeholder="Email" class="form-control" name="j_username">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input type="password" placeholder="Password" class="form-control" name="j_password">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
+                <div class="form-group">
+
+                    <c:if
+                            test="${error ==  'true'}">
+
+                        <div class="alert alert-warning">
+                            <a class="close" data-dismiss="alert">×</a>
+                            <strong>Log in failed!</strong> Please try again.
+                        </div>
+                    </c:if>
+                </div>
             </form>
+
+            </sec:authorize>
+
+
+
+
+
         </div><!--/.navbar-collapse -->
     </div>
 </div>

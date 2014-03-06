@@ -2,6 +2,8 @@ package my.app.stoma.service;
 
 import my.app.stoma.domain.Role;
 import my.app.stoma.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.DisabledException;
@@ -24,6 +26,9 @@ import java.util.List;
 @Service("stomaUserDetailsService")
 @Transactional(readOnly = true)
 public class StomaUserDetailsService implements UserDetailsService {
+
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(StomaUserDetailsService.class);
     protected final MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
     @Autowired
     private UserService userService;
@@ -48,6 +53,8 @@ public class StomaUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.findByUsername(username);
+
+        LOGGER.debug(">------------------------" + user.getRoles().get(0) + "-----------------------------------<");
 
         if (user == null) {
             throw new UsernameNotFoundException("No such user: " + username);

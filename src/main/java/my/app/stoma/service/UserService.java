@@ -2,6 +2,8 @@ package my.app.stoma.service;
 
 
 import my.app.stoma.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,9 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private ShaPasswordEncoder shaPasswordEncoder;
@@ -52,6 +57,9 @@ public class UserService {
 
             String hashedPassword = shaPasswordEncoder.encodePassword(
                     user.getPassword(), user.getUsername());
+
+            LOGGER.debug("<----------------------------" + hashedPassword + "--------------------------------------->");
+
             user.setPassword(hashedPassword);
         } else if (user.getPassword() == null || user.getPassword().isEmpty()) {
             User userToEdit = findById(user.getId());
