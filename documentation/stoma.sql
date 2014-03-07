@@ -349,7 +349,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +358,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com',NULL,NULL,'Bogdan','Matragociu'),(8,'user','user','anna.dumitrache@gmail.com',NULL,NULL,'Ana','Dumitrache');
+INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com',NULL,NULL,'Bogdan','Matragociu'),(8,'user','a5700387a0b64f00ff5fe28ee22eb088c2f684a7ad9645d231bdac76b9456c7f','anna.dumitrache@gmail.com',NULL,NULL,'Ana','Dumitrache');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 18:09:35
+-- Dump completed on 2014-03-07 14:31:48

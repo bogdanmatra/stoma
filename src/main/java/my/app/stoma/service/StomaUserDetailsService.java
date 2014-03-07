@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by bmatragociu on 2/26/14.
  */
-@Service("stomaUserDetailsService")
+@Service("StomaUserDetailsService")
 @Transactional(readOnly = true)
 public class StomaUserDetailsService implements UserDetailsService {
 
