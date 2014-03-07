@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/stoma">
                 <table>
                     <tr><td>Stomatology</td></tr>
                     <tr><td></td> <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 70px;"></td></tr>

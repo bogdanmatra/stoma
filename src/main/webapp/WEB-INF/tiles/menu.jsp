@@ -7,12 +7,12 @@
     <div class="masthead">
         <br><br><br>
         <ul id="menu" class="nav nav-justified">
-            <li class="active"><a href="#0"><spring:message code="home.label" text="Home"/></a></li>
-            <li><a href="#1">News</a></li>
-            <li><a href="#1">Articles</a></li>
-            <li><a href="#2">Events</a></li>
-            <li><a href="#3">Ask us!</a></li>
-            <li><a href="#4">About us</a></li>
+            <li><a href="/stoma"><spring:message code="home.label" text="Home"/></a></li>
+            <li><a href="news">News</a></li>
+            <li><a href="articles">Articles</a></li>
+            <li><a href="events">Events</a></li>
+            <li><a href="askus">Ask us!</a></li>
+            <li><a href="aboutus">About us</a></li>
 
             <jsp:include page="admin_menu.jsp"/>
 

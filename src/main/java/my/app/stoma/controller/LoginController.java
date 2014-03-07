@@ -18,8 +18,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, Boolean invalidData, Boolean applicationError) {
-        model.addAttribute("applicationError", applicationError);
-        model.addAttribute("invalidData", invalidData);
+        // TO-DO
         return "/index";
     }
 
