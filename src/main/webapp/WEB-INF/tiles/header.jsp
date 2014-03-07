@@ -10,7 +10,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Stomatology <img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 50px;">  </a>
+            <a class="navbar-brand" href="#">
+                <table>
+                    <tr><td>Stomatology</td></tr>
+                    <tr><td></td> <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 70px;"></td></tr>
+
+                </table></a>
         </div>
         <div class="navbar-collapse collapse">
             <sec:authorize access="isAnonymous()">

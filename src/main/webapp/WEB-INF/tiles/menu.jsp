@@ -9,6 +9,7 @@
         <ul id="menu" class="nav nav-justified">
             <li class="active"><a href="#0"><spring:message code="home.label" text="Home"/></a></li>
             <li><a href="#1">News</a></li>
+            <li><a href="#1">Articles</a></li>
             <li><a href="#2">Events</a></li>
             <li><a href="#3">Ask us!</a></li>
             <li><a href="#4">About us</a></li>
