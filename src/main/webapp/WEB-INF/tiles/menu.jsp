@@ -5,14 +5,16 @@
 
 <div class="container">
     <div class="masthead">
-        <h3 class="text-muted">Project name</h3>
+        <br><br><br>
         <ul id="menu" class="nav nav-justified">
             <li class="active"><a href="#0"><spring:message code="home.label" text="Home"/></a></li>
-            <li><a href="#1">Projects</a></li>
-            <li><a href="#2">Services</a></li>
-            <li><a href="#3">Downloads</a></li>
-            <li><a href="#4">About</a></li>
-            <li><a href="#5">Contact</a></li>
+            <li><a href="#1">News</a></li>
+            <li><a href="#2">Events</a></li>
+            <li><a href="#3">Ask us!</a></li>
+            <li><a href="#4">About us</a></li>
+
+            <jsp:include page="admin_menu.jsp"/>
+
         </ul>
 
 

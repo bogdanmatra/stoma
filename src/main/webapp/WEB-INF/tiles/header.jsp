@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Stomatology <img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 50px;">  </a>
         </div>
         <div class="navbar-collapse collapse">
             <sec:authorize access="isAnonymous()">
@@ -22,17 +22,10 @@
                     <input type="password" placeholder="Password" class="form-control" name="j_password">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
-                <div class="form-group">
-
                     <c:if
                             test="${error ==  'true'}">
-
-                        <div class="alert alert-warning">
-                            <a class="close" data-dismiss="alert">×</a>
-                            <strong>Log in failed!</strong> Please try again.
-                        </div>
+                        <button class="btn btn-danger" disabled>Log in failed!</button>
                     </c:if>
-                </div>
             </form>
 
             </sec:authorize>
@@ -40,9 +33,13 @@
 <sec:authorize access="isAuthenticated()">
 
 
-    <div class="pull-right">
+    <div class="navbar-form navbar-right">
+        <sec:authentication property="principal.username" var="user"/>
+        <div class="form-group">
+            <div style="color: #fff" >Welcome, ${user}!</div>
+        </div>
         <a href="<c:url value="/j_spring_security_logout" />">
-        <button type="submit" class="btn btn-success" href="<c:url value="/j_spring_security_logout" />"> Sign Out </button>
+        <button type="submit" class="btn btn-success">Sign Out</button>
         </a>
     </div>
 
