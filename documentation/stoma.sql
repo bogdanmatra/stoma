@@ -4,7 +4,7 @@ USE `licenta`;
 --
 -- Host: localhost    Database: licenta
 -- ------------------------------------------------------
--- Server version	5.6.16
+-- Server version	5.6.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -90,12 +90,15 @@ CREATE TABLE `comments` (
   `id_user` int(20) NOT NULL,
   `id_article` bigint(20) DEFAULT NULL,
   `id_news` bigint(20) DEFAULT NULL,
+  `id_event` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_c_user_idx` (`id_user`),
   KEY `fk_c_news_idx` (`id_news`),
   KEY `fk_c_article_idx` (`id_article`),
-  CONSTRAINT `fk_c_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_c_events_idx` (`id_event`),
   CONSTRAINT `fk_c_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_c_events` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_c_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +125,8 @@ CREATE TABLE `domains` (
   `details` longtext,
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
-  `locale` varchar(10) NOT NULL,
+  `locale` varchar(2) NOT NULL,
+  `dom_medical` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,6 +180,8 @@ CREATE TABLE `events` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
+  `locale` varchar(2) NOT NULL,
+  `dom_medical` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -187,32 +193,6 @@ CREATE TABLE `events` (
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `events_domains`
---
-
-DROP TABLE IF EXISTS `events_domains`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `events_domains` (
-  `event_id` bigint(20) NOT NULL,
-  `domain_id` int(20) NOT NULL,
-  PRIMARY KEY (`event_id`,`domain_id`),
-  KEY `fk_ed_domain_idx` (`domain_id`),
-  CONSTRAINT `fk_ed_domain` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ed_event` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `events_domains`
---
-
-LOCK TABLES `events_domains` WRITE;
-/*!40000 ALTER TABLE `events_domains` DISABLE KEYS */;
-/*!40000 ALTER TABLE `events_domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -229,7 +209,6 @@ CREATE TABLE `news` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
-  `locale` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -241,6 +220,32 @@ CREATE TABLE `news` (
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `news_domains`
+--
+
+DROP TABLE IF EXISTS `news_domains`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `news_domains` (
+  `news_id` bigint(20) NOT NULL,
+  `domain_id` int(20) NOT NULL,
+  PRIMARY KEY (`news_id`,`domain_id`),
+  KEY `fk_ed_domain_idx` (`domain_id`),
+  CONSTRAINT `fk_nd_domains` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nd_news` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `news_domains`
+--
+
+LOCK TABLES `news_domains` WRITE;
+/*!40000 ALTER TABLE `news_domains` DISABLE KEYS */;
+/*!40000 ALTER TABLE `news_domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -262,8 +267,8 @@ CREATE TABLE `pictures` (
   KEY `fk_p_article_idx` (`id_article`),
   KEY `fk_p_news_idx` (`id_news`),
   CONSTRAINT `fk_p_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_p_event` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_p_event` FOREIGN KEY (`id_event`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -398,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-07 14:31:48
+-- Dump completed on 2014-03-10  0:32:27
