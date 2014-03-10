@@ -1,7 +1,11 @@
 package my.app.stoma;
 
+import my.app.stoma.domain.Answer;
+import my.app.stoma.domain.Question;
 import my.app.stoma.domain.User;
 import my.app.stoma.domain.Role;
+import my.app.stoma.service.AnswerService;
+import my.app.stoma.service.QuestionService;
 import my.app.stoma.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,8 +33,14 @@ public class UserServiceTest {
     @Autowired
     UserService userService;
 
+    @Autowired
+    QuestionService questionService;
+
+    @Autowired
+    AnswerService answerService;
+
     @Test
-    public void testUser(){
+    public void testUserWithQuestionsAndAnswers(){
 
         LOGGER.info("Entering Test!");
         User user= new User();
@@ -44,13 +54,44 @@ public class UserServiceTest {
         role.setAuthority("ROLE_USER");
         roles.add(role);
         user.setRoles(roles);
-
         userService.save(user);
+
+
+        Question question= new Question();
+        question.setContent("Content Ques");
+        List<Question> questionList= new ArrayList<Question>();
+        questionList.add(question);
+        question.setUser(user);
+        questionService.save(question);
+
+
+        Answer answer = new Answer("Content Ans", question, user);
+        List<Answer> answerList= new ArrayList<Answer>();
+        answerList.add(answer);
+        answer.setQuestion(question);
+        answer.setUser(user);
+        answer.setQuestion(question);
+        answerService.save(answer);
+
+
+        user.setAnswers(answerList);
+        user.setQuestions(questionList);
+        question.setAnswers(answerList);
+        userService.save(user);
+
+
         User returnedUser=userService.findByUsername("bogdanmatra");
 
+        //User test
         Assert.assertTrue(returnedUser.getUsername().equals("bogdanmatra"));
+        Assert.assertTrue(returnedUser.getRoles().get(0).getAuthority().equals("ROLE_USER"));
 
-        LOGGER.debug(">--------------------------------" + user.getRoles().get(0).getAuthority() + "----------------<");
+        //Questions
+        Assert.assertTrue(returnedUser.getQuestions().get(0).getContent().equals("Content Ques"));
+
+        //Answers
+        Assert.assertTrue(returnedUser.getAnswers().get(0).getContent().equals("Content Ans"));
+        Assert.assertTrue(returnedUser.getQuestions().get(0).getAnswers().get(0).getContent().equals("Content Ans"));
 
         LOGGER.info("Exiting Test!");
 

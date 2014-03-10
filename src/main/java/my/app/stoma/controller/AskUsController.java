@@ -18,17 +18,16 @@ import java.util.Locale;
  * Created by bmatragociu on 2/26/14.
  */
 @Controller
-@RequestMapping(value = "askus")
-public class IndexController {
+public class AskUsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
 
 
-        return "/askus";
+        return "/index";
     }
 
 }

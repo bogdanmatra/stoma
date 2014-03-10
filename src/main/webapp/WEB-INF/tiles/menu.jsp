@@ -19,6 +19,7 @@
         </ul>
 
 
+        <br>
         <ul class="nav nav-pills pull-right">
             <c:choose>
             <c:when
@@ -49,8 +50,9 @@
 
 
 
-</div>
 
+</div>
+</br>
 
 <script>
     // Active class in menu
