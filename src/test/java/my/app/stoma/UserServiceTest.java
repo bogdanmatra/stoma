@@ -62,7 +62,7 @@ public class UserServiceTest {
         List<Question> questionList= new ArrayList<Question>();
         questionList.add(question);
         question.setUser(user);
-        questionService.save(question);
+        Question savedQuestion=questionService.save(question);
 
 
         Answer answer = new Answer("Content Ans", question, user);
@@ -92,6 +92,12 @@ public class UserServiceTest {
         //Answers
         Assert.assertTrue(returnedUser.getAnswers().get(0).getContent().equals("Content Ans"));
         Assert.assertTrue(returnedUser.getQuestions().get(0).getAnswers().get(0).getContent().equals("Content Ans"));
+
+
+        //Test answers for specific method
+        List<Answer> answers= answerService.findByQuestionId(savedQuestion.getId());
+        Assert.assertTrue(answers.get(0).getContent().equals("Content Ans"));
+
 
         LOGGER.info("Exiting Test!");
 

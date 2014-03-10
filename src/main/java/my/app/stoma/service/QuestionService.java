@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by bmatragociu on 3/10/14.
  */
@@ -32,6 +34,14 @@ public class QuestionService {
 
 
     }
+
+    public List<Question> findAll(){
+
+        return questionRepository.findAll();
+    }
+
+
+
 
 
 }
