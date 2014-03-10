@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <div class="container">
@@ -24,6 +25,18 @@
             Panel content
         </div>
     </div>
+
+
+
+
+
+    <c:forEach var="question" items="${allQuestions}">
+        ${question.content}
+        <c:forEach var="answer" items="${question.answers}">
+           //// ${answer.content}
+        </c:forEach>
+    </c:forEach>
+
 
 
 
