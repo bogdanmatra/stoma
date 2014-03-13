@@ -54,9 +54,16 @@ public class AskUsController {
     }
 
     @Secured({"ROLE_USER"})
-    @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
-    public String addtopic(Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/addTopic")
+    public String addTopic(Model model, HttpServletRequest request) {
 
+        if (request.getMethod().equals(RequestMethod.POST)){
+            LOGGER.debug("Adding question...");
+            
+            request.getParameter("content");
+
+
+        }
         return "/addTopic";
     }
 

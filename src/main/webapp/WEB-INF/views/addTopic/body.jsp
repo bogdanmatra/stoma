@@ -9,29 +9,19 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> Star</button>
+    <form method="POST" action="/askus/addTopic" >
 
-    <form class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="inputEmail">Email</label>
-            <div class="controls">
-                <input type="text" id="inputEmail" placeholder="Email">
-            </div>
+        <div class="input-group">
+            <span class="input-group-addon">New topic</span>
+            <textarea class="form-control" placeholder="Text" rows="5"></textarea>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputPassword">Password</label>
-            <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Password">
-            </div>
+        <br>
+
+            <div class="row-fluid">
+        <button type="submit" class="btn btn-primary">Post</button>
+        <a  href="0"><button type="button" class="btn btn-default">Cancel</button></a>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <label class="checkbox">
-                    <input type="checkbox"> Remember me
-                </label>
-                <button type="submit" class="btn">Sign in</button>
-            </div>
-        </div>
+
     </form>
 
 </div>

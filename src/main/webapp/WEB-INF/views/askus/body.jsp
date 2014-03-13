@@ -8,7 +8,7 @@
 <sec:authorize access="isAuthenticated()">
 
 
-    <a href="addTopic"><button type="button" class="btn btn-success">New topic!</button></a>
+    <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
     <br><br>
 
     <c:forEach var="question" items="${allQuestions}">
