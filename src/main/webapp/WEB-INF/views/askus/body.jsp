@@ -32,8 +32,10 @@
 
     <c:forEach var="question" items="${allQuestions}">
         ${question.content}
+        ${question.user.username}
         <c:forEach var="answer" items="${question.answers}">
            //// ${answer.content}
+            ${answer.user.username}
         </c:forEach>
     </c:forEach>
 
