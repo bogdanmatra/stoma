@@ -5,9 +5,14 @@ import my.app.stoma.repository.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.LocaleResolver;
@@ -31,16 +36,28 @@ public class AskUsController {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView index(Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
+    public ModelAndView questions(@PathVariable int currentPage, Model model, HttpServletRequest request) {
 
 
-        List<Question> questions = questionRepository.findAll();
+        Page<Question> page = questionRepository.findAll(new PageRequest(currentPage, 1, new Sort(
+                Sort.Direction.DESC, "updatedDate")));
 
+        List<Question> questions= page.getContent();
 
         model.addAttribute("allQuestions", questions);
+        model.addAttribute("noOfPages", page.getTotalPages());
+        model.addAttribute("currentPage,", currentPage);
 
         return new ModelAndView("/askus", model.asMap());
+
+    }
+
+    @Secured({"ROLE_USER"})
+    @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
+    public String addtopic(Model model, HttpServletRequest request) {
+
+        return "/addTopic";
     }
 
 }

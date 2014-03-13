@@ -7,7 +7,8 @@
 
 <sec:authorize access="isAuthenticated()">
 
-    <button type="button" class="btn btn-success">New topic!</button>
+
+    <a href="addTopic"><button type="button" class="btn btn-success">New topic!</button></a>
     <br><br>
 
     <c:forEach var="question" items="${allQuestions}">
@@ -47,16 +48,42 @@
     </c:forEach>
 
 
-
+<!-- Pagination: -->
     <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
+
+        <c:choose>
+            <c:when test="${currentPage == 0}">
+                <li class="disabled"><a>«</a></li>
+            </c:when>
+            <c:otherwise>
+                <li><a href="${currentPage-1}">«</a></li>
+            </c:otherwise>
+        </c:choose>
+
+    <c:forEach var="i" begin="0" end="${noOfPages-1}">
+
+        <c:choose>
+            <c:when test="${currentPage == i}">
+                <li class="disabled"><a>${i+1}</a></li>
+            </c:when>
+            <c:otherwise>
+                <li><a href="${i}">${i+1}</a></li>
+            </c:otherwise>
+        </c:choose>
+
+    </c:forEach>
+
+        <c:choose>
+            <c:when test="${currentPage == noOfPages-1}">
+                <li class="disabled"><a>»</a></li>
+            </c:when>
+            <c:otherwise>
+                <li><a href="${currentPage+1}">»</a></li>
+            </c:otherwise>
+        </c:choose>
+
     </ul>
+
 
 </sec:authorize>
 

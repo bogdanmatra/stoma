@@ -1,17 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<c:set value="${pageContext.request.contextPath}" var="ctx"/>
 
 
 <div class="container">
     <div class="masthead">
         <br><br><br>
         <ul id="menu" class="nav nav-justified">
-            <li><a href="/stoma"><spring:message code="home.label" text="Home"/></a></li>
-            <li><a href="news">News</a></li>
-            <li><a href="articles">Articles</a></li>
-            <li><a href="events">Events</a></li>
-            <li><a href="askus">Ask us!</a></li>
+            <li><a href="${ctx}"><spring:message code="home.label" text="Home"/></a></li>
+            <li><a href="${ctx}/news">News</a></li>
+            <li><a href="${ctx}/articles">Articles</a></li>
+            <li><a href="${ctx}/events">Events</a></li>
+            <li><a href="${ctx}/askus/0">Ask us!</a></li>
             <li><a href="aboutus">About us</a></li>
 
             <jsp:include page="admin_menu.jsp"/>
