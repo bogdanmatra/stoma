@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `answers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `answers` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `content` varchar(200) DEFAULT NULL,
+  `content` varchar(400) NOT NULL,
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   `id_user` int(10) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `answers` (
   KEY `fk_a_question` (`id_question`),
   CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_a_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (14,'Raspuns',NULL,NULL,7,14);
+INSERT INTO `answers` VALUES (14,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(32,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(33,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(34,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,32),(35,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,32),(36,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8,32);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,14 +291,14 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questions` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `content` varchar(200) NOT NULL,
+  `content` varchar(400) NOT NULL,
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   `user_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   CONSTRAINT `fk_q_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (14,'Intrebare',NULL,NULL,7);
+INSERT INTO `questions` VALUES (14,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7),(32,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8),(43,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +324,7 @@ CREATE TABLE `roles` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +356,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,4 +405,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-10 13:16:00
+-- Dump completed on 2014-03-13 16:15:54

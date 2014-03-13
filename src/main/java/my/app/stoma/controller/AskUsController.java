@@ -59,7 +59,7 @@ public class AskUsController {
 
         if (request.getMethod().equals(RequestMethod.POST)){
             LOGGER.debug("Adding question...");
-            
+
             request.getParameter("content");
 
 
