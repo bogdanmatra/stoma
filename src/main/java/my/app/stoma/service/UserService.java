@@ -52,13 +52,12 @@ public class UserService {
      *            The desired role to be saved
      * @return The reattached user.
      */
+    @Transactional(readOnly = false)
     public User save(User user) {
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
 
             String hashedPassword = shaPasswordEncoder.encodePassword(
                     user.getPassword(), user.getUsername());
-
-            LOGGER.debug("<----------------------------" + hashedPassword + "--------------------------------------->");
 
             user.setPassword(hashedPassword);
         } else if (user.getPassword() == null || user.getPassword().isEmpty()) {
@@ -73,7 +72,7 @@ public class UserService {
      *
      * @return List of all Users
      */
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public List<User> findAll() {
         return userRepository.findAll();
     }
@@ -85,7 +84,7 @@ public class UserService {
      *            Desired username to be searched for
      * @return user corresponding to specified username
      */
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -97,7 +96,7 @@ public class UserService {
      *            Desired email to be searched for
      * @return user corresponding to specified email
      */
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -109,6 +108,7 @@ public class UserService {
      *            The desired user to be deleted
      * @return if the operation succeeded
      */
+    @Transactional(readOnly = false)
     public boolean delete(User user) {
         try {
             userRepository.delete(user);

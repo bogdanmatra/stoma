@@ -1,7 +1,10 @@
 package my.app.stoma.controller;
 
 import my.app.stoma.domain.Question;
+import my.app.stoma.domain.User;
 import my.app.stoma.repository.QuestionRepository;
+import my.app.stoma.service.QuestionService;
+import my.app.stoma.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +37,10 @@ import java.util.Locale;
 public class AskUsController {
 
     @Autowired
-    QuestionRepository questionRepository;
+    QuestionService questionService;
+
+    @Autowired
+    UserService userService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
@@ -40,11 +49,8 @@ public class AskUsController {
     public ModelAndView questions(@PathVariable int currentPage, Model model, HttpServletRequest request) {
 
 
-        Page<Question> page = questionRepository.findAll(new PageRequest(currentPage, 1, new Sort(
-                Sort.Direction.DESC, "updatedDate")));
-
+        Page<Question> page = questionService.findAllPage(currentPage);
         List<Question> questions= page.getContent();
-
         model.addAttribute("allQuestions", questions);
         model.addAttribute("noOfPages", page.getTotalPages());
         model.addAttribute("currentPage,", currentPage);
@@ -54,17 +60,25 @@ public class AskUsController {
     }
 
     @Secured({"ROLE_USER"})
-    @RequestMapping(value = "/addTopic")
+    @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
     public String addTopic(Model model, HttpServletRequest request) {
-
-        if (request.getMethod().equals(RequestMethod.POST)){
-            LOGGER.debug("Adding question...");
-
-            request.getParameter("content");
-
-
-        }
         return "/addTopic";
     }
+
+    @Secured({"ROLE_USER"})
+    @RequestMapping(value = "/save", method = RequestMethod.POST )
+    public String saveQuestion(Model model, HttpServletRequest request) {
+
+            UserDetails userDetails= (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User currentUser = userService.findByUsername(userDetails.getUsername());
+            Question question=new Question();
+            question.setContent(request.getParameter("content"));
+            question.setUser(currentUser);
+            questionService.save(question);
+            return "redirect:0";
+
+    }
+
+
 
 }

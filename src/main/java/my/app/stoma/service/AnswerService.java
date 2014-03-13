@@ -20,11 +20,13 @@ public class AnswerService {
     AnswerRepository answerRepository;
 
 
+    @Transactional(readOnly = false)
     public Answer save(Answer answer){
 
         return answerRepository.save(answer);
     }
 
+    @Transactional(readOnly = false)
     public boolean delete (Answer answer){
 
         try {

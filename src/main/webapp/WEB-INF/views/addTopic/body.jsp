@@ -9,11 +9,11 @@
 
 <div class="container">
 
-    <form method="POST" action="/askus/addTopic" >
+    <form method="POST" action="save" >
 
         <div class="input-group">
             <span class="input-group-addon">New topic</span>
-            <textarea class="form-control" placeholder="Text" rows="5"></textarea>
+            <textarea class="form-control" placeholder="Text" rows="5" name="content"></textarea>
         </div>
         <br>
 
