@@ -7,35 +7,29 @@
 
 <sec:authorize access="isAuthenticated()">
 
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-
-
-
-
     <c:forEach var="question" items="${allQuestions}">
-        ${question.content}
-        ${question.user.username}
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">${question.user.username}</h3>
+            </div>
+            <div class="panel-body">
+                    ${question.content}
+            </div>
+        </div>
+
+
         <c:forEach var="answer" items="${question.answers}">
-           //// ${answer.content}
-            ${answer.user.username}
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">${answer.user.username}</h3>
+                </div>
+                <div class="panel-body">
+                        ${answer.content}
+                </div>
+            </div>
+
         </c:forEach>
     </c:forEach>
 
