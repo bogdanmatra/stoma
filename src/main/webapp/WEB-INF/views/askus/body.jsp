@@ -7,6 +7,9 @@
 
 <sec:authorize access="isAuthenticated()">
 
+    <button type="button" class="btn btn-success">New topic!</button>
+    <br><br>
+
     <c:forEach var="question" items="${allQuestions}">
 
         <div class="panel panel-primary">
@@ -14,7 +17,7 @@
                 <h3 class="panel-title">${question.user.username}</h3>
             </div>
             <div class="panel-body">
-                    ${question.content}
+                <b>Q:</b>    ${question.content}
             </div>
         </div>
 
@@ -26,15 +29,34 @@
                     <h3 class="panel-title">${answer.user.username}</h3>
                 </div>
                 <div class="panel-body">
-                        ${answer.content}
+                    <b>A:</b>    ${answer.content}
                 </div>
             </div>
 
         </c:forEach>
+
+        <div class="input-group">
+
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Answer!</button>
+          </span>
+        </div>
+        <br>
+
     </c:forEach>
 
 
 
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
 
 </sec:authorize>
 
