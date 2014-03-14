@@ -17,8 +17,6 @@ public class NewsController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
-
-
         return "/news";
     }
 

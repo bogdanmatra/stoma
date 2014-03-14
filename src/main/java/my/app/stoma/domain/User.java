@@ -1,29 +1,27 @@
 package my.app.stoma.domain;
 
 
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User extends BaseEntity {
 
-    @Column(name="username")
+    @Column(name = "username")
     private String username;
 
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
@@ -36,7 +34,6 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Answer> answers;
-
 
 
     public String getUsername() {

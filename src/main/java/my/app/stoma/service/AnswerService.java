@@ -1,7 +1,6 @@
 package my.app.stoma.service;
 
 import my.app.stoma.domain.Answer;
-import my.app.stoma.domain.Question;
 import my.app.stoma.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -21,13 +20,13 @@ public class AnswerService {
 
 
     @Transactional(readOnly = false)
-    public Answer save(Answer answer){
+    public Answer save(Answer answer) {
 
         return answerRepository.save(answer);
     }
 
     @Transactional(readOnly = false)
-    public boolean delete (Answer answer){
+    public boolean delete(Answer answer) {
 
         try {
             answerRepository.delete(answer);
@@ -37,14 +36,20 @@ public class AnswerService {
         }
     }
 
-        @Transactional(readOnly = true)
-        public List<Answer> findByQuestionId(Long id){
+    @Transactional(readOnly = true)
+    public List<Answer> findByQuestionId(Long id) {
 
-            return answerRepository.findByQuestionId(id);
-        }
-
-
+        return answerRepository.findByQuestionId(id);
     }
+
+    @Transactional(readOnly = true)
+    public Answer findById(Long id) {
+
+        return answerRepository.findOne(id);
+    }
+
+
+}
 
 
 

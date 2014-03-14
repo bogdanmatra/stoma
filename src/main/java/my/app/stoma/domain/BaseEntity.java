@@ -54,7 +54,9 @@ public class BaseEntity {
         return createdDate;
     }
 
-    public void setCreatedDate(DateTime createdDate) { this.createdDate = createdDate; }
+    public void setCreatedDate(DateTime createdDate) {
+        this.createdDate = createdDate;
+    }
 
     public DateTime getUpdatedDate() {
         return updatedDate;

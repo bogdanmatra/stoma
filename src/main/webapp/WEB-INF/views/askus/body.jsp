@@ -4,18 +4,29 @@
 
 <div class="container">
 
-
-<sec:authorize access="isAuthenticated()">
-
-
     <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
+    <c:if
+            test="${error == true}">
+        <button class="btn btn-danger pull-right" disabled>Please type an answer not longer than 400 characters!</button>
+    </c:if>
     <br><br>
 
     <c:forEach var="question" items="${allQuestions}">
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">${question.user.username}</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username} said:
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <form method="POST" action="deleteQuestion">
+                    <input type="hidden" name="id" value="${question.id}">
+                    <input type="hidden" name="currentPage" value="${currentPage}">
+                    <button type="submit" class="close pull-right">×</button>
+                    </form>
+                    </sec:authorize>
+
+                </h3>
+
             </div>
             <div class="panel-body">
                 <b>Q:</b>    ${question.content}
@@ -27,7 +38,20 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">${answer.user.username}</h3>
+                    <h3 class="panel-title">${answer.user.username} said:
+
+
+
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <form method="POST" action="deleteAnswer">
+                        <input type="hidden" name="id" value="${answer.id}">
+                        <input type="hidden" name="currentPage" value="${currentPage}">
+                        <button type="submit" class="close pull-right">×</button>
+                        </form>
+                        </sec:authorize>
+
+
+
                 </div>
                 <div class="panel-body">
                     <b>A:</b>    ${answer.content}
@@ -36,13 +60,16 @@
 
         </c:forEach>
 
+        <form action="saveAnswer" method="POST">
         <div class="input-group">
-
-            <input type="text" class="form-control">
+            <input type="text" name="content" class="form-control">
+            <input type="hidden" name="questionId" value="${question.id}">
+            <input type="hidden" name="currentPage" value="${currentPage}">
             <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Answer!</button>
+            <button type="submit" class="btn btn-default" type="button">Answer!</button>
           </span>
         </div>
+        </form>
         <br>
 
     </c:forEach>
@@ -83,15 +110,5 @@
         </c:choose>
 
     </ul>
-
-
-</sec:authorize>
-
-
-
-<sec:authorize access="isAnonymous()">
-Please log in to ask us a question!
-</sec:authorize>
-
 
 </div>

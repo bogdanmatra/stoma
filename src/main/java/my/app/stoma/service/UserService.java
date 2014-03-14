@@ -1,17 +1,14 @@
 package my.app.stoma.service;
 
 
+import my.app.stoma.domain.User;
 import my.app.stoma.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
-import my.app.stoma.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -36,20 +33,18 @@ public class UserService {
     /**
      * Find a user using it's database id;
      *
-     * @param userId
-     *            User id
+     * @param userId User id
      * @return User corresponding to specified id
      */
     @Transactional(readOnly = true)
     public User findById(Long userId) {
-        return userRepository.findById(userId);
+        return userRepository.findOne(userId);
     }
 
     /**
      * Saves to the database a specific user
      *
-     * @param user
-     *            The desired role to be saved
+     * @param user The desired role to be saved
      * @return The reattached user.
      */
     @Transactional(readOnly = false)
@@ -80,8 +75,7 @@ public class UserService {
     /**
      * Find a user using it's username
      *
-     * @param username
-     *            Desired username to be searched for
+     * @param username Desired username to be searched for
      * @return user corresponding to specified username
      */
     @Transactional(readOnly = true)
@@ -92,8 +86,7 @@ public class UserService {
     /**
      * Find a user using it's email
      *
-     * @param email
-     *            Desired email to be searched for
+     * @param email Desired email to be searched for
      * @return user corresponding to specified email
      */
     @Transactional(readOnly = true)
@@ -104,8 +97,7 @@ public class UserService {
     /**
      * Deletes a specific user from the database
      *
-     * @param user
-     *            The desired user to be deleted
+     * @param user The desired user to be deleted
      * @return if the operation succeeded
      */
     @Transactional(readOnly = false)

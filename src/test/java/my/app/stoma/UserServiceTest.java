@@ -40,10 +40,10 @@ public class UserServiceTest {
     AnswerService answerService;
 
     @Test
-    public void testUserWithQuestionsAndAnswers(){
+    public void testUserWithQuestionsAndAnswers() {
 
         LOGGER.info("Entering Test!");
-        User user= new User();
+        User user = new User();
         user.setFirstName("Gigi");
         user.setLastName("Ionescu");
         user.setUsername("bogdanmatra");
@@ -57,16 +57,16 @@ public class UserServiceTest {
         userService.save(user);
 
 
-        Question question= new Question();
+        Question question = new Question();
         question.setContent("Content Ques");
-        List<Question> questionList= new ArrayList<Question>();
+        List<Question> questionList = new ArrayList<Question>();
         questionList.add(question);
         question.setUser(user);
-        Question savedQuestion=questionService.save(question);
+        Question savedQuestion = questionService.save(question);
 
 
         Answer answer = new Answer("Content Ans", question, user);
-        List<Answer> answerList= new ArrayList<Answer>();
+        List<Answer> answerList = new ArrayList<Answer>();
         answerList.add(answer);
         answer.setQuestion(question);
         answer.setUser(user);
@@ -80,7 +80,7 @@ public class UserServiceTest {
         userService.save(user);
 
 
-        User returnedUser=userService.findByUsername("bogdanmatra");
+        User returnedUser = userService.findByUsername("bogdanmatra");
 
         //User test
         Assert.assertTrue(returnedUser.getUsername().equals("bogdanmatra"));
@@ -95,7 +95,7 @@ public class UserServiceTest {
 
 
         //Test answers for specific method
-        List<Answer> answers= answerService.findByQuestionId(savedQuestion.getId());
+        List<Answer> answers = answerService.findByQuestionId(savedQuestion.getId());
         Assert.assertTrue(answers.get(0).getContent().equals("Content Ans"));
 
 

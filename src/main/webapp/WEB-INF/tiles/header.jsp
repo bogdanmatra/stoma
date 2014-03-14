@@ -28,7 +28,7 @@
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
                     <c:if
-                            test="${error ==  'true'}">
+                            test="${error ==  true}">
                         <button class="btn btn-danger" disabled>Log in failed!</button>
                     </c:if>
             </form>

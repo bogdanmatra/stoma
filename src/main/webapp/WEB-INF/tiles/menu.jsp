@@ -12,7 +12,7 @@
             <li><a href="${ctx}/news">News</a></li>
             <li><a href="${ctx}/articles">Articles</a></li>
             <li><a href="${ctx}/events">Events</a></li>
-            <li><a href="${ctx}/askus/0">Ask us!</a></li>
+            <li><a href="${ctx}/askus">Ask us!</a></li>
             <li><a href="aboutus">About us</a></li>
 
             <jsp:include page="admin_menu.jsp"/>

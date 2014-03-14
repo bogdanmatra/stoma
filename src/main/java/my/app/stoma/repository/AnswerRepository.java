@@ -1,7 +1,6 @@
 package my.app.stoma.repository;
 
 import my.app.stoma.domain.Answer;
-import my.app.stoma.domain.Question;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

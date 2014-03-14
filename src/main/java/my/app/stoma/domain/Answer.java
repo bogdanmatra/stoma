@@ -1,16 +1,23 @@
 package my.app.stoma.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by bmatragociu on 3/10/14.
  */
 
 @Entity
-@Table(name="answers")
-public class Answer extends BaseEntity{
+@Table(name = "answers")
+public class Answer extends BaseEntity {
 
-    @Column(name="content")
+    @Size(min = 1, max = 400)
+    @NotNull
+    @NotEmpty
+    @Column(name = "content")
     private String content;
 
     @ManyToOne
@@ -46,9 +53,10 @@ public class Answer extends BaseEntity{
         this.user = user;
     }
 
-    public Answer(){
+    public Answer() {
 
     }
+
     public Answer(String content, Question question, User user) {
         this.content = content;
         this.question = question;

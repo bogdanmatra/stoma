@@ -2,8 +2,11 @@ package my.app.stoma.domain;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -11,10 +14,13 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="questions")
-public class Question extends BaseEntity{
+@Table(name = "questions")
+public class Question extends BaseEntity {
 
-    @Column(name="content")
+    @Size(min = 1, max = 400)
+    @NotNull
+    @NotEmpty
+    @Column(name = "content")
     private String content;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
