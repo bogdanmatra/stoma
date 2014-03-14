@@ -27,7 +27,7 @@ public class AnswerService {
 
     @Transactional(readOnly = false)
     public void deleteById(Long id) {
-    answerRepository.delete(id);
+    answerRepository.customDelete(id);
     }
 
     @Transactional(readOnly = true)
