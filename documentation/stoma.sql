@@ -34,9 +34,9 @@ CREATE TABLE `answers` (
   PRIMARY KEY (`id`),
   KEY `fk_a_user_idx` (`id_user`),
   KEY `fk_a_question` (`id_question`),
-  CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_a_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,6 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (14,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(32,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(33,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,14),(34,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,32),(35,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7,32),(36,'Raspuns and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8,32);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +297,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   CONSTRAINT `fk_q_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +306,6 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (14,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,7),(32,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8),(43,'Intrebare and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff and other stuff',NULL,NULL,8);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +322,7 @@ CREATE TABLE `roles` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +354,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-13 16:15:54
+-- Dump completed on 2014-03-14 17:38:18
