@@ -71,7 +71,7 @@ public class AskUsController {
 
         if(page.getNumberOfElements()==0){
             currentPage=currentPage-1;
-            page = questionService.findAllPage(currentPage);
+            return new ModelAndView("redirect:/askus/"+currentPage);
         }
 
         List<Question> questions = page.getContent();
