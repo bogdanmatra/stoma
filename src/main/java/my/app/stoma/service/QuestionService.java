@@ -26,25 +26,15 @@ public class QuestionService {
 
     @Transactional(readOnly = false)
     public Question save(Question question) {
-
         return questionRepository.save(question);
     }
 
     @Transactional(readOnly = false)
-    public boolean delete(Question question) {
-
-        try {
-            questionRepository.delete(question);
-            return true;
-        } catch (InvalidDataAccessApiUsageException e) {
-            return false;
-        }
-
-
+    public void deleteById(Long id) {
+         questionRepository.delete(id);
     }
 
     public List<Question> findAll() {
-
         return questionRepository.findAll();
     }
 
@@ -78,9 +68,7 @@ public class QuestionService {
 
     @Transactional(readOnly = true)
     public Question findById(long id) {
-
         return questionRepository.findOne(id);
-
     }
 
 

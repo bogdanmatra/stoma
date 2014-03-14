@@ -26,14 +26,8 @@ public class AnswerService {
     }
 
     @Transactional(readOnly = false)
-    public boolean delete(Answer answer) {
-
-        try {
-            answerRepository.delete(answer);
-            return true;
-        } catch (InvalidDataAccessApiUsageException e) {
-            return false;
-        }
+    public void deleteById(Long id) {
+    answerRepository.delete(id);
     }
 
     @Transactional(readOnly = true)

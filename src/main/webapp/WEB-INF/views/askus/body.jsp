@@ -15,17 +15,15 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username} said:
 
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <form method="POST" action="deleteQuestion">
-                    <input type="hidden" name="id" value="${question.id}">
-                    <input type="hidden" name="currentPage" value="${currentPage}">
-                    <button type="submit" class="close pull-right">×</button>
+                        <button type="submit" class="close">×</button>
+                        <input type="hidden" name="id" value="${question.id}">
+                        <input type="hidden" name="currentPage" value="${currentPage}">
                     </form>
-                    </sec:authorize>
-
-                </h3>
+                </sec:authorize>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username} said:</h3>
 
             </div>
             <div class="panel-body">
@@ -38,20 +36,17 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">${answer.user.username} said:
 
-
-
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <form method="POST" action="deleteAnswer">
-                        <input type="hidden" name="id" value="${answer.id}">
-                        <input type="hidden" name="currentPage" value="${currentPage}">
-                        <button type="submit" class="close pull-right">×</button>
+                            <input type="hidden" name="id" value="${answer.id}">
+                            <input type="hidden" name="currentPage" value="${currentPage}">
+                            <button type="submit" class="close pull-right">×</button>
                         </form>
-                        </sec:authorize>
+                    </sec:authorize>
 
 
-
+                    <h3 class="panel-title">${answer.user.username} said:</h3>
                 </div>
                 <div class="panel-body">
                     <b>A:</b>    ${answer.content}

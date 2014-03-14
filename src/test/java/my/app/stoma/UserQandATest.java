@@ -25,10 +25,10 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:/spring/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class UserServiceTest {
+public class UserQandATest {
 
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(UserServiceTest.class);
+            .getLogger(UserQandATest.class);
 
     @Autowired
     UserService userService;

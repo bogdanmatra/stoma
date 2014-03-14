@@ -103,7 +103,6 @@ public class AskUsController {
             return "redirect:/askus/" + request.getParameter("currentPage");
         }
 
-
         Answer answer = new Answer();
         answer.setContent(request.getParameter("content"));
         Question question = questionService.findById(Long.parseLong(request.getParameter("questionId")));
@@ -122,20 +121,16 @@ public class AskUsController {
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
     public String deleteQuestion(Model model, HttpServletRequest request) {
-
         Long id = Long.parseLong(request.getParameter("id"));
-        questionService.delete(questionService.findById(id));
-
+        questionService.deleteById(id);
         return "redirect:/askus/" + request.getParameter("currentPage");
     }
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/deleteAnswer", method = RequestMethod.POST)
     public String deleteAnswer(Model model, HttpServletRequest request) {
-
         Long id = Long.parseLong(request.getParameter("id"));
-        answerService.delete(answerService.findById(id));
-
+        answerService.deleteById(id);
         return "redirect:/askus/" + request.getParameter("currentPage");
     }
 
