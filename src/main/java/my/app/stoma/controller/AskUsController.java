@@ -59,7 +59,21 @@ public class AskUsController {
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
     public ModelAndView questions(@PathVariable int currentPage, Model model, HttpServletRequest request) {
+
+
+
         Page<Question> page = questionService.findAllPage(currentPage);
+
+        if(page.getTotalPages()==0){
+        model.addAttribute("Empty",true);
+        return new ModelAndView("/askus", model.asMap());
+        }
+
+        if(page.getNumberOfElements()==0){
+            currentPage=currentPage-1;
+            page = questionService.findAllPage(currentPage);
+        }
+
         List<Question> questions = page.getContent();
         model.addAttribute("allQuestions", questions);
         model.addAttribute("noOfPages", page.getTotalPages());
@@ -70,7 +84,7 @@ public class AskUsController {
 
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
-    public String addTopic(Model model, HttpServletRequest request) {
+    String addTopic(Model model, HttpServletRequest request) {
         model.addAttribute("question", new Question());
         return "/addTopic";
     }

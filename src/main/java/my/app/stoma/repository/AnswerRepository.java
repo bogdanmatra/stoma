@@ -19,7 +19,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     @Query("SELECT a FROM Answer a, Question q  WHERE a.question=q AND q.id=:id")
     List<Answer> findByQuestionId(@Param("id") Long id) throws DataAccessException;
 
-
+    // Odd behavior
     @Modifying
     @Query("delete from Answer a where a.id = :id")
     void customDelete(@Param("id") Long id) throws DataAccessException;

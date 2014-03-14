@@ -4,6 +4,17 @@
 
 <div class="container">
 
+
+    <c:choose>
+        <c:when test="${Empty == true}">
+        <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
+        <br>
+        <br>
+        No questions!
+        </c:when>
+        <c:otherwise>
+
+    <br><br>
     <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
     <c:if
             test="${error == true}">
@@ -105,5 +116,8 @@
         </c:choose>
 
     </ul>
+
+        </c:otherwise>
+    </c:choose>
 
 </div>
