@@ -91,7 +91,7 @@ public class AskUsController {
 
 
     @Secured({"ROLE_USER"})
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = {RequestMethod.POST, RequestMethod.GET})
     public String saveQuestion(Model model, @Valid @ModelAttribute(value = "question") Question question, BindingResult bindingResult, HttpServletRequest request) {
 
         if (!bindingResult.hasErrors()) {
