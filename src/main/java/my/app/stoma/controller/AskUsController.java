@@ -82,7 +82,7 @@ public class AskUsController {
 
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/save", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveQuestion(Model model, @Valid @ModelAttribute(value = "question") Question question, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException {
+    public String saveQuestion(Model model, @ModelAttribute(value = "question") @Valid Question question, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException {
         if (!bindingResult.hasErrors()) {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User currentUser = userService.findByUsername(userDetails.getUsername());

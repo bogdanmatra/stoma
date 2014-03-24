@@ -16,6 +16,7 @@
     <context:component-scan base-package="my.app.stoma.domain"/>
     <context:component-scan base-package="my.app.stoma.controller"/>
     <context:component-scan base-package="my.app.stoma.service"/>
+    <context:component-scan base-package="my.app.stoma.utils.validators"/>
 
     <context:annotation-config/>
 
