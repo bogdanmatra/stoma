@@ -49,7 +49,6 @@ public class SignUpController {
         binder.setValidator(userValidator);
     }
 
-
     @RequestMapping(value="")
     public static String signUp(Model model, HttpServletRequest request){
         model.addAttribute("user", new User());
@@ -63,7 +62,6 @@ public class SignUpController {
         if (bindingResult.hasErrors()) {
             return "/signUp";
         }
-
         List<Role> list=new ArrayList<Role>();
         list.add(roleRepository.findByAuthority("ROLE_USER"));
         user.setRoles(list);

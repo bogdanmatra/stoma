@@ -75,7 +75,7 @@ public class AskUsController {
     @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
     String addTopic(Model model, HttpServletRequest request) {
         if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
-            return "/askusNLI";
+            return "redirect:/signup";
         model.addAttribute("question", new Question());
         return "/addTopic";
     }
@@ -99,7 +99,7 @@ public class AskUsController {
     public String saveAnswer(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
         if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
-            return "/askusNLI";
+            return "redirect:/signup";
 
         String content = request.getParameter("content");
 
