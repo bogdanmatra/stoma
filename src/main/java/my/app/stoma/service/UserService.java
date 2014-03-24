@@ -110,6 +110,12 @@ public class UserService {
         }
     }
 
+    @Transactional(readOnly = false)
+    public List<User> findAllWithRole(String role) {
+        return userRepository.findAllWithRole(role);
+    }
+
+
 
 }
 

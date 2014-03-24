@@ -56,14 +56,12 @@ public class UserQandATest {
         user.setRoles(roles);
         userService.save(user);
 
-
         Question question = new Question();
         question.setContent("Content Ques");
         List<Question> questionList = new ArrayList<Question>();
         questionList.add(question);
         question.setUser(user);
         Question savedQuestion = questionService.save(question);
-
 
         Answer answer = new Answer("Content Ans", question, user);
         List<Answer> answerList = new ArrayList<Answer>();
@@ -73,35 +71,29 @@ public class UserQandATest {
         answer.setQuestion(question);
         answerService.save(answer);
 
-
         user.setAnswers(answerList);
         user.setQuestions(questionList);
         question.setAnswers(answerList);
         userService.save(user);
 
-
         User returnedUser = userService.findByUsername("bogdanmatra");
-
         //User test
         Assert.assertTrue(returnedUser.getUsername().equals("bogdanmatra"));
         Assert.assertTrue(returnedUser.getRoles().get(0).getAuthority().equals("ROLE_USER"));
-
         //Questions
         Assert.assertTrue(returnedUser.getQuestions().get(0).getContent().equals("Content Ques"));
-
         //Answers
         Assert.assertTrue(returnedUser.getAnswers().get(0).getContent().equals("Content Ans"));
         Assert.assertTrue(returnedUser.getQuestions().get(0).getAnswers().get(0).getContent().equals("Content Ans"));
-
-
         //Test answers for specific method
         List<Answer> answers = answerService.findByQuestionId(savedQuestion.getId());
         Assert.assertTrue(answers.get(0).getContent().equals("Content Ans"));
 
-
         LOGGER.info("Exiting Test!");
-
-
     }
 
+    @Test
+    public void testUserByRole() {
+        Assert.assertEquals(1, userService.findAllWithRole("ROLE_ADMIN").size() );
+    }
 }

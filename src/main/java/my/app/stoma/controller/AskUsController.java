@@ -4,6 +4,7 @@ import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.Question;
 import my.app.stoma.domain.User;
 import my.app.stoma.service.AnswerService;
+import my.app.stoma.service.MailService;
 import my.app.stoma.service.QuestionService;
 import my.app.stoma.service.UserService;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -41,6 +43,9 @@ public class AskUsController {
     AnswerService answerService;
     @Autowired
     UserService userService;
+    @Autowired
+    MailService mailService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -77,12 +82,13 @@ public class AskUsController {
 
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/save", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveQuestion(Model model, @Valid @ModelAttribute(value = "question") Question question, BindingResult bindingResult, HttpServletRequest request) {
+    public String saveQuestion(Model model, @Valid @ModelAttribute(value = "question") Question question, BindingResult bindingResult, HttpServletRequest request) throws UnsupportedEncodingException {
         if (!bindingResult.hasErrors()) {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User currentUser = userService.findByUsername(userDetails.getUsername());
             question.setUser(currentUser);
             questionService.save(question);
+            mailService.sendToAllAdmin("New Answer!", "New question posted: " + question.getContent());
             return "redirect:/askus";
         } else {
             return "/addTopic";
@@ -90,7 +96,7 @@ public class AskUsController {
     }
 
     @RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
-    public String saveAnswer(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String saveAnswer(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
         if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
             return "/askusNLI";
@@ -110,6 +116,7 @@ public class AskUsController {
         answer.setQuestion(question);
         answer.setUser(currentUser);
         answerService.save(answer);
+        mailService.sendToAllAdmin("New Answer!", "New answer posted: " +  answer.getContent());
         return "redirect:/askus/" + request.getParameter("currentPage");
 
     }
