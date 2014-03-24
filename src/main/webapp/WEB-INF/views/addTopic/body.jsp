@@ -10,13 +10,15 @@
 
 <div class="container">
 
-    <form:form method="POST" action="save" modelAttribute="question">
+    <form:form method="POST" action="save"  name="addTopicForm" modelAttribute="question">
 
         <div class="input-group">
             <span class="input-group-addon">New topic</span>
             <textarea class="form-control" name="content" placeholder="Text" rows="5" name="content"></textarea>
         </div>
-        <form:errors cssClass="alert alert-error" path="content"/>
+        <br>
+            <form:errors cssClass="btn btn-danger disabled" path="content"/>
+        <br>
         <br>
 
             <div class="row-fluid">

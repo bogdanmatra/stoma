@@ -37,63 +37,47 @@ public class AskUsController {
 
     @Autowired
     QuestionService questionService;
-
     @Autowired
     AnswerService answerService;
-
     @Autowired
     UserService userService;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
-
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String redirect(HttpServletRequest request) {
-        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
-            return "/askusNLI";
-        } else
             return "redirect:askus/0";
     }
 
-
-    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
     public ModelAndView questions(@PathVariable int currentPage, Model model, HttpServletRequest request) {
-
-
-
         Page<Question> page = questionService.findAllPage(currentPage);
-
         if(page.getTotalPages()==0){
         model.addAttribute("Empty",true);
         return new ModelAndView("/askus", model.asMap());
         }
-
         if(page.getNumberOfElements()==0){
             currentPage=currentPage-1;
             return new ModelAndView("redirect:/askus/"+currentPage);
         }
-
         List<Question> questions = page.getContent();
         model.addAttribute("allQuestions", questions);
         model.addAttribute("noOfPages", page.getTotalPages());
         model.addAttribute("currentPage,", currentPage);
         return new ModelAndView("/askus", model.asMap());
-
     }
 
-    @Secured({"ROLE_USER"})
+
     @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
     String addTopic(Model model, HttpServletRequest request) {
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
+            return "/askusNLI";
         model.addAttribute("question", new Question());
         return "/addTopic";
     }
 
-
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/save", method = {RequestMethod.POST, RequestMethod.GET})
     public String saveQuestion(Model model, @Valid @ModelAttribute(value = "question") Question question, BindingResult bindingResult, HttpServletRequest request) {
-
         if (!bindingResult.hasErrors()) {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User currentUser = userService.findByUsername(userDetails.getUsername());
@@ -103,12 +87,13 @@ public class AskUsController {
         } else {
             return "/addTopic";
         }
-
     }
 
-    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
     public String saveAnswer(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
+            return "/askusNLI";
 
         String content = request.getParameter("content");
 
@@ -122,15 +107,12 @@ public class AskUsController {
         Question question = questionService.findById(Long.parseLong(request.getParameter("questionId")));
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userService.findByUsername(userDetails.getUsername());
-
         answer.setQuestion(question);
         answer.setUser(currentUser);
         answerService.save(answer);
-
         return "redirect:/askus/" + request.getParameter("currentPage");
 
     }
-
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
@@ -147,6 +129,4 @@ public class AskUsController {
         answerService.deleteById(id);
         return "redirect:/askus/" + request.getParameter("currentPage");
     }
-
-
 }
