@@ -71,11 +71,10 @@ public class AskUsController {
         return new ModelAndView("/askus", model.asMap());
     }
 
-
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
     String addTopic(Model model, HttpServletRequest request) {
-        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
-            return "redirect:/signup";
+        
         model.addAttribute("question", new Question());
         return "/addTopic";
     }
@@ -95,14 +94,11 @@ public class AskUsController {
         }
     }
 
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
     public String saveAnswer(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
-        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
-            return "redirect:/signup";
-
         String content = request.getParameter("content");
-
         if (content == null || content.equals("") || content.length() > 400) {
             redirectAttributes.addFlashAttribute("error", true);
             return "redirect:/askus/" + request.getParameter("currentPage");
