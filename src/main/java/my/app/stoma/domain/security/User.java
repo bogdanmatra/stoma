@@ -1,5 +1,9 @@
-package my.app.stoma.domain;
+package my.app.stoma.domain.security;
 
+
+import my.app.stoma.domain.Answer;
+import my.app.stoma.domain.BaseEntity;
+import my.app.stoma.domain.Question;
 
 import javax.persistence.*;
 import java.util.List;

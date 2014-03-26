@@ -2,11 +2,11 @@ package my.app.stoma;
 
 import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.Question;
-import my.app.stoma.domain.User;
-import my.app.stoma.domain.Role;
+import my.app.stoma.domain.security.User;
+import my.app.stoma.domain.security.Role;
 import my.app.stoma.service.AnswerService;
 import my.app.stoma.service.QuestionService;
-import my.app.stoma.service.UserService;
+import my.app.stoma.service.security.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

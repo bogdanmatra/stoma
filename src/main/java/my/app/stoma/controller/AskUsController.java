@@ -2,17 +2,16 @@ package my.app.stoma.controller;
 
 import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.Question;
-import my.app.stoma.domain.User;
+import my.app.stoma.domain.security.User;
 import my.app.stoma.service.AnswerService;
 import my.app.stoma.service.MailService;
 import my.app.stoma.service.QuestionService;
-import my.app.stoma.service.UserService;
+import my.app.stoma.service.security.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -74,7 +73,7 @@ public class AskUsController {
     @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addTopic", method = RequestMethod.GET)
     String addTopic(Model model, HttpServletRequest request) {
-        
+
         model.addAttribute("question", new Question());
         return "/addTopic";
     }

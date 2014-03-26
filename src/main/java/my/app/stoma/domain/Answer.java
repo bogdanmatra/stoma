@@ -1,5 +1,6 @@
 package my.app.stoma.domain;
 
+import my.app.stoma.domain.security.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;

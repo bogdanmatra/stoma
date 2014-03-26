@@ -1,8 +1,8 @@
-package my.app.stoma.service;
+package my.app.stoma.service.security;
 
 
-import my.app.stoma.domain.User;
-import my.app.stoma.repository.UserRepository;
+import my.app.stoma.domain.security.User;
+import my.app.stoma.repository.security.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

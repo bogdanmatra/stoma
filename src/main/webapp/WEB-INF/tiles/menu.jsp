@@ -49,9 +49,6 @@
 
     </div>
 
-
-
-
 </div>
 </br>
 
@@ -61,11 +58,7 @@
         $('.nav li').click(function(event){
             //remove all pre-existing active classes
             $('.active').removeClass('active');
-
             $(this).addClass('active');
-
         });
     });
-
-
 </script>

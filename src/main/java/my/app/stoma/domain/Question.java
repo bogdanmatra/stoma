@@ -1,5 +1,6 @@
 package my.app.stoma.domain;
 
+import my.app.stoma.domain.security.User;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;

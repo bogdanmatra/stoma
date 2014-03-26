@@ -9,9 +9,9 @@
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/outside/.*" access="permitAll" />
-		<form-login login-page="/signup" default-target-url="/" always-use-default-target="true"
+		<form-login login-page="/login" default-target-url="/" always-use-default-target="true"
 			authentication-failure-url="/loginfailed" />
-		<access-denied-handler error-page="/404" />
+		<access-denied-handler error-page="/401" />
 		<logout logout-success-url="/" />
 	</http>
 

@@ -1,6 +1,6 @@
-package my.app.stoma.repository;
+package my.app.stoma.repository.security;
 
-import my.app.stoma.domain.User;
+import my.app.stoma.domain.security.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

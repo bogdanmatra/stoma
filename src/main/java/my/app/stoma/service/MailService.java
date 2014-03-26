@@ -1,6 +1,7 @@
 package my.app.stoma.service;
 
-import my.app.stoma.domain.User;
+import my.app.stoma.domain.security.User;
+import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
