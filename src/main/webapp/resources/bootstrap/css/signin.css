@@ -1,4 +1,7 @@
-body { border-top:10px solid #d9d9d9;
+html {
+    overflow-y: scroll;
+}
+body {
     background: #dadada; /* Old browsers */
     background: -moz-linear-gradient(left,  #dadada 0%, #ffffff 20%, #ffffff 80%, #dadada 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,#dadada), color-stop(20%,#ffffff), color-stop(80%,#ffffff), color-stop(100%,#dadada)); /* Chrome,Safari4+ */
@@ -15,13 +18,10 @@ body { border-top:10px solid #d9d9d9;
     padding: 15px;
     margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
+.form-signin .form-signin-heading, {
     margin-bottom: 10px;
 }
-.form-signin .checkbox {
-    font-weight: normal;
-}
+
 .form-signin .form-control {
     position: relative;
     height: auto;

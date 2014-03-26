@@ -5,7 +5,7 @@
         <input type="user" class="form-control" placeholder="Username" required="" autofocus="" name="j_username">
         <input type="password" class="form-control" placeholder="Password" required="" name="j_password">
 
-        <a href="./signup">Sign up!</a>
+        <a href="./signup/">Sign up!</a>
 
         <br>
         <br>
