@@ -3,11 +3,19 @@
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <h4>Stoma</h4>
             <div class="list-group">
                 <a href="#" class="list-group-item">Link</a>
                 <a href="#" class="list-group-item">Link</a>
                 <a href="#" class="list-group-item">Link</a>
                 <a href="#" class="list-group-item active">Link</a>
+            </div>
+            <h4>Generala</h4>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
             </div>
         </div>
 
