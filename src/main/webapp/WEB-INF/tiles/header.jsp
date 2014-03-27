@@ -12,9 +12,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${ctx}">
-                <table>
-                    <tr><td>Stomatology</td></tr>
-                    <tr><td></td> <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 70px;"></td></tr>
+                <table style="border-collapse:separate;border-spacing:15px 1px;">
+                    <tr>
+                        <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 70px;"></td>
+                        <td><img src="${pageContext.request.contextPath}/resources/picture/med.png" style="height: 70px;"></td>
+                    </tr>
 
                 </table></a>
         </div>
