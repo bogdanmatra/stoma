@@ -19,15 +19,14 @@ public class PictureService {
 
 
     @Transactional(readOnly = true)
-    public List<Picture> findAll (){
+    public List<Picture> findAll() {
         return pictureRepository.findAll();
     }
 
     @Transactional(readOnly = false)
-    public Picture save (Picture picture){
+    public Picture save(Picture picture) {
         return pictureRepository.save(picture);
     }
-
 
 
 }

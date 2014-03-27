@@ -37,26 +37,25 @@ public class NewsServiceTest {
     NewsService newsService;
 
     @Test
-    public void testNews(){
+    public void testNews() {
 
-        Comment comment=new Comment();
+        Comment comment = new Comment();
         comment.setContent("Content");
         comment.setUser(userService.findByUsername("superuser"));
         Comment savedComment = commentService.save(comment);
-        List<Comment> cList= new LinkedList<>();
+        List<Comment> cList = new LinkedList<>();
         cList.add(savedComment);
 
 
-        Picture picture=new Picture();
+        Picture picture = new Picture();
         picture.setPath("/path/path");
         picture.setPrimary(true);
         Picture savedPicture = pictureService.save(picture);
-        List<Picture> pList= new LinkedList<>();
+        List<Picture> pList = new LinkedList<>();
         pList.add(savedPicture);
 
 
-
-        News news=new News();
+        News news = new News();
         news.setTitle("Title");
         news.setContent("Content");
         news.setComments(cList);
@@ -65,8 +64,6 @@ public class NewsServiceTest {
 
         Assert.assertEquals("/path/path", newsService.findAll().get(0).getPictures().get(0).getPath());
         Assert.assertEquals("Content", newsService.findAll().get(0).getComments().get(0).getContent());
-
-
 
 
     }

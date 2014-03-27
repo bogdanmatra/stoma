@@ -28,53 +28,51 @@ import java.util.List;
 @Transactional
 public class EventServiceTest {
 
-        @Autowired
-        CommentService commentService;
+    @Autowired
+    CommentService commentService;
 
-        @Autowired
-        PictureService pictureService;
+    @Autowired
+    PictureService pictureService;
 
-        @Autowired
-        EventService eventService;
+    @Autowired
+    EventService eventService;
 
-        @Autowired
-        UserService userService;
-
-
-        @Test
-        public void testEvent(){
-
-            Comment comment=new Comment();
-            comment.setContent("Content");
-            User user=userService.findByUsername("user");
-            comment.setUser(user);
-            Comment savedComment = commentService.save(comment);
-            List<Comment> cList=new ArrayList<Comment>();
-            cList.add(savedComment);
-
-            Picture picture=new Picture();
-            picture.setPath("/path/path");
-            picture.setPrimary(true);
-            Picture savedPicture = pictureService.save(picture);
-            List<Picture> pList=new ArrayList<Picture>();
-            pList.add(savedPicture);
+    @Autowired
+    UserService userService;
 
 
-            Event event=new Event();
-            event.setName("Test event");
-            event.setComments(cList);
-            event.setPictures(pList);
-            event.setLocale("en");
-            event.setDetails("something");
-            eventService.save(event);
+    @Test
+    public void testEvent() {
 
-            Assert.assertEquals("Content",eventService.findAll().get(0).getComments().get(0).getContent());
-            Assert.assertEquals("/path/path",eventService.findAll().get(0).getPictures().get(0).getPath());
+        Comment comment = new Comment();
+        comment.setContent("Content");
+        User user = userService.findByUsername("user");
+        comment.setUser(user);
+        Comment savedComment = commentService.save(comment);
+        List<Comment> cList = new ArrayList<Comment>();
+        cList.add(savedComment);
+
+        Picture picture = new Picture();
+        picture.setPath("/path/path");
+        picture.setPrimary(true);
+        Picture savedPicture = pictureService.save(picture);
+        List<Picture> pList = new ArrayList<Picture>();
+        pList.add(savedPicture);
 
 
+        Event event = new Event();
+        event.setName("Test event");
+        event.setComments(cList);
+        event.setPictures(pList);
+        event.setLocale("en");
+        event.setDetails("something");
+        eventService.save(event);
 
-        }
+        Assert.assertEquals("Content", eventService.findAll().get(0).getComments().get(0).getContent());
+        Assert.assertEquals("/path/path", eventService.findAll().get(0).getPictures().get(0).getPath());
 
+
+    }
 
 
 }

@@ -1,8 +1,8 @@
 package my.app.stoma;
 
-import my.app.stoma.domain.security.User;
 import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Comment;
+import my.app.stoma.domain.security.User;
 import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.CommentService;
 import my.app.stoma.service.security.UserService;
@@ -36,33 +36,31 @@ public class CommentArticleServiceTest {
 
 
     @Test
-    public void testComment(){
+    public void testComment() {
 
-        Comment comment=new Comment();
-        User user=userService.findByUsername("superuser");
+        Comment comment = new Comment();
+        User user = userService.findByUsername("superuser");
         comment.setContent("Content");
         comment.setUser(user);
         commentService.save(comment);
-        List<Comment> list=commentService.findAll();
-        Assert.assertEquals("superuser",list.get(0).getUser().getUsername());
-
-
+        List<Comment> list = commentService.findAll();
+        Assert.assertEquals("superuser", list.get(0).getUser().getUsername());
 
 
     }
 
 
     @Test
-    public void testArticle(){
+    public void testArticle() {
 
-        Comment comment=new Comment();
+        Comment comment = new Comment();
         comment.setContent("Content");
         comment.setUser(userService.findByUsername("superuser"));
         // commentService.save(comment);
-        List<Comment> list= new LinkedList<>();
+        List<Comment> list = new LinkedList<>();
         list.add(comment);
 
-        Article article=new Article();
+        Article article = new Article();
         article.setTitle("Title");
         article.setContent("Content");
         article.setComments(list);

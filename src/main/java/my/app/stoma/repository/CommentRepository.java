@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by bmatragociu on 3/27/2014.
  */
 @Repository
-public interface CommentRepository  extends JpaRepository<Comment, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 }

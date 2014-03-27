@@ -3,8 +3,8 @@ package my.app.stoma.domain.security;
 
 import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.BaseEntity;
-import my.app.stoma.domain.Question;
 import my.app.stoma.domain.Comment;
+import my.app.stoma.domain.Question;
 
 import javax.persistence.*;
 import java.util.List;
@@ -34,13 +34,13 @@ public class User extends BaseEntity {
     private List<Role> roles;
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Question> questions;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Answer> answers;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Comment> comments;
 
     public List<Comment> getComments() {
@@ -99,7 +99,6 @@ public class User extends BaseEntity {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-
 
     public List<Question> getQuestions() {
         return questions;

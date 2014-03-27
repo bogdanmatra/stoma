@@ -15,7 +15,7 @@ public class RoleService {
     RoleRepository roleRepository;
 
 
-    public Role getRoleByAuthority(String auth){
+    public Role getRoleByAuthority(String auth) {
         return roleRepository.findByAuthority(auth);
     }
 

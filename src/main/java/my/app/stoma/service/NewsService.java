@@ -19,12 +19,12 @@ public class NewsService {
     NewsRepository newsRepository;
 
     @Transactional(readOnly = true)
-    public List<News> findAll (){
+    public List<News> findAll() {
         return newsRepository.findAll();
     }
 
     @Transactional(readOnly = false)
-    public News save (News news){
+    public News save(News news) {
         return newsRepository.save(news);
     }
 

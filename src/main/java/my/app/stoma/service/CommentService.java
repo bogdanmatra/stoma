@@ -20,13 +20,13 @@ public class CommentService {
     CommentRepository commentRepository;
 
     @Transactional(readOnly = false)
-    public Comment save(Comment comment){
+    public Comment save(Comment comment) {
         return commentRepository.save(comment);
     }
 
 
     @Transactional(readOnly = true)
-    public List<Comment> findAll(){
+    public List<Comment> findAll() {
         return commentRepository.findAll();
     }
 

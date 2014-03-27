@@ -25,26 +25,26 @@ public class MailService {
     @Autowired
     UserService userService;
 
-    public void sendMail(InternetAddress to, String subject, String text){
+    public void sendMail(InternetAddress to, String subject, String text) {
 
-            MimeMessage emailMessage = mailSender.createMimeMessage();
-            try {
-                MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(emailMessage, true);
-                mimeMessageHelper.setFrom(emailReceiver);
-                mimeMessageHelper.setReplyTo(emailReceiver);
-                mimeMessageHelper.setValidateAddresses(true);
-                mimeMessageHelper.setTo(to);
-                mimeMessageHelper.setSubject(subject);
-                mimeMessageHelper.setText(text, true);
-                mailSender.send(emailMessage);
-            } catch (MessagingException e){
-                e.printStackTrace();
-            }
+        MimeMessage emailMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(emailMessage, true);
+            mimeMessageHelper.setFrom(emailReceiver);
+            mimeMessageHelper.setReplyTo(emailReceiver);
+            mimeMessageHelper.setValidateAddresses(true);
+            mimeMessageHelper.setTo(to);
+            mimeMessageHelper.setSubject(subject);
+            mimeMessageHelper.setText(text, true);
+            mailSender.send(emailMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void sendToAllAdmin(String subject,String content) throws UnsupportedEncodingException {
-        for (User user:userService.findAllWithRole("ROLE_ADMIN")) {
-            sendMail(new InternetAddress(user.getEmail(),"New Post!"),subject,content);
+    public void sendToAllAdmin(String subject, String content) throws UnsupportedEncodingException {
+        for (User user : userService.findAllWithRole("ROLE_ADMIN")) {
+            sendMail(new InternetAddress(user.getEmail(), "New Post!"), subject, content);
         }
     }
 

@@ -1,24 +1,23 @@
 package my.app.stoma.domain;
 
-import my.app.stoma.domain.Article;
-import my.app.stoma.domain.BaseEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by bmatragociu on 3/26/2014.
  */
 
 @Entity
-@Table(name="domains")
-public class Domain extends BaseEntity implements Serializable{
+@Table(name = "domains")
+public class Domain extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 8721509412360448342L;
 
     @Size(min = 1, max = 45)
     @NotNull

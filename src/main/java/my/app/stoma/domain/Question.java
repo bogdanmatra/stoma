@@ -1,8 +1,6 @@
 package my.app.stoma.domain;
 
 import my.app.stoma.domain.security.User;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -25,7 +23,6 @@ public class Question extends BaseEntity {
     private String content;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Answer> answers;
 
     @ManyToOne

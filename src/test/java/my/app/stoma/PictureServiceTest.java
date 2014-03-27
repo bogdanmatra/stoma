@@ -30,23 +30,22 @@ public class PictureServiceTest {
     @Test
     public void testPicture() {
 
-        Article article=new Article();
+        Article article = new Article();
         article.setTitle("Gigi");
         article.setContent("Content");
         Article savedArticle = articleService.save(article);
 
-        Picture picture=new Picture();
+        Picture picture = new Picture();
         picture.setPath("/path/path");
         picture.setArticle(savedArticle);
         picture.setPrimary(true);
 
         pictureService.save(picture);
 
-        Assert.assertEquals("Gigi",pictureService.findAll().get(0).getArticle().getTitle());
-        Assert.assertEquals("/path/path",pictureService.findAll().get(0).getPath());
+        Assert.assertEquals("Gigi", pictureService.findAll().get(0).getArticle().getTitle());
+        Assert.assertEquals("/path/path", pictureService.findAll().get(0).getPath());
 
     }
-
 
 
 }

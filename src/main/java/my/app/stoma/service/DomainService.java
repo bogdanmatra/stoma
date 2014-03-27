@@ -18,12 +18,12 @@ public class DomainService {
     DomainRepository domainRepository;
 
     @Transactional(readOnly = true)
-    public List<Domain> findAll (){
+    public List<Domain> findAll() {
         return domainRepository.findAll();
     }
 
     @Transactional(readOnly = false)
-    public Domain save (Domain domain){
+    public Domain save(Domain domain) {
         return domainRepository.save(domain);
     }
 

@@ -49,19 +49,19 @@ public class AskUsController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String redirect(HttpServletRequest request) {
-            return "redirect:askus/0";
+        return "redirect:askus/0";
     }
 
     @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
     public ModelAndView questions(@PathVariable int currentPage, Model model, HttpServletRequest request) {
         Page<Question> page = questionService.findAllPage(currentPage);
-        if(page.getTotalPages()==0){
-        model.addAttribute("Empty",true);
-        return new ModelAndView("/askus", model.asMap());
+        if (page.getTotalPages() == 0) {
+            model.addAttribute("Empty", true);
+            return new ModelAndView("/askus", model.asMap());
         }
-        if(page.getNumberOfElements()==0){
-            currentPage=currentPage-1;
-            return new ModelAndView("redirect:/askus/"+currentPage);
+        if (page.getNumberOfElements() == 0) {
+            currentPage = currentPage - 1;
+            return new ModelAndView("redirect:/askus/" + currentPage);
         }
         List<Question> questions = page.getContent();
         model.addAttribute("allQuestions", questions);
@@ -111,7 +111,7 @@ public class AskUsController {
         answer.setQuestion(question);
         answer.setUser(currentUser);
         answerService.save(answer);
-        mailService.sendToAllAdmin("New Answer!", "New answer posted: " +  answer.getContent());
+        mailService.sendToAllAdmin("New Answer!", "New answer posted: " + answer.getContent());
         return "redirect:/askus/" + request.getParameter("currentPage");
 
     }

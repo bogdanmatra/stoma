@@ -3,7 +3,6 @@ package my.app.stoma.service;
 import my.app.stoma.domain.Answer;
 import my.app.stoma.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,7 @@ public class AnswerService {
 
     @Transactional(readOnly = false)
     public void deleteById(Long id) {
-    answerRepository.customDelete(id);
+        answerRepository.customDelete(id);
     }
 
     @Transactional(readOnly = true)

@@ -1,7 +1,5 @@
 package my.app.stoma.domain;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -15,7 +13,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="news")
+@Table(name = "news")
 public class News extends BaseEntity {
 
     @Size(min = 1, max = 200)
@@ -37,11 +35,9 @@ public class News extends BaseEntity {
     private List<Domain> domains;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Picture> pictures;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Comment> comments;
 
     public String getTitle() {

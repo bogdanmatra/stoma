@@ -2,8 +2,8 @@ package my.app.stoma;
 
 import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.Question;
-import my.app.stoma.domain.security.User;
 import my.app.stoma.domain.security.Role;
+import my.app.stoma.domain.security.User;
 import my.app.stoma.service.AnswerService;
 import my.app.stoma.service.QuestionService;
 import my.app.stoma.service.security.UserService;
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +93,6 @@ public class UserQandAServiceTest {
 
     @Test
     public void testUserByRole() {
-        Assert.assertEquals(1, userService.findAllWithRole("ROLE_ADMIN").size() );
+        Assert.assertEquals(1, userService.findAllWithRole("ROLE_ADMIN").size());
     }
 }

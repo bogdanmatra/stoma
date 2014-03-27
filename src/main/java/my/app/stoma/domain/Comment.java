@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-@Table(name="comments")
+@Table(name = "comments")
 public class Comment extends BaseEntity {
 
     @Size(min = 1, max = 400)

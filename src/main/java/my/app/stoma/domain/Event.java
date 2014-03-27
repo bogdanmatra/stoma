@@ -1,7 +1,5 @@
 package my.app.stoma.domain;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -38,13 +36,10 @@ public class Event extends BaseEntity {
     private String locale;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Picture> pictures;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Comment> comments;
-
 
 
     public String getName() {

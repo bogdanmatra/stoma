@@ -19,6 +19,6 @@ public class AboutUsController {
     public String index(Model model, HttpServletRequest request) {
         return "/aboutus";
 
-}
+    }
 
 }

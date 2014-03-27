@@ -1,6 +1,5 @@
 package my.app.stoma.service;
 
-import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.Event;
 import my.app.stoma.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,12 @@ public class EventService {
     EventRepository eventRepository;
 
     @Transactional(readOnly = true)
-    public List<Event> findAll (){
+    public List<Event> findAll() {
         return eventRepository.findAll();
     }
 
     @Transactional(readOnly = false)
-    public Event save (Event event){
+    public Event save(Event event) {
         return eventRepository.save(event);
     }
 

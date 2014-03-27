@@ -37,12 +37,12 @@ public class LogInSignUpController {
 
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-     public String login(Model model, Boolean invalidData, Boolean applicationError) {
+    public String login(Model model, Boolean invalidData, Boolean applicationError) {
         return "/login";
     }
 
     @RequestMapping(value = "loginfailed", method = RequestMethod.GET)
-    public String loginfailed(Model model, Boolean invalidData, Boolean applicationError,RedirectAttributes redirectAttributes) {
+    public String loginfailed(Model model, Boolean invalidData, Boolean applicationError, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("error", true);
         return "redirect:/login";
     }
@@ -54,20 +54,20 @@ public class LogInSignUpController {
     }
 
 
-    @RequestMapping(value="signup")
-    public static String signUp(Model model, HttpServletRequest request){
+    @RequestMapping(value = "signup")
+    public static String signUp(Model model, HttpServletRequest request) {
         model.addAttribute("user", new User());
         return "/signUp";
     }
 
 
     @RequestMapping(value = "signup/saveUser", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveUser (Model model, @ModelAttribute(value = "user") @Valid  User user, BindingResult bindingResult, HttpServletRequest request) {
+    public String saveUser(Model model, @ModelAttribute(value = "user") @Valid User user, BindingResult bindingResult, HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             return "/signUp";
         }
-        List<Role> list=new ArrayList<Role>();
+        List<Role> list = new ArrayList<Role>();
         list.add(roleRepository.findByAuthority("ROLE_USER"));
         user.setRoles(list);
         userService.save(user);

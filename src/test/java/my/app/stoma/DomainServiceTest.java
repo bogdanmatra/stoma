@@ -32,24 +32,24 @@ public class DomainServiceTest {
     @Test
     public void testDomain() {
 
-        Domain domain=new Domain();
+        Domain domain = new Domain();
         domain.setName("Oftalmologie");
         domain.setDomMedical("ge");
         domain.setLocale("ro");
         Domain savedDomain = domainService.save(domain);
 
-        Article article=new Article();
+        Article article = new Article();
         article.setTitle("Gigi");
         article.setContent("Content");
 
-        List<Domain> list= new ArrayList<>();
+        List<Domain> list = new ArrayList<>();
         list.add(savedDomain);
         article.setDomains(list);
 
         articleService.save(article);
 
-        Assert.assertEquals("Oftalmologie",articleService.findAll().get(0).getDomains().get(0).getName());
-        Assert.assertEquals("Oftalmologie",domainService.findAll().get(0).getName());
+        Assert.assertEquals("Oftalmologie", articleService.findAll().get(0).getDomains().get(0).getName());
+        Assert.assertEquals("Oftalmologie", domainService.findAll().get(0).getName());
 
     }
 

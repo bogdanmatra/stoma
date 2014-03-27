@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-@Table(name="pictures")
+@Table(name = "pictures")
 public class Picture {
 
     @Id
@@ -26,7 +26,7 @@ public class Picture {
     @Column(name = "path")
     private String path;
 
-    @Column(name = "primar",columnDefinition = "TINYINT")
+    @Column(name = "primar", columnDefinition = "TINYINT")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean primary;
 

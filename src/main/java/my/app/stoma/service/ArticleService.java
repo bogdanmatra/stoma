@@ -19,16 +19,15 @@ public class ArticleService {
     ArticleRepository articleRepository;
 
     @Transactional(readOnly = false)
-    public Article save(Article article){
+    public Article save(Article article) {
         return articleRepository.save(article);
     }
 
 
     @Transactional(readOnly = true)
-    public List<Article> findAll(){
+    public List<Article> findAll() {
         return articleRepository.findAll();
     }
-
 
 
 }

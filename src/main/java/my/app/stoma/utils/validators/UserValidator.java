@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
 
-    private String invalidName="addUser.invalidName";
+    private String invalidName = "addUser.invalidName";
 
     @Autowired
     private UserService userService;
@@ -44,8 +44,8 @@ public class UserValidator implements Validator {
             return;
         }
 
-        if (name.length() >20) {
-            errors.rejectValue("firstName","addUser.tooLongName") ;
+        if (name.length() > 20) {
+            errors.rejectValue("firstName", "addUser.tooLongName");
         }
     }
 
@@ -62,8 +62,8 @@ public class UserValidator implements Validator {
             errors.rejectValue("lastName", invalidName);
             return;
         }
-        if (name.length() >20) {
-            errors.rejectValue("lastName","addUser.tooLongName");
+        if (name.length() > 20) {
+            errors.rejectValue("lastName", "addUser.tooLongName");
         }
     }
 

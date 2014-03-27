@@ -4,7 +4,6 @@ import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.Question;
 import my.app.stoma.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -31,7 +30,7 @@ public class QuestionService {
 
     @Transactional(readOnly = false)
     public void deleteById(Long id) {
-         questionRepository.delete(id);
+        questionRepository.delete(id);
     }
 
     public List<Question> findAll() {

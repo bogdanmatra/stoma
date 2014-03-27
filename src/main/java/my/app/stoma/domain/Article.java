@@ -1,20 +1,17 @@
 package my.app.stoma.domain;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by bmatragociu on 3/26/2014.
  */
 @Entity
-@Table(name="articles")
+@Table(name = "articles")
 public class Article extends BaseEntity {
 
     @Size(min = 1, max = 200)
@@ -31,7 +28,7 @@ public class Article extends BaseEntity {
     @Column(name = "viewed")
     private Long viewed;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
@@ -40,7 +37,6 @@ public class Article extends BaseEntity {
 
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
     List<Picture> pictures;
 
 
