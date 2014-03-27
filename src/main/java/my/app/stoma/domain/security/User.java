@@ -4,6 +4,7 @@ package my.app.stoma.domain.security;
 import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.BaseEntity;
 import my.app.stoma.domain.Question;
+import my.app.stoma.domain.Comment;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,6 +39,17 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Answer> answers;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
 
     public String getUsername() {

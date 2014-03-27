@@ -32,7 +32,6 @@ public class BaseEntity {
     @PrePersist
     protected void onCreate() {
         final DateTime now = DateTime.now();
-
         createdDate = now;
         updatedDate = now;
     }
