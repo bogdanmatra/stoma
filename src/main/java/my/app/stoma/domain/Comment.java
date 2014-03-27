@@ -29,7 +29,13 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "id_article")
     Article article;
 
+    @ManyToOne
+    @JoinColumn(name = "id_event")
+    Event event;
 
+    @ManyToOne
+    @JoinColumn(name = "id_news")
+    News news;
 
 
     public Article getArticle() {
@@ -55,5 +61,21 @@ public class Comment extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
     }
 }

@@ -1,7 +1,94 @@
 package my.app.stoma.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
+
 /**
  * Created by bmatragociu on 3/26/2014.
  */
-public class News {
+
+
+@Entity
+@Table(name="news")
+public class News extends BaseEntity {
+
+    @Size(min = 1, max = 200)
+    @NotNull
+    @NotEmpty
+    @Column(name = "title")
+    private String title;
+
+    @NotNull
+    @NotEmpty
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "viewed")
+    private Long viewed;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "news_domains", joinColumns = {@JoinColumn(name = "news_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
+    private List<Domain> domains;
+
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Picture> pictures;
+
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Comment> comments;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Long getViewed() {
+        return viewed;
+    }
+
+    public void setViewed(Long viewed) {
+        this.viewed = viewed;
+    }
+
+    public List<Domain> getDomains() {
+        return domains;
+    }
+
+    public void setDomains(List<Domain> domains) {
+        this.domains = domains;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

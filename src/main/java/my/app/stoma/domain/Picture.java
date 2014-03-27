@@ -1,6 +1,5 @@
 package my.app.stoma.domain;
 
-import my.app.stoma.domain.BaseEntity;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -35,6 +34,14 @@ public class Picture {
     @JoinColumn(name = "id_article")
     private Article article;
 
+    @ManyToOne
+    @JoinColumn(name = "id_event")
+    private Event event;
+
+    @ManyToOne
+    @JoinColumn(name = "id_news")
+    private News news;
+
     public Long getId() {
         return id;
     }
@@ -51,7 +58,6 @@ public class Picture {
         this.path = path;
     }
 
-
     public Article getArticle() {
         return article;
     }
@@ -66,5 +72,21 @@ public class Picture {
 
     public void setPrimary(boolean primary) {
         this.primary = primary;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
     }
 }
