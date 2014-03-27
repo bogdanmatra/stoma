@@ -1,6 +1,7 @@
 package my.app.stoma.domain;
 
 import my.app.stoma.domain.BaseEntity;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class Picture {
     @NotEmpty
     @Column(name = "path")
     private String path;
+
+    @Column(name = "primar",columnDefinition = "TINYINT")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean primary;
 
     @ManyToOne
     @JoinColumn(name = "id_article")
@@ -53,5 +58,13 @@ public class Picture {
 
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public boolean isPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(boolean primary) {
+        this.primary = primary;
     }
 }

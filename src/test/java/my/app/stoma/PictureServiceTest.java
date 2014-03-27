@@ -38,6 +38,7 @@ public class PictureServiceTest {
         Picture picture=new Picture();
         picture.setPath("/path/path");
         picture.setArticle(savedArticle);
+        picture.setPrimary(true);
 
         pictureService.save(picture);
 
