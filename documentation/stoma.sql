@@ -36,7 +36,7 @@ CREATE TABLE `answers` (
   KEY `fk_a_question` (`id_question`),
   CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_a_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (6,'mbnmnbm','2014-03-20 12:35:20','2014-03-20 12:35:20',7,167),(7,'mbnmbnm','2014-03-20 12:35:22','2014-03-20 12:35:22',7,167),(22,'da da','2014-03-24 12:24:18','2014-03-24 12:24:18',8,173),(24,'bla','2014-03-24 12:26:36','2014-03-24 12:26:36',8,173),(30,'DA','2014-03-24 13:21:30','2014-03-24 13:21:30',8,185),(35,'super','2014-03-25 16:42:07','2014-03-25 16:42:07',40,203),(49,'bla','2014-03-26 10:42:55','2014-03-26 10:42:55',7,187),(50,'and aanother bla','2014-03-26 10:43:04','2014-03-26 10:43:04',7,187),(109,'bla','2014-03-27 13:50:39','2014-03-27 13:50:39',7,203);
+INSERT INTO `answers` VALUES (22,'da da','2014-03-24 12:24:18','2014-03-24 12:24:18',8,173),(24,'bla','2014-03-24 12:26:36','2014-03-24 12:26:36',8,173),(30,'DA','2014-03-24 13:21:30','2014-03-24 13:21:30',8,185),(49,'bla','2014-03-26 10:42:55','2014-03-26 10:42:55',7,187),(50,'and aanother bla','2014-03-26 10:43:04','2014-03-26 10:43:04',7,187),(134,'go','2014-03-27 16:10:30','2014-03-27 16:10:30',8,279);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `articles` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `comments` (
   CONSTRAINT `fk_c_events` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_c_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `domains` (
   `locale` varchar(2) NOT NULL,
   `dom_medical` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `events` (
   `viewed` bigint(20) DEFAULT NULL,
   `locale` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ CREATE TABLE `news` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `pictures` (
   CONSTRAINT `fk_p_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_p_event` FOREIGN KEY (`id_event`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +297,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   CONSTRAINT `fk_q_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (167,'bla','2014-03-17 09:32:40','2014-03-17 09:32:40',7),(173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(185,'topic man','2014-03-24 12:34:36','2014-03-24 12:34:36',8),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(203,'ion','2014-03-24 16:20:41','2014-03-24 16:20:41',40),(279,'new post','2014-03-27 13:50:55','2014-03-27 13:50:55',7);
+INSERT INTO `questions` VALUES (173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(185,'topic man','2014-03-24 12:34:36','2014-03-24 12:34:36',8),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(279,'new post','2014-03-27 13:50:55','2014-03-27 13:50:55',7);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +323,7 @@ CREATE TABLE `roles` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,7 +355,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,7 +364,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com',NULL,NULL,'Bogdan','Matragociu'),(8,'user','a5700387a0b64f00ff5fe28ee22eb088c2f684a7ad9645d231bdac76b9456c7f','anna.dumitrache@gmail.com',NULL,NULL,'Ana','Dumitrache'),(40,'ionuser','1648fe02712dbec1ddb92dc0970d6b01faafee80c6124b08b48ca4878a5c30c7','ionescu@yahoo.com','2014-03-24 16:20:15','2014-03-24 16:20:15','Ion','Ion');
+INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com',NULL,NULL,'Bogdan','Matragociu'),(8,'user','a5700387a0b64f00ff5fe28ee22eb088c2f684a7ad9645d231bdac76b9456c7f','anna.dumitrache@gmail.com',NULL,NULL,'Ana','Dumitrache');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,7 +391,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (7,1),(7,2),(8,2),(40,2);
+INSERT INTO `users_roles` VALUES (7,1),(7,2),(8,2);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -404,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-27 16:13:52
+-- Dump completed on 2014-03-27 18:27:45
