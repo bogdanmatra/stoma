@@ -7,15 +7,15 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <h4>Stoma</h4>
-            <div class="list-group">
+            <div class="list-group" id="firstGroup">
                 <c:forEach var="domain" items="${st}">
                 <a href="#" class="list-group-item" data-id="${domain.id}" onclick="poolContent(${domain.id})">${domain.name}</a>
                 </c:forEach>
             </div>
             <h4>Generala</h4>
             <div class="list-group">
-                <c:forEach var="d" items="${gen}">
-                    <a href="#" class="list-group-item" data-id="${domain.id}" onclick="poolContent(${domain.id})">${d.name}</a>
+                <c:forEach var="domain" items="${gen}">
+                    <a href="#" class="list-group-item" data-id="${domain.id}" onclick="poolContent(${domain.id})">${domain.name}</a>
                 </c:forEach>
             </div>
         </div>
@@ -40,7 +40,13 @@
 
 <script>
 
+    var global= $(".multi");
+    var parent=$("#contents");
+
     $(document).ready(function() {
+
+
+        poolContent($("#firstGroup").find("a:first").attr("data-id"));
         var elements=$('.list-group-item');
 
         elements.first().addClass("active");
@@ -55,21 +61,19 @@
 
 
     function poolContent( id ) {
-        var element = $(".multi");
-        var parent = $("#contents");
+        var element = global;
         $.ajax({
             async: false,
             type: "POST",
             url: "news/getNews/" + id,
             success: function (data) {
-
+                parent.empty();
                 $(data).each(function(){
                     element.removeClass("hide");
                     element=element.clone()
                     parent.append(element);
                     element.find("h2").html(this.title);
                     element.find("p:first").html(this.content);
-                 console.log (this.content);
                 });
             }
         });
