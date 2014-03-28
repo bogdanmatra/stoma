@@ -45,20 +45,16 @@
 
     $(document).ready(function() {
 
-
         poolContent($("#firstGroup").find("a:first").attr("data-id"));
+
         var elements=$('.list-group-item');
-
         elements.first().addClass("active");
-
         elements.click(function (event) {
             //remove all pre-existing active classes
-            $('.active').removeClass('active');
+            $(".list-group-item").removeClass('active');
             $(this).addClass('active');
         });
     });
-
-
 
     function poolContent( id ) {
         var element = global;

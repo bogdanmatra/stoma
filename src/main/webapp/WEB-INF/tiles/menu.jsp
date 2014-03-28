@@ -57,7 +57,7 @@
     $(document).ready(function(){
         $('.nav li').click(function(event){
             //remove all pre-existing active classes
-            $('.active').removeClass('active');
+            $('#menu').children().removeClass('active');
             $(this).addClass('active');
         });
     });
