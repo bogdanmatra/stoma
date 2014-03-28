@@ -40,7 +40,7 @@ public class NewsController {
     }
 
 
-    @RequestMapping(value = "/getNews/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getNews/{id}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<News> getNews(@PathVariable Long id, HttpServletRequest request) {
         List<News> list = newsService.findAllByDomain(domainService.findById(id));
