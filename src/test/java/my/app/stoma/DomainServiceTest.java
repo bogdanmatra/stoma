@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bmatragociu on 3/27/2014.
@@ -49,8 +50,41 @@ public class DomainServiceTest {
         articleService.save(article);
 
         Assert.assertEquals("Oftalmologie", articleService.findAll().get(0).getDomains().get(0).getName());
-        Assert.assertEquals("Oftalmologie", domainService.findAll().get(0).getName());
-
+        Assert.assertEquals("Oftalmologie", getDomainFromList(domainService.findAll(),"Oftalmologie").getName());
     }
+
+
+    @Test
+    public void testGetDomainsByLocale() {
+
+        Domain domainS = new Domain();
+        domainS.setName("Aparatura stoma");
+        domainS.setDomMedical("st");
+        domainS.setLocale("ro");
+        domainService.save(domainS);
+
+        Domain domainG = new Domain();
+        domainG.setName("Oftalmologie");
+        domainG.setDomMedical("ge");
+        domainG.setLocale("ro");
+        domainService.save(domainG);
+
+        Map<String,List<Domain>> map =domainService.getTwoListsStAndGen("ro");
+
+        List<Domain> listStoma = map.get("st");
+        List<Domain> listGen = map.get("ge");
+
+        Assert.assertEquals("st", getDomainFromList(listStoma,"Aparatura stoma").getDomMedical());
+        Assert.assertEquals("ge", getDomainFromList(listGen,"Oftalmologie").getDomMedical());
+    }
+
+
+    public Domain getDomainFromList(List<Domain> domainList, String name){
+        for(Domain domain: domainList){
+            if (domain.getName().equals(name)) return domain;
+        }
+        return null;
+    }
+
 
 }

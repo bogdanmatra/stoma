@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * Created by bmatragociu on 3/26/2014.
@@ -15,9 +14,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "domains")
-public class Domain extends BaseEntity implements Serializable {
-
-    private static final long serialVersionUID = 8721509412360448342L;
+public class Domain extends BaseEntity  {
 
     @Size(min = 1, max = 45)
     @NotNull

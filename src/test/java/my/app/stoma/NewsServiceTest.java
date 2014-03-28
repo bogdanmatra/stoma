@@ -39,6 +39,9 @@ public class NewsServiceTest {
     @Test
     public void testNews() {
 
+        int initialSize = newsService.findAll().size();
+        int initialSizePictures = pictureService.findAll().size();
+
         Comment comment = new Comment();
         comment.setContent("Content");
         comment.setUser(userService.findByUsername("superuser"));
@@ -62,8 +65,10 @@ public class NewsServiceTest {
         news.setPictures(pList);
         newsService.save(news);
 
-        Assert.assertEquals("/path/path", newsService.findAll().get(0).getPictures().get(0).getPath());
-        Assert.assertEquals("Content", newsService.findAll().get(0).getComments().get(0).getContent());
+        int finalSize = newsService.findAll().size();
+        int finalSizePictures = pictureService.findAll().size();
+        Assert.assertEquals(initialSize+1,finalSize);
+        Assert.assertEquals(initialSizePictures+1,finalSizePictures);
 
 
     }

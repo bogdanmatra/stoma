@@ -26,7 +26,7 @@ public class ErrorController {
         // Retrieve error code
         Integer statusCode = (Integer) request
                 .getAttribute("javax.servlet.error.status_code");
-        LOGGER.debug("Error code: " + statusCode);
+        LOGGER.debug("Error code: " + statusCode + " Trace: " + request.getAttribute("javax.servlet.error.exception"));
         model.addAttribute("errorCode", statusCode);
         return "/error";
     }

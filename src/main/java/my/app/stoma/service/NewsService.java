@@ -1,5 +1,6 @@
 package my.app.stoma.service;
 
+import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
 import my.app.stoma.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class NewsService {
     @Transactional(readOnly = false)
     public News save(News news) {
         return newsRepository.save(news);
+    }
+
+    @Transactional(readOnly = true)
+    public List<News> findAllByDomain(Domain domain) {
+        return newsRepository.findAllNewsByDomain(domain);
     }
 
 }
