@@ -71,6 +71,9 @@
                     element.find("h2").html(this.title);
                     element.find("p:first").html(this.content);
                 });
+            },
+            error: function(){
+                parent.html("No data!")
             }
         });
     }
