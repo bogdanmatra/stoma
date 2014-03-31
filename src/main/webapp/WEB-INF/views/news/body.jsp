@@ -64,7 +64,7 @@
             url: "news/getNews/" + id,
             success: function (data) {
                 parent.empty();
-                $(data).each(function(){
+                $(data.content).each(function(){
                     element.removeClass("hide");
                     element=element.clone()
                     parent.append(element);

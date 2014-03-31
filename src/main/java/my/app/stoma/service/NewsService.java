@@ -4,8 +4,13 @@ import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
 import my.app.stoma.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -30,8 +35,9 @@ public class NewsService {
     }
 
     @Transactional(readOnly = true)
-    public List<News> findAllByDomain(Domain domain) {
-        return newsRepository.findAllNewsByDomain(domain);
+    public Page<News> findAllByDomain(Domain domain, int pageNumber){
+        return newsRepository.findAllNewsByDomain(domain, new PageRequest(pageNumber, 2, new Sort(
+                Sort.Direction.DESC, "updatedDate")));
     }
 
 }

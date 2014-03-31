@@ -6,6 +6,9 @@ import my.app.stoma.service.DomainService;
 import my.app.stoma.service.NewsService;
 import my.app.stoma.utils.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,9 +45,9 @@ public class NewsController {
 
     @RequestMapping(value = "/getNews/{id}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<News> getNews(@PathVariable Long id, HttpServletRequest request) {
-        List<News> list = newsService.findAllByDomain(domainService.findById(id));
-        return list;
+    public Page<News> getNews(@PathVariable Long id, HttpServletRequest request) {
+        Page<News> page = newsService.findAllByDomain(domainService.findById(id),0);
+        return page;
     }
 
 
