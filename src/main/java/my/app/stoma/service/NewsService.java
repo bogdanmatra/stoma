@@ -36,7 +36,7 @@ public class NewsService {
 
     @Transactional(readOnly = true)
     public Page<News> findAllByDomain(Domain domain, int pageNumber){
-        return newsRepository.findAllNewsByDomain(domain, new PageRequest(pageNumber, 2, new Sort(
+        return newsRepository.findAllNewsByDomain(domain, new PageRequest(pageNumber, 9, new Sort(
                 Sort.Direction.DESC, "updatedDate")));
     }
 

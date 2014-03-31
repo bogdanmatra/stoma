@@ -44,9 +44,18 @@
     var parent=$("#contents");
 
     $(document).ready(function() {
+//Going for scroll
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() > $(document).height()-1) {
+                //alert("near bottom!");
+                for(i=1;i<10;i++) {
+                    global = global.clone();
+                    parent.append(global);
+                }
+            }
+        });
 
         poolContent($("#firstGroup").find("a:first").attr("data-id"));
-
         var elements=$('.list-group-item');
         elements.first().addClass("active");
         elements.click(function (event) {
@@ -64,8 +73,8 @@
             url: "news/getNews/" + id,
             success: function (data) {
                 parent.empty();
+                element.removeClass("hide");
                 $(data.content).each(function(){
-                    element.removeClass("hide");
                     element=element.clone()
                     parent.append(element);
                     element.find("h2").html(this.title);
@@ -77,5 +86,7 @@
             }
         });
     }
+
+
 
 </script>
