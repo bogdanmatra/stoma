@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface DomainRepository extends JpaRepository<Domain, Long> {
 
-    @Query("SELECT domain FROM Domain domain WHERE domain.locale = :loc AND domain.domMedical = :dom AND domain.")
+    @Query("SELECT domain FROM Domain domain WHERE domain.locale = :loc AND domain.domMedical = :dom")
     List<Domain> findDomainsByLocaleAndMedD(@Param("dom") String dom, @Param("loc") String loc) throws DataAccessException;
 
 }
