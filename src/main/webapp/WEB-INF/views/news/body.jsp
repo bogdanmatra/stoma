@@ -5,8 +5,11 @@
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <h4>Stoma</h4>
             <div class="list-group" id="firstGroup">
+            <a href="#" class="list-group-item"  onclick="emptyParent();poolContent(-1,0)">All</a>
+            </div>
+            <h4>Stoma</h4>
+            <div class="list-group">
                 <c:forEach var="domain" items="${st}">
                 <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
@@ -48,8 +51,7 @@
 
     $(document).ready(function() {
         parent.empty();
-        parent=initialParent;
-        poolContent($("#firstGroup").find("a:first").attr("data-id"),currentPage);
+        poolContent(-1,currentPage);
         //Going for scroll
         $(window).scroll(function() {
             if($(window).scrollTop() + $(window).height() > $(document).height()-1 && currentPage<totalPages-1) {
@@ -81,7 +83,7 @@
                 element.removeClass("hide");
                 totalPages=data.totalPages;
                 if(totalPages==0){
-                    parent.html("<br><br>No data!")
+                    parent.html("No data!")
                     return;
                 }
                 $(data.content).each(function(){
@@ -92,7 +94,7 @@
                 });
             },
             error: function(){
-                parent.html("<br><br>No data!")
+                parent.html("No data!")
             }
         });
     }

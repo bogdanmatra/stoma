@@ -22,4 +22,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Query("SELECT news FROM News news INNER JOIN news.domains dom WHERE dom = :domain")
     Page<News> findAllNewsByDomain(@Param("domain") Domain domain, Pageable p) throws DataAccessException;
 
+    @Query("SELECT news FROM News news INNER JOIN news.domains dom WHERE dom.locale = :language")
+    Page<News> findAllByLanguage(@Param("language") String language, Pageable p) throws DataAccessException;
+
 }

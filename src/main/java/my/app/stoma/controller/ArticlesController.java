@@ -48,6 +48,9 @@ public class ArticlesController {
     @RequestMapping(value = "/getArticles/{id}/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Page<Article> getNews(@PathVariable Long id,@PathVariable int pageNumber, HttpServletRequest request) {
+        if (id==-1){
+            return articleService.findAllByLanguage(LocaleUtils.getLanguage(request),pageNumber);
+        }
         Page<Article> page = articleService.findAllByDomain(domainService.findById(id),pageNumber);
         return page;
     }

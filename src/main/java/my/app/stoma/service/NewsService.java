@@ -40,4 +40,11 @@ public class NewsService {
                 Sort.Direction.DESC, "updatedDate")));
     }
 
+
+    @Transactional(readOnly = true)
+    public Page<News> findAllByLanguage(String language,int pageNumber) {
+        return newsRepository.findAllByLanguage(language, new PageRequest(pageNumber, 5, new Sort(
+                Sort.Direction.DESC, "updatedDate")));
+    }
+
 }

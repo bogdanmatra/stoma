@@ -1,9 +1,11 @@
 package my.app.stoma;
 
 import my.app.stoma.domain.Comment;
+import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
 import my.app.stoma.domain.Picture;
 import my.app.stoma.service.CommentService;
+import my.app.stoma.service.DomainService;
 import my.app.stoma.service.NewsService;
 import my.app.stoma.service.PictureService;
 import my.app.stoma.service.security.UserService;
@@ -15,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +38,9 @@ public class NewsServiceTest {
     PictureService pictureService;
     @Autowired
     NewsService newsService;
+    @Autowired
+    DomainService domainService;
+
 
     @Test
     public void testNews() {
@@ -70,6 +76,33 @@ public class NewsServiceTest {
         Assert.assertEquals(initialSize+1,finalSize);
         Assert.assertEquals(initialSizePictures+1,finalSizePictures);
 
+
+    }
+
+
+    @Test
+    public void testNewsByLanguage() {
+
+        long initial =newsService.findAllByLanguage("en",0).getTotalElements();
+
+        Domain domain =new Domain();
+        domain.setName("Oftalmologie");
+        domain.setDomMedical("ge");
+        domain.setLocale("en");
+        Domain domainSaved = domainService.save(domain);
+        List<Domain> list= new ArrayList<>();
+        list.add(domainSaved);
+
+
+
+        News news = new News();
+        news.setTitle("Title");
+        news.setContent("Content");
+        news.setDomains(list);
+        newsService.save(news);
+
+        long last =newsService.findAllByLanguage("en",0).getTotalElements();
+        Assert.assertEquals(initial+1,last);
 
     }
 
