@@ -9,23 +9,23 @@
             <h4>Stoma</h4>
             <div class="list-group" id="firstGroup">
                 <c:forEach var="domain" items="${st}">
-                <a href="#" class="list-group-item" data-id="${domain.id}" onclick="poolContent(${domain.id})">${domain.name}</a>
+                <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
             <h4>Generala</h4>
             <div class="list-group">
                 <c:forEach var="domain" items="${gen}">
-                    <a href="#" class="list-group-item" data-id="${domain.id}" onclick="poolContent(${domain.id})">${domain.name}</a>
+                    <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
         </div>
 
 
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-9 col-sm-9">
             <div class="row" id="contents">
-                <div class="col-6 col-sm-6 col-lg-4 hide multi" >
+                <div class="col-lg-9 col-md-offset-2 hide multi" >
                     <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p class="over">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
                 </div><!--/span-->
             </div><!--/row-->
@@ -42,20 +42,23 @@
 
     var global= $(".multi");
     var parent=$("#contents");
+    var initialParent=parent;
+    var totalPages;
+    var currentId;
+    var currentPage=0;
 
     $(document).ready(function() {
-//Going for scroll
+        parent.empty();
+        parent=initialParent;
+        poolContent($("#firstGroup").find("a:first").attr("data-id"),currentPage);
+        //Going for scroll
         $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() > $(document).height()-1) {
-                //alert("near bottom!");
-                for(i=1;i<10;i++) {
-                    global = global.clone();
-                    parent.append(global);
-                }
+            if($(window).scrollTop() + $(window).height() > $(document).height()-1 & currentPage<totalPages-1) {
+                    poolContent(currentId,++currentPage);
             }
         });
 
-        poolContent($("#firstGroup").find("a:first").attr("data-id"));
+        // Selected
         var elements=$('.list-group-item');
         elements.first().addClass("active");
         elements.click(function (event) {
@@ -63,17 +66,24 @@
             $(".list-group-item").removeClass('active');
             $(this).addClass('active');
         });
+        // End selected
+
     });
 
-    function poolContent( id ) {
+    function poolContent( id, pageNumber ) {
+        currentId=id;
         var element = global;
         $.ajax({
             async: false,
             type: "POST",
-            url: "news/getNews/" + id,
+            url: "news/getNews/" + id +"/" + pageNumber,
             success: function (data) {
-                parent.empty();
                 element.removeClass("hide");
+                totalPages=data.totalPages;
+                if(totalPages==0){
+                    parent.html("<br><br>No data!")
+                    return;
+                }
                 $(data.content).each(function(){
                     element=element.clone()
                     parent.append(element);
@@ -87,6 +97,24 @@
         });
     }
 
+    function emptyParent() {
+       parent.empty();
 
+    }
 
 </script>
+
+
+
+
+<style type="text/css">
+    p.over {
+        /* essential */
+        text-overflow: ellipsis;
+        width: 350px;
+        white-space: nowrap;
+        overflow: hidden;
+        /* for good looks */
+        padding: 10px;
+    }
+</style>

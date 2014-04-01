@@ -43,10 +43,10 @@ public class NewsController {
     }
 
 
-    @RequestMapping(value = "/getNews/{id}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getNews/{id}/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Page<News> getNews(@PathVariable Long id, HttpServletRequest request) {
-        Page<News> page = newsService.findAllByDomain(domainService.findById(id),0);
+    public Page<News> getNews(@PathVariable Long id,@PathVariable int pageNumber, HttpServletRequest request) {
+        Page<News> page = newsService.findAllByDomain(domainService.findById(id),pageNumber);
         return page;
     }
 
