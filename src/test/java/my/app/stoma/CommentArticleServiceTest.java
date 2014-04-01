@@ -53,6 +53,8 @@ public class CommentArticleServiceTest {
     @Test
     public void testArticle() {
 
+        int initial = articleService.findAll().size();
+
         Comment comment = new Comment();
         comment.setContent("Content");
         comment.setUser(userService.findByUsername("superuser"));
@@ -66,7 +68,9 @@ public class CommentArticleServiceTest {
         article.setComments(list);
         articleService.save(article);
 
-        Assert.assertEquals("Content", articleService.findAll().get(0).getComments().get(0).getContent());
+        int after = articleService.findAll().size();
+
+        Assert.assertEquals(initial+1,after);
 
     }
 

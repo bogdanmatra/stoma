@@ -1,5 +1,6 @@
 package my.app.stoma.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by bmatragociu on 3/26/2014.
  */
+@JsonIgnoreProperties({"domains", "pictures", "comments"})
 @Entity
 @Table(name = "articles")
 public class Article extends BaseEntity {
@@ -32,7 +34,7 @@ public class Article extends BaseEntity {
     List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "domain_article", joinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
+    @JoinTable(name = "domains_articles", joinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
 
 

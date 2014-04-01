@@ -39,6 +39,7 @@ public class NewsController {
         Map<String,List<Domain>> map= domainService.getTwoListsStAndGen(LocaleUtils.getLanguage(request));
         model.addAttribute("st",map.get("st"));
         model.addAttribute("gen",map.get("ge"));
+        model.addAttribute("newsOrArticles","getNews");
         return new ModelAndView("/news",model.asMap());
     }
 

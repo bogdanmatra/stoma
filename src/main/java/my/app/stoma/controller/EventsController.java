@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
  * Created by bmatragociu on 3/14/14.
  */
 @Controller
-@RequestMapping(value = "articles")
+@RequestMapping(value = "events")
 public class EventsController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
-        return "/articles";
+        return "/events";
     }
 
 }

@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <div class="container">
 
     <div class="row row-offcanvas row-offcanvas-right">
@@ -76,7 +75,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "news/getNews/" + id +"/" + pageNumber,
+            url: "news/" + "${newsOrArticles}" + "/" + id +"/" + pageNumber,
             success: function (data) {
                 element.removeClass("hide");
                 totalPages=data.totalPages;
@@ -92,19 +91,16 @@
                 });
             },
             error: function(){
-                parent.html("No data!")
+                parent.html("<br><br>No data!")
             }
         });
     }
 
     function emptyParent() {
        parent.empty();
-
     }
 
 </script>
-
-
 
 
 <style type="text/css">

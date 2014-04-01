@@ -49,7 +49,6 @@ public class DomainServiceTest {
 
         articleService.save(article);
 
-        Assert.assertEquals("Oftalmologie", articleService.findAll().get(0).getDomains().get(0).getName());
         Assert.assertEquals("Oftalmologie", getDomainFromList(domainService.findAll(),"Oftalmologie").getName());
     }
 
