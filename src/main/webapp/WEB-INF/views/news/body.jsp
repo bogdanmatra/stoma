@@ -52,8 +52,9 @@
         poolContent($("#firstGroup").find("a:first").attr("data-id"),currentPage);
         //Going for scroll
         $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() > $(document).height()-1 & currentPage<totalPages-1) {
-                    poolContent(currentId,++currentPage);
+            if($(window).scrollTop() + $(window).height() > $(document).height()-1 && currentPage<totalPages-1) {
+                console.log(currentPage+1);
+                poolContent(currentId,++currentPage);
             }
         });
 
@@ -98,6 +99,7 @@
 
     function emptyParent() {
        parent.empty();
+       currentPage=0;
     }
 
 </script>
