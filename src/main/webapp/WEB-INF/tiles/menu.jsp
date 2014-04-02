@@ -55,10 +55,12 @@
 <script>
     // Active class in menu
     $(document).ready(function(){
-        $('.nav li').click(function(event){
-            //remove all pre-existing active classes
-            $('#menu').children().removeClass('active');
+        $('.nav li').hover(function(event){
             $(this).addClass('active');
-        });
+        },
+        function(event){
+            $(this).removeClass('active');}
+         );
+
     });
 </script>

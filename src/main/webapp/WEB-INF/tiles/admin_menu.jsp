@@ -4,7 +4,13 @@
     <li id="ddbutton" class="dropdown"><a href="#4" class="dropdown-toggle">Admin <span class="caret"></span></a>
 
         <ul class="dropdown-menu">
-            <li><a href="#">Users</a></li>
+            <li class="dropdown-submenu">
+                <a href="#">Users</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">3rd level</a></li>
+                    <li><a href="#">3rd level</a></li>
+                </ul>
+            </li>
             <li><a href="#">News</a></li>
             <li><a href="#">Articles</a></li>
             <li><a href="#">Events</a></li>
