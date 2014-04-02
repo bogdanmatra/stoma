@@ -40,7 +40,7 @@ public class ArticlesController {
         Map<String,List<Domain>> map= domainService.getTwoListsStAndGen(LocaleUtils.getLanguage(request));
         model.addAttribute("st",map.get("st"));
         model.addAttribute("gen",map.get("ge"));
-        model.addAttribute("newsOrArticles","../articles/getArticles");
+        model.addAttribute("newsOrArticles","getArticles");
         return new ModelAndView("/news",model.asMap());
     }
 
@@ -54,6 +54,9 @@ public class ArticlesController {
         Page<Article> page = articleService.findAllByDomain(domainService.findById(id),pageNumber);
         return page;
     }
+
+
+
 
 
 }

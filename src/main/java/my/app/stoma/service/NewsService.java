@@ -47,4 +47,9 @@ public class NewsService {
                 Sort.Direction.DESC, "updatedDate")));
     }
 
+    @Transactional(readOnly = true)
+    public News findById(Long id) {
+        return newsRepository.findOne(id);
+    }
+
 }

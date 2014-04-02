@@ -24,6 +24,7 @@
 
     <c:forEach var="question" items="${allQuestions}">
 
+        <div class="row col-lg-8">
         <div class="panel panel-primary">
             <div class="panel-heading">
 
@@ -41,10 +42,12 @@
                 <b>Q:</b>    ${question.content}
             </div>
         </div>
+        </div>
 
 
         <c:forEach var="answer" items="${question.answers}">
 
+        <div class="row col-lg-8 col-lg-offset-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
 
@@ -63,9 +66,10 @@
                     <b>A:</b>    ${answer.content}
                 </div>
             </div>
+            </div>
 
         </c:forEach>
-
+        <div class="row col-lg-8 col-lg-offset-4">
         <form action="saveAnswer" method="POST">
         <div class="input-group">
             <input type="text" name="content" class="form-control">
@@ -77,11 +81,13 @@
         </div>
         </form>
         <br>
+        </div>
 
     </c:forEach>
 
-
+<div class="row col-lg-12">
 <!-- Pagination: -->
+
     <ul class="pagination">
 
         <c:choose>
@@ -119,5 +125,5 @@
 
         </c:otherwise>
     </c:choose>
-
+</div>
 </div>

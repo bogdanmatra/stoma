@@ -55,6 +55,15 @@ public class NewsController {
     }
 
 
+    @RequestMapping(value = "/getNews/view/{id}", method = RequestMethod.GET)
+    public ModelAndView getNews(@PathVariable Long id, HttpServletRequest request, Model model) {
+        model.addAttribute("news", newsService.findById(id));
+        return new ModelAndView("/view",model.asMap());
+    }
+
+
+
+
 
 
 }

@@ -78,7 +78,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "news/" + "${newsOrArticles}" + "/" + id +"/" + pageNumber,
+            url: "${newsOrArticles}" + "/" + id +"/" + pageNumber,
             success: function (data) {
                 element.removeClass("hide");
                 totalPages=data.totalPages;
@@ -91,6 +91,7 @@
                     parent.append(element);
                     element.find("h2").html(this.title);
                     element.find("p:first").html(this.content);
+                    element.find("p:last").find("a").attr("href","./" + "${newsOrArticles}" + "/view/" + this.id);
                 });
             },
             error: function(){

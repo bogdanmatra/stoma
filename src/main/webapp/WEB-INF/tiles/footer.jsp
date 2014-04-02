@@ -8,7 +8,3 @@
 </div>
 
 
-
-<!-- JavaScript last-->
-
-<script src="${resources}bootstrap/js/bootstrap.min.js"></script>
