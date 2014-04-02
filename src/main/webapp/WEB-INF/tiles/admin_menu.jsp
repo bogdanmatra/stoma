@@ -4,12 +4,13 @@
     <li id="ddbutton" class="dropdown"><a href="#4" class="dropdown-toggle">Admin <span class="caret"></span></a>
 
         <ul class="dropdown-menu">
-            <li class="dropdown-submenu">
+            <li class="dropdown-submenu open">
                 <a href="#">Users</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">3rd level</a></li>
-                    <li><a href="#">3rd level</a></li>
+                <ul>
+                    <li><a href="#">BLA</a></li>
+                    <li><a href="#">BlA</a></li>
                 </ul>
+
             </li>
             <li><a href="#">News</a></li>
             <li><a href="#">Articles</a></li>
@@ -24,14 +25,9 @@
 <script>
     // Active class in menu
     $(document).ready(function(){
-
-
         $('#ddbutton').click(function(){
             $(this).addClass("open");
         });
-
-
-
     });
 
 
