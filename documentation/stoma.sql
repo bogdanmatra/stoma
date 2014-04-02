@@ -36,7 +36,7 @@ CREATE TABLE `answers` (
   KEY `fk_a_question` (`id_question`),
   CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_a_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (22,'da da','2014-03-24 12:24:18','2014-03-24 12:24:18',8,173),(24,'bla','2014-03-24 12:26:36','2014-03-24 12:26:36',8,173),(30,'DA','2014-03-24 13:21:30','2014-03-24 13:21:30',8,185),(49,'bla','2014-03-26 10:42:55','2014-03-26 10:42:55',7,187),(50,'and aanother bla','2014-03-26 10:43:04','2014-03-26 10:43:04',7,187),(134,'go','2014-03-27 16:10:30','2014-03-27 16:10:30',8,279);
+INSERT INTO `answers` VALUES (22,'da da','2014-03-24 12:24:18','2014-03-24 12:24:18',8,173),(24,'bla','2014-03-24 12:26:36','2014-03-24 12:26:36',8,173),(30,'DA','2014-03-24 13:21:30','2014-03-24 13:21:30',8,185),(194,'answer','2014-04-02 09:21:35','2014-04-02 09:21:35',7,187),(196,'raspuns','2014-04-02 09:23:53','2014-04-02 09:23:53',7,363);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `articles` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `articles` (
 
 LOCK TABLES `articles` WRITE;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (236,'Articol ','tare tare tare',NULL,NULL,NULL),(237,'Alt articol','mai  tare',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +102,7 @@ CREATE TABLE `comments` (
   CONSTRAINT `fk_c_events` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_c_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=288 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=416 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +130,7 @@ CREATE TABLE `domains` (
   `locale` varchar(2) NOT NULL,
   `dom_medical` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +139,7 @@ CREATE TABLE `domains` (
 
 LOCK TABLES `domains` WRITE;
 /*!40000 ALTER TABLE `domains` DISABLE KEYS */;
-INSERT INTO `domains` VALUES (53,'Aparatura dentara',NULL,NULL,NULL,'ro','st'),(54,'Pasta de dinti',NULL,NULL,NULL,'ro','st'),(55,'Oftalmologie',NULL,NULL,NULL,'ro','ge');
+INSERT INTO `domains` VALUES (53,'Aparatura dentara',NULL,NULL,NULL,'ro','st'),(54,'Pasta de dinti',NULL,NULL,NULL,'ro','st'),(55,'Oftalmologie',NULL,NULL,NULL,'ro','ge'),(131,'Alt domeniu',NULL,NULL,NULL,'ro','ge'),(132,'Alt domeniu 2',NULL,NULL,NULL,'ro','ge'),(133,'Domeniu englez',NULL,NULL,NULL,'en','st'),(134,'Alt domeniu englez',NULL,NULL,NULL,'en','ge'),(135,'Alt domeniu englez 2',NULL,NULL,NULL,'en','ge');
 /*!40000 ALTER TABLE `domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,6 +166,7 @@ CREATE TABLE `domains_articles` (
 
 LOCK TABLES `domains_articles` WRITE;
 /*!40000 ALTER TABLE `domains_articles` DISABLE KEYS */;
+INSERT INTO `domains_articles` VALUES (135,236),(135,237);
 /*!40000 ALTER TABLE `domains_articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +186,7 @@ CREATE TABLE `events` (
   `viewed` bigint(20) DEFAULT NULL,
   `locale` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +213,7 @@ CREATE TABLE `news` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +222,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (30,'Super news','cool news cool news cool news',NULL,NULL,1),(36,'Another super cool news','cool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL);
+INSERT INTO `news` VALUES (30,'Super news','cool news cool news cool news',NULL,NULL,1),(36,'Another super cool news','cool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(45,'news  da da da da da da','cool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(46,'news 2 ','cool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(47,'news 3 ','cool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(48,'news 4','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(49,'news 5','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(50,'news 6','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(51,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(53,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(54,'news 7 da da da dad a da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(55,' dada da da da dad ad ad da da da da lomg title lomg title lomg title lomg title','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolv',NULL,NULL,NULL),(56,'news 7 da da da da da dad a','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(57,' dadad ada  da da da da da da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(58,'news 7 dad ad ad ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(59,' da da da da da da dad  a da dada ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(62,'news 7 dad ad ad ','da',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +249,7 @@ CREATE TABLE `news_domains` (
 
 LOCK TABLES `news_domains` WRITE;
 /*!40000 ALTER TABLE `news_domains` DISABLE KEYS */;
-INSERT INTO `news_domains` VALUES (30,53),(36,53);
+INSERT INTO `news_domains` VALUES (30,53),(36,53),(45,53),(46,53),(47,53),(48,53),(49,53),(50,53),(51,53),(53,53),(54,53),(55,53),(56,53),(57,53),(58,53),(59,53),(30,54),(36,54);
 /*!40000 ALTER TABLE `news_domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +274,7 @@ CREATE TABLE `pictures` (
   CONSTRAINT `fk_p_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_p_event` FOREIGN KEY (`id_event`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +302,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   CONSTRAINT `fk_q_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +311,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(185,'topic man','2014-03-24 12:34:36','2014-03-24 12:34:36',8),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(279,'new post','2014-03-27 13:50:55','2014-03-27 13:50:55',7);
+INSERT INTO `questions` VALUES (173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(185,'topic man','2014-03-24 12:34:36','2014-03-24 12:34:36',8),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(363,'Bla','2014-04-02 09:21:56','2014-04-02 09:21:56',7);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +328,7 @@ CREATE TABLE `roles` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +360,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,4 +409,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-28 18:21:51
+-- Dump completed on 2014-04-02 13:26:17
