@@ -89,17 +89,31 @@
 <!-- Pagination: -->
 
     <ul class="pagination">
-
+    <%--First li--%>
         <c:choose>
             <c:when test="${currentPage == 0}">
                 <li class="disabled"><a>«</a></li>
+                <c:set var="begin" value="0"/>
             </c:when>
             <c:otherwise>
                 <li><a href="${currentPage-1}">«</a></li>
+                <c:set var="begin" value="${currentPage-1}"/>
             </c:otherwise>
         </c:choose>
 
-    <c:forEach var="i" begin="0" end="${noOfPages-1}">
+    <%--Until when--%>
+        <c:choose>
+            <c:when test="${currentPage == noOfPages-1}">
+                <c:set var="end" value="${currentPage}"/>
+            </c:when>
+            <c:otherwise>
+                <c:set var="end" value="${currentPage+1}"/>
+            </c:otherwise>
+        </c:choose>
+
+
+    <%--Iterating pages--%>
+    <c:forEach var="i" begin="${begin}" end="${end}">
 
         <c:choose>
             <c:when test="${currentPage == i}">
@@ -112,6 +126,7 @@
 
     </c:forEach>
 
+   <%--Last li--%>
         <c:choose>
             <c:when test="${currentPage == noOfPages-1}">
                 <li class="disabled"><a>»</a></li>
