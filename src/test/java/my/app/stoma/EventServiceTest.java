@@ -44,6 +44,8 @@ public class EventServiceTest {
     @Test
     public void testEvent() {
 
+        int initial = eventService.findAll().size();
+
         Comment comment = new Comment();
         comment.setContent("Content");
         User user = userService.findByUsername("user");
@@ -68,8 +70,7 @@ public class EventServiceTest {
         event.setDetails("something");
         eventService.save(event);
 
-        Assert.assertEquals("Content", eventService.findAll().get(0).getComments().get(0).getContent());
-        Assert.assertEquals("/path/path", eventService.findAll().get(0).getPictures().get(0).getPath());
+        Assert.assertEquals(initial+1,eventService.findAll().size());
 
 
     }

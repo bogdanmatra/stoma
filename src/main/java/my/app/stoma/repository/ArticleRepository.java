@@ -20,7 +20,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT article FROM Article article INNER JOIN article.domains dom WHERE dom = :domain")
     Page<Article> findAllNewsByDomain(@Param("domain") Domain domain, Pageable p) throws DataAccessException;
 
-    @Query("SELECT article FROM Article article INNER JOIN article.domains dom WHERE dom.locale = :language")
+    @Query("SELECT DISTINCT article FROM Article article INNER JOIN article.domains dom WHERE dom.locale = :language")
     Page<Article> findAllByLanguage(@Param("language") String language, Pageable p) throws DataAccessException;
 
 }

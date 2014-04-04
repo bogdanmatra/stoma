@@ -30,6 +30,8 @@ public class PictureServiceTest {
     @Test
     public void testPicture() {
 
+        int initial = pictureService.findAll().size();
+
         Article article = new Article();
         article.setTitle("Gigi");
         article.setContent("Content");
@@ -42,8 +44,7 @@ public class PictureServiceTest {
 
         pictureService.save(picture);
 
-        Assert.assertEquals("Gigi", pictureService.findAll().get(0).getArticle().getTitle());
-        Assert.assertEquals("/path/path", pictureService.findAll().get(0).getPath());
+        Assert.assertEquals(initial+1, pictureService.findAll().size());
 
     }
 

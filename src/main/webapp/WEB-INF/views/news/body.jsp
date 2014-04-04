@@ -39,6 +39,11 @@
 
 </div>
 
+<div id="loading" class="container">
+<div class="col-lg-4 col-lg-offset-6">
+<img src="${pageContext.request.contextPath}/resources/picture/loading.gif" style="width: 75px;height: 75px;"/>
+</div>
+</div>
 
 <script>
 
@@ -79,6 +84,17 @@
             async: false,
             type: "POST",
             url: "${newsOrArticles}" + "/" + id +"/" + pageNumber,
+            beforeSend:function(){
+                // show gif here, eg:
+                $("#loading").show();
+            },
+            complete:function(){
+                // hide gif here, eg:
+                setTimeout(function() {
+                    $("#loading").hide()
+                }, 500);
+            },
+
             success: function (data) {
                 element.removeClass("hide");
                 totalPages=data.totalPages;

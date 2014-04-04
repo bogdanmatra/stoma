@@ -2,6 +2,8 @@ package my.app.stoma.domain;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -38,11 +40,12 @@ public class News extends BaseEntity {
     private List<Domain> domains;
 
 
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "news", cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     List<Picture> pictures;
 
 
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "news", cascade = CascadeType.ALL)
     List<Comment> comments;
 
     public String getTitle() {
