@@ -98,5 +98,12 @@ public class NewsController {
 
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable Long id, HttpServletRequest request, Model model) {
+        newsService.delete(id);
+        return "redirect:/news/";
+    }
+
 
 }

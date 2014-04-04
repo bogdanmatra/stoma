@@ -4,6 +4,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -39,14 +41,13 @@ public class News extends BaseEntity {
     @JoinTable(name = "news_domains", joinColumns = {@JoinColumn(name = "news_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
 
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "news", cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SUBSELECT)
-    List<Picture> pictures;
-
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "news", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     List<Comment> comments;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    List<Picture> pictures;
 
     public String getTitle() {
         return title;

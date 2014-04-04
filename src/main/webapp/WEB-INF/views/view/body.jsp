@@ -1,19 +1,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/uploadedPictures/"/>
 
+<div class="container">
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<div class="row">
+    <a href="../../delete/${news.id}">
+<button type="button" class="btn btn-default btn-lg pull-right"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+    </a>
+</div>
+<br>
+</sec:authorize>
 <c:if
         test="${error == true}">
-    <div class="container">
+
         <div class="row pull-right">
         <button class="btn btn-danger" disabled>Please type a comment not longer than 400 characters!</button>
-    </div>
     </div>
     <br><br>
 </c:if>
 
+</div>
 <c:if test="${fn:length(news.pictures) != 0}">
     <div id="carousel-example-generic" class="carousel slide col-lg-12" data-ride="carousel" style="background-color: #333">
         <!-- Indicators -->

@@ -99,7 +99,7 @@
                 element.removeClass("hide");
                 totalPages=data.totalPages;
                 if(totalPages==0){
-                    parent.html("<h3>No data!</h3>")
+                    parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
                     return;
                 }
                 $(data.content).each(function(){
@@ -111,7 +111,7 @@
                 });
             },
             error: function(){
-                parent.html("<h3>No data!</h3>")
+                parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
             }
         });
     }

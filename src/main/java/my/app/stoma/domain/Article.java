@@ -1,6 +1,10 @@
 package my.app.stoma.domain;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -30,14 +34,15 @@ public class Article extends BaseEntity {
     @Column(name = "viewed")
     private Long viewed;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    List<Comment> comments;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "domains_articles", joinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    List<Comment> comments;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     List<Picture> pictures;
 

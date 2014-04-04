@@ -46,4 +46,14 @@ public class ArticleService {
                 Sort.Direction.DESC, "updatedDate")));
     }
 
+
+    @Transactional(readOnly = true)
+    public Article findById(long id) {
+        return articleRepository.findOne(id);
+    }
+
+    @Transactional(readOnly = false)
+    public void  delete(long id) {
+       articleRepository.delete(id);
+    }
 }

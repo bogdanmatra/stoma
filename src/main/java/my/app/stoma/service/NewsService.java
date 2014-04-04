@@ -52,4 +52,8 @@ public class NewsService {
         return newsRepository.findOne(id);
     }
 
+    @Transactional(readOnly = false)
+    public void delete(Long id) {
+        newsRepository.delete(id);
+    }
 }
