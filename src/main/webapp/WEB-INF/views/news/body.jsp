@@ -92,14 +92,14 @@
                 // hide gif here, eg:
                 setTimeout(function() {
                     $("#loading").hide()
-                }, 500);
+                }, 300);
             },
 
             success: function (data) {
                 element.removeClass("hide");
                 totalPages=data.totalPages;
                 if(totalPages==0){
-                    parent.html("No data!")
+                    parent.html("<h3>No data!</h3>")
                     return;
                 }
                 $(data.content).each(function(){
@@ -111,7 +111,7 @@
                 });
             },
             error: function(){
-                parent.html("No data!")
+                parent.html("<h3>No data!</h3>")
             }
         });
     }
