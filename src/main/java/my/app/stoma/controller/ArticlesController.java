@@ -107,6 +107,15 @@ public class ArticlesController {
         return "redirect:/articles/";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    public String deleteComment(HttpServletRequest request, Model model) {
+        String commentId =request.getParameter("id");
+        String articleId = request.getParameter("theId");
+        commentService.delete(Long.parseLong(commentId));
+        return "redirect:/articles/getArticles/view/" + articleId;
+    }
+
 
 
 

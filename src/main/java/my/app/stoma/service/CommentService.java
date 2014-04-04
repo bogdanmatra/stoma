@@ -30,5 +30,10 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    @Transactional(readOnly = false)
+    public void delete(Long id) {
+        commentRepository.customDelete(id);
+    }
+
 
 }

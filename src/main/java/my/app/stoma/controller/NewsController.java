@@ -106,4 +106,15 @@ public class NewsController {
     }
 
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    public String deleteComment(HttpServletRequest request, Model model) {
+        String commentId =request.getParameter("id");
+        String newsId = request.getParameter("theId");
+        commentService.delete(Long.parseLong(commentId));
+        return "redirect:/news/getNews/view/" + newsId;
+    }
+
+
+
 }

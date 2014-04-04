@@ -78,12 +78,21 @@
 
     <br>
     <br>
-
+    <c:if test="${fn:length(news.comments) == 0}">
+        <h4 class="col-md-offset-1">No comments right now...</h4>
+    </c:if>
 
     <c:forEach var="com" items="${news.comments}">
     <div class="row col-lg-10">
     <div class="panel panel-primary">
         <div class="panel-heading">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <form method="POST" action="../../deleteComment">
+                    <input type="hidden" name="id" value="${com.id}">
+                    <input type="hidden" name="theId" value="${news.id}">
+                    <button type="submit" class="close pull-right">×</button>
+                </form>
+            </sec:authorize>
             <h3 class="panel-title">${com.user.username}</h3>
         </div>
         <div class="panel-body">${com.content}
