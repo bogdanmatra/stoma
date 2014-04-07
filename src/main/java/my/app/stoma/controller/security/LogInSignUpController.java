@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +38,21 @@ public class LogInSignUpController {
 
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login(Model model, Boolean invalidData, Boolean applicationError) {
+    public String login(Model model, Boolean invalidData, Boolean applicationError, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        request.getSession().setAttribute("url_prior_login", request.getHeader("Referer"));
         return "/login";
     }
+
+    @RequestMapping(value = "previous", method = RequestMethod.GET)
+    public String previous(Model model, Boolean invalidData, Boolean applicationError, HttpServletRequest request, HttpSession session) {
+        String url="/";
+        String prior = (String) request.getSession().getAttribute("url_prior_login");
+        if (session != null && prior!=null && !prior.isEmpty() ) {
+            url = prior;
+        }
+        return "redirect:" + url;
+    }
+
 
     @RequestMapping(value = "loginfailed", method = RequestMethod.GET)
     public String loginfailed(Model model, Boolean invalidData, Boolean applicationError, RedirectAttributes redirectAttributes) {
