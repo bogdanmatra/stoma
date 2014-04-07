@@ -12,7 +12,129 @@
     </tr>
     </thead>
     <tbody id="parent">
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr><tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr><tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr><tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr><tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr><tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+    </tr>
+
+
+
+
+
     <tr id="row">
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -24,43 +146,77 @@
 </table>
 </div>
 
- ${users}
+<div id="loading" class="container">
+    <div class="col-lg-4 col-lg-offset-4">
+        <img src="${pageContext.request.contextPath}/resources/picture/loading.gif" style="width: 75px;height: 75px;"/>
+    </div>
+</div>
+
+
+
 
 
 <script>
-    4
+
     var parent=$("#parent");
     var element=$("#row");
-    element.hide();
+    var totalPages;
+    var currentPage=0;
+    element.remove();
 
+
+    $(document).ready(function() {
+        poolContent(currentPage);
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > ($(document).height() - 1) && currentPage < totalPages - 1) {
+                poolContent(++currentPage);
+            }
+        });
+
+        $(".btn-danger").click(function(){
+            $(this).closest("tr").remove();
+        });
+
+
+    });
+
+
+
+
+    function poolContent(page){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../fetch/" + "0",
+        url: "../fetch/" + page,
         beforeSend:function(){
-            // show gif here, eg:
-          //  $("#loading").show();
+            //show gif here, eg:
+            $("#loading").show();
         },
         complete:function(){
             // hide gif here, eg:
-           // setTimeout(function() {
-           //     $("#loading").hide()
-           // }, 300);
+            setTimeout(function() {
+            $("#loading").hide()
+            }, 300);
         },
-
         success: function (data) {
 
             $(data.content).each(function(){
+                totalPages=this.total;
                 element=element.clone();
-                element.show();
-                element.attr("data-id",this.id)
                 parent.append(element);
-                element.children().first().html(this.firstName);
-                element.children().first().next().html(this.lastName);
-                element.children().first().next().next().html(this.username);
-                element.children().first().next().next().next().html(this.email);
-                element.children().first().next().next().next().next().html(this.createdDate);
-                element.children().last().html(this.updatedDate);
+                kids=element.children();
+                kids.first().html(this.firstName);
+                kids.first().next().html(this.lastName);
+                kids.first().next().next().html(this.username);
+                kids.first().next().next().next().html(this.email);
+                kids.first().next().next().next().next().html(this.createdDate);
+                kids.first().next().next().next().next().next().html(this.updatedDate);
+                if(!isAdmin(this.roles)) {
+                kids.first().next().next().next().next().next().next().html("<button class='btn btn-warning' data-id='" + this.id + "'>Promote</button>");
+                }else{
+                kids.first().next().next().next().next().next().next().html("ADMIN");
+                }
+                kids.last().html("<button class='btn btn-danger' data-id='"+this.id+"'>Delete</button>");
 
             });
         },
@@ -68,6 +224,19 @@
             parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
         }
     });
+    }
 
+    function isAdmin(roleList){
+        rVal=false;
+        $(roleList).each(function(){
+            if (this.authority=="ROLE_ADMIN")  rVal=true;
+        });
+        return rVal;
+    }
+
+
+    $(".btn-danger").click(function(){
+       $(this).closest("tr").remove();
+    });
 
 </script>

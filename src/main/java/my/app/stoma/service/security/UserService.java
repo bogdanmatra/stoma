@@ -83,7 +83,7 @@ public class UserService {
      */
     @Transactional(readOnly = true)
     public Page<User> findAllPageable(int pageNumber) {
-        return userRepository.findAllPageable(new PageRequest(pageNumber, 5, new Sort(
+        return userRepository.findAllPageable(new PageRequest(pageNumber, 2, new Sort(
                 Sort.Direction.DESC, "updatedDate")));
     }
 
