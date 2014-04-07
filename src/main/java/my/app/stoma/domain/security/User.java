@@ -5,10 +5,12 @@ import my.app.stoma.domain.Answer;
 import my.app.stoma.domain.BaseEntity;
 import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.Question;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
 
+@JsonIgnoreProperties({"password", "questions", "answers", "comments"})
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {

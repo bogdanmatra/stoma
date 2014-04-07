@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,6 +74,21 @@ public class UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+
+    /**
+     * List all the Users from the database pageable
+     *
+     * @return page of all Users
+     */
+    @Transactional(readOnly = true)
+    public Page<User> findAllPageable(int pageNumber) {
+        return userRepository.findAllPageable(new PageRequest(pageNumber, 5, new Sort(
+                Sort.Direction.DESC, "updatedDate")));
+    }
+
+
+
 
     /**
      * Find a user using it's username
