@@ -91,8 +91,4 @@ public class UserQandAServiceTest {
         LOGGER.info("Exiting Test!");
     }
 
-    @Test
-    public void testUserByRole() {
-        Assert.assertEquals(1, userService.findAllWithRole("ROLE_ADMIN").size());
-    }
 }

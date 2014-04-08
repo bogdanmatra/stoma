@@ -1,4 +1,3 @@
-
 <div class="container">
 <table class="table table-striped">
     <thead>
@@ -12,126 +11,6 @@
     </tr>
     </thead>
     <tbody id="parent">
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-    <tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr><tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr><tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr><tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr><tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr><tr>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-        <td>a</td>
-    </tr>
-
-
-
-
-
     <tr id="row">
         <td></td>
         <td></td>
@@ -153,35 +32,29 @@
 </div>
 
 
-
-
-
 <script>
 
-    var parent=$("#parent");
-    var element=$("#row");
+    var parent;
+    var element;
     var totalPages;
-    var currentPage=0;
-    element.remove();
-
+    var currentPage;
 
     $(document).ready(function() {
+        parent=$("#parent");
+        element=$("#row");
+        totalPages;
+        currentPage=0;
+        element.remove();
         poolContent(currentPage);
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > ($(document).height() - 1) && currentPage < totalPages - 1) {
+        deleteUser();
+        promoteUser();
+        //Going for scroll
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() > $(document).height()-1 && currentPage<totalPages) {
                 poolContent(++currentPage);
             }
         });
-
-        $(".btn-danger").click(function(){
-            $(this).closest("tr").remove();
-        });
-
-
     });
-
-
-
 
     function poolContent(page){
     $.ajax({
@@ -189,21 +62,21 @@
         type: "POST",
         url: "../fetch/" + page,
         beforeSend:function(){
-            //show gif here, eg:
+            // show gif here, eg:
             $("#loading").show();
         },
         complete:function(){
             // hide gif here, eg:
             setTimeout(function() {
-            $("#loading").hide()
+                $("#loading").hide()
             }, 300);
         },
         success: function (data) {
-
             $(data.content).each(function(){
-                totalPages=this.total;
+                totalPages=data.totalPages;
                 element=element.clone();
                 parent.append(element);
+                element.attr("data-id",this.id);
                 kids=element.children();
                 kids.first().html(this.firstName);
                 kids.first().next().html(this.lastName);
@@ -234,9 +107,20 @@
         return rVal;
     }
 
+    function deleteUser(){
+       $(".btn-danger").click(function(){
+            $.post( "delete", { id: $(this).closest("tr").attr("data-id") });
+            $(this).closest("tr").fadeOut();
+        });
+    }
 
-    $(".btn-danger").click(function(){
-       $(this).closest("tr").remove();
-    });
+    function promoteUser(){
+        $(".btn-warning").click(function(){
+            $.post( "promote", { id: $(this).closest("tr").attr("data-id") });
+            parent = $(this).parent();
+            $(this).remove();
+            parent.html("ADMIN");
+        });
+    }
 
 </script>

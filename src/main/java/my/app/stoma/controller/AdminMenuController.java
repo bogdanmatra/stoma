@@ -1,7 +1,9 @@
 package my.app.stoma.controller;
 
+import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.repository.security.UserRepository;
+import my.app.stoma.service.security.RoleService;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,8 @@ public class AdminMenuController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    RoleService roleService;
 
     @RequestMapping(value = "fetch/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
@@ -38,6 +42,28 @@ public class AdminMenuController {
     public String edituser( Model model, HttpServletRequest request) {
         return "/edituser";
     }
+
+    @RequestMapping(value = "edituser/promote", method = RequestMethod.POST)
+    @ResponseBody
+    public void promote(Model model, HttpServletRequest request) {
+        Long id=Long.parseLong(request.getParameter("id"));
+        User selectedUser=userService.findById(id);
+        Role adminRole=roleService.getRoleByAuthority("ROLE_ADMIN");
+        List<Role> roles = selectedUser.getRoles();
+        roles.add(adminRole);
+        selectedUser.setRoles(roles);
+        userService.save(selectedUser);
+    }
+
+    @RequestMapping(value = "edituser/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public void delete(Model model, HttpServletRequest request) {
+        Long id=Long.parseLong(request.getParameter("id"));
+        if(userService.findAllWithRole("ROLE_ADMIN").size()>1){
+            userService.delete(userService.findById(id));
+        }
+    }
+
 
     @RequestMapping(value = "addNorA", method = RequestMethod.GET)
     public String add(Model model, HttpServletRequest request) {
