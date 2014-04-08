@@ -52,7 +52,7 @@ public class Picture {
     public void setFile(CommonsMultipartFile file) {
         this.file = file;
     }
-    
+
     public Long getId() {
         return id;
     }

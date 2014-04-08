@@ -5,7 +5,6 @@ import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
-import my.app.stoma.repository.security.UserRepository;
 import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.DomainService;
 import my.app.stoma.service.NewsService;
@@ -20,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -85,7 +83,7 @@ public class AdminMenuController {
 
 
     //Add news or articles
-    @RequestMapping(value = "addNorA/{newsOrArticle}", method = RequestMethod.GET)
+    @RequestMapping(value = "addNorA/{newsOrArticle}")
     public String add(@PathVariable String newsOrArticle, Model model, HttpServletRequest request) {
         if(newsOrArticle.equals("n")){
             model.addAttribute("nOrA", new News());
@@ -93,18 +91,14 @@ public class AdminMenuController {
         }else if(newsOrArticle.equals("a")){
             model.addAttribute("nOrA", new Article());
             model.addAttribute("action", "saveArticle");
-        }else{
-            model.addAttribute("nOrA", null);
         }
         return "/addNorA";
     }
 
 
-    @RequestMapping(value = "saveArticle", method = RequestMethod.POST)
-    public String saveArticle(Model model,@ModelAttribute(value = "article") @Valid Article article, BindingResult bindingResult, HttpServletRequest request) {
+    @RequestMapping(value = "addNorA/saveArticle", method = {RequestMethod.POST, RequestMethod.GET})
+    public String saveArticle(Model model,@ModelAttribute(value = "nOrA") @Valid Article article, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("nOrA", new Article());
-            model.addAttribute("action", "saveArticle");
             return "/addNorA";
         }else{
             articleService.save(article);
@@ -112,11 +106,9 @@ public class AdminMenuController {
         return "redirect:/articles/";
     }
 
-    @RequestMapping(value = "saveNews", method = RequestMethod.POST)
-    public String saveNews(Model model,@ModelAttribute(value = "article") @Valid News news, BindingResult bindingResult, HttpServletRequest request) {
+    @RequestMapping(value = "addNorA/saveNews", method = {RequestMethod.POST, RequestMethod.GET})
+    public String saveNews(Model model,@ModelAttribute(value = "nOrA") @Valid News news, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("nOrA", new News());
-            model.addAttribute("action", "saveNews");
             return "/addNorA";
         }else{
             newsService.save(news);

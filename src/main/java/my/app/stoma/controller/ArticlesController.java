@@ -3,7 +3,6 @@ package my.app.stoma.controller;
 import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.Domain;
-import my.app.stoma.domain.Picture;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.CommentService;

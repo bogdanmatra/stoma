@@ -14,7 +14,7 @@
 
         <div class="input-group">
             <span class="input-group-addon">New topic</span>
-            <textarea class="form-control" name="content" placeholder="Text" rows="5" name="content"></textarea>
+            <textarea class="form-control" name="content" placeholder="Text" rows="5"></textarea>
         </div>
         <br>
             <form:errors cssClass="btn btn-danger disabled" path="content"/>

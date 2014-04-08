@@ -13,8 +13,8 @@
     <div class="row-fluid">
 
 
-        <form:form method="POST" action="../${action}"  name="addUserForm" modelAttribute="nOrA" role="form">
-            <div class="col-lg-8">
+        <form:form method="POST" action="${action}"  name="addUserForm" modelAttribute="nOrA" role="form">
+            <div class="col-lg-10">
                 <div class="row">
                 <div class="col-lg-6">
                 <div class="radio">
@@ -55,7 +55,7 @@
 
                 <div class="input-group ">
                     <span class="input-group-addon" >Title</span>
-                    <form:input type="text" class="form-control" placeholder="Title" name="title" path="title"/>
+                    <form:textarea rows="2"  type="text" class="form-control" placeholder="Title" name="title" path="title"/>
                     <form:errors cssClass="input-group-addon alert-danger" path="title"/>
                 </div>
 
