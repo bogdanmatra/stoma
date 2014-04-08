@@ -1,18 +1,22 @@
 package my.app.stoma.controller;
 
 import my.app.stoma.domain.Article;
+import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.repository.security.UserRepository;
+import my.app.stoma.service.DomainService;
 import my.app.stoma.service.security.RoleService;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +35,8 @@ public class AdminMenuController {
     UserService userService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    DomainService domainService;
 
     //User edit
     @RequestMapping(value = "fetch/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -95,7 +101,33 @@ public class AdminMenuController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "fetchDomainList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public List<Domain> fetchDomains(Model model, HttpServletRequest request) {
+        String deomMed=request.getParameter("domMed");
+        String locale=request.getParameter("locale");
+        return domainService.getByLocaleAndDomMed(locale,deomMed);
+    }
 
+
+
+    @InitBinder
+    protected void binder(HttpServletRequest request,
+                          ServletRequestDataBinder binder) {
+        binder.registerCustomEditor(List.class, "domains",
+                new CustomCollectionEditor(List.class) {
+                    @Override
+                    protected Object convertElement(Object element) {
+                        Domain domain = new Domain();
+
+                        if (element != null) {
+                            Long id = Long.valueOf(element.toString());
+                            domain = domainService.findById(id);
+                        }
+                        return domain;
+                    }
+                });
+    }
 
 
 

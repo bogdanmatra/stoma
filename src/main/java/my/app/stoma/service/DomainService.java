@@ -42,5 +42,10 @@ public class DomainService {
         return domainRepository.findOne(id);
     }
 
+    @Transactional(readOnly = false)
+    public List<Domain> getByLocaleAndDomMed(String locale, String domMed) {
+        return domainRepository.findDomainsByLocaleAndMedD(domMed,locale);
+    }
+
 
 }
