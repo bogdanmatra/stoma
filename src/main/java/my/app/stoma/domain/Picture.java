@@ -2,6 +2,7 @@ package my.app.stoma.domain;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,16 @@ public class Picture {
     @JoinColumn(name = "id_news")
     private News news;
 
+    @Transient
+    private CommonsMultipartFile file;
+
+    public CommonsMultipartFile getFile() {
+        return file;
+    }
+    public void setFile(CommonsMultipartFile file) {
+        this.file = file;
+    }
+    
     public Long getId() {
         return id;
     }
