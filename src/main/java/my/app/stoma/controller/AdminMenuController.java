@@ -6,7 +6,9 @@ import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.repository.security.UserRepository;
+import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.DomainService;
+import my.app.stoma.service.NewsService;
 import my.app.stoma.service.security.RoleService;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,12 @@ public class AdminMenuController {
     RoleService roleService;
     @Autowired
     DomainService domainService;
+    @Autowired
+    NewsService newsService;
+    @Autowired
+    ArticleService articleService;
+
+
 
     //User edit
     @RequestMapping(value = "fetch/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -94,11 +102,26 @@ public class AdminMenuController {
 
     @RequestMapping(value = "saveArticle", method = RequestMethod.POST)
     public String saveArticle(Model model,@ModelAttribute(value = "article") @Valid Article article, BindingResult bindingResult, HttpServletRequest request) {
-        return "redirect:/";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("nOrA", new Article());
+            model.addAttribute("action", "saveArticle");
+            return "/addNorA";
+        }else{
+            articleService.save(article);
+        }
+        return "redirect:/articles/";
     }
+
     @RequestMapping(value = "saveNews", method = RequestMethod.POST)
     public String saveNews(Model model,@ModelAttribute(value = "article") @Valid News news, BindingResult bindingResult, HttpServletRequest request) {
-        return "redirect:/";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("nOrA", new News());
+            model.addAttribute("action", "saveNews");
+            return "/addNorA";
+        }else{
+            newsService.save(news);
+        }
+        return "redirect:/news/";
     }
 
     @RequestMapping(value = "fetchDomainList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -119,7 +142,6 @@ public class AdminMenuController {
                     @Override
                     protected Object convertElement(Object element) {
                         Domain domain = new Domain();
-
                         if (element != null) {
                             Long id = Long.valueOf(element.toString());
                             domain = domainService.findById(id);
