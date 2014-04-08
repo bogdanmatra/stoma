@@ -1,5 +1,7 @@
 package my.app.stoma.controller;
 
+import my.app.stoma.domain.Article;
+import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.repository.security.UserRepository;
@@ -10,13 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,6 +32,7 @@ public class AdminMenuController {
     @Autowired
     RoleService roleService;
 
+    //User edit
     @RequestMapping(value = "fetch/{pageNumber}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Page<User> fetch(@PathVariable int pageNumber, Model model, HttpServletRequest request) {
@@ -65,12 +67,40 @@ public class AdminMenuController {
     }
 
 
-    @RequestMapping(value = "addNorA", method = RequestMethod.GET)
-    public String add(Model model, HttpServletRequest request) {
 
+
+
+    //Add news or articles
+    @RequestMapping(value = "addNorA/{newsOrArticle}", method = RequestMethod.GET)
+    public String add(@PathVariable String newsOrArticle, Model model, HttpServletRequest request) {
+        if(newsOrArticle.equals("n")){
+            model.addAttribute("nOrA", new News());
+            model.addAttribute("action", "saveNews");
+        }else if(newsOrArticle.equals("a")){
+            model.addAttribute("nOrA", new Article());
+            model.addAttribute("action", "saveArticle");
+        }else{
+            model.addAttribute("nOrA", null);
+        }
         return "/addNorA";
     }
 
+
+    @RequestMapping(value = "saveArticle", method = RequestMethod.POST)
+    public String saveArticle(Model model,@ModelAttribute(value = "article") @Valid Article article, BindingResult bindingResult, HttpServletRequest request) {
+        return "redirect:/";
+    }
+    @RequestMapping(value = "saveNews", method = RequestMethod.POST)
+    public String saveNews(Model model,@ModelAttribute(value = "article") @Valid News news, BindingResult bindingResult, HttpServletRequest request) {
+        return "redirect:/";
+    }
+
+
+
+
+
+
+    //Contact Edit
     @RequestMapping(value = "contactEdit", method = RequestMethod.GET)
     public String contact(Model model, HttpServletRequest request) {
 
