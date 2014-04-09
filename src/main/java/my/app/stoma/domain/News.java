@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,7 +34,8 @@ public class News extends BaseEntity {
     @Column(name = "viewed")
     private Long viewed;
 
-
+    @NotEmpty
+    @NotNull
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "news_domains", joinColumns = {@JoinColumn(name = "news_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
@@ -45,6 +47,17 @@ public class News extends BaseEntity {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     List<Picture> pictures;
+
+    @Transient
+    private List<MultipartFile> files;
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
+    }
 
     public String getTitle() {
         return title;

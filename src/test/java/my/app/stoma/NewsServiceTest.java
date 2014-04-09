@@ -69,6 +69,7 @@ public class NewsServiceTest {
         news.setContent("Content");
         news.setComments(cList);
         news.setPictures(pList);
+        news.setDomains(domainService.findAll());
         newsService.save(news);
 
         int finalSize = newsService.findAll().size();

@@ -2,11 +2,17 @@ package my.app.stoma.domain;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.mail.Multipart;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by bmatragociu on 3/26/2014.
@@ -43,15 +49,6 @@ public class Picture {
     @JoinColumn(name = "id_news")
     private News news;
 
-    @Transient
-    private CommonsMultipartFile file;
-
-    public CommonsMultipartFile getFile() {
-        return file;
-    }
-    public void setFile(CommonsMultipartFile file) {
-        this.file = file;
-    }
 
     public Long getId() {
         return id;
@@ -100,4 +97,21 @@ public class Picture {
     public void setNews(News news) {
         this.news = news;
     }
+
+    public Picture(){
+    }
+
+    public Picture(MultipartFile multipartFile,String path) throws IOException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-HH-mm-ss-SSS");
+        String[] type = multipartFile.getContentType().split("/");
+        String extention=type[type.length-1];
+        String fileName=String.format("%s.%s", simpleDateFormat.format(new Date()), extention);
+        String destination=path.replace("\\","/") + "resources/uploadedPictures/" + fileName;
+        multipartFile.transferTo(new File(destination));
+
+        setPath(fileName);
+        setPrimary(false);
+    }
+
 }
+

@@ -3,6 +3,7 @@ package my.app.stoma;
 import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Picture;
 import my.app.stoma.service.ArticleService;
+import my.app.stoma.service.DomainService;
 import my.app.stoma.service.PictureService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class PictureServiceTest {
     PictureService pictureService;
     @Autowired
     ArticleService articleService;
+    @Autowired
+    DomainService domainService;
 
 
     @Test
@@ -35,6 +38,7 @@ public class PictureServiceTest {
         Article article = new Article();
         article.setTitle("Gigi");
         article.setContent("Content");
+        article.setDomains(domainService.findAll());
         Article savedArticle = articleService.save(article);
 
         Picture picture = new Picture();

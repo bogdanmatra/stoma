@@ -13,7 +13,7 @@
     <div class="row-fluid">
 
 
-        <form:form method="POST" action="${action}"  name="addUserForm" modelAttribute="nOrA" role="form">
+        <form:form method="POST" action="${action}"  name="addUserForm" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
             <div class="col-lg-10">
                 <div class="row">
                 <div class="col-lg-6">
@@ -50,6 +50,7 @@
 
                 <form:select multiple="true" class="form-control" id="mselect" path="domains">
                 </form:select>
+                <form:errors cssClass="input-group-addon alert-danger" path="domains"/>
                 <br>
 
 
@@ -67,9 +68,16 @@
                 </div>
 
                 <br>
-                <input type="file" name="pic" accept="image/*">
-                <p class="help-block">Example block-level help text here.</p>
-
+                <table id="fileTable">
+                    <tr>
+                        <td><input name="files[0]" type="file" /></td>
+                    </tr>
+                    <tr>
+                        <td><input name="files[1]" type="file" /></td>
+                    </tr>
+                </table>
+                <br />
+                <input id="addFile" type="button" value="Add File" />
 
                 <br>
                 <br>
@@ -90,6 +98,26 @@
         $('input:radio').change(function(){
             populateMSelect();
         });
+
+        $(document)
+                .ready(
+                function() {
+                    //add more file components if Add is clicked
+                    $('#addFile')
+                            .click(
+                            function() {
+                                var fileIndex = $('#fileTable tr')
+                                        .children().length - 1;
+                                $('#fileTable')
+                                        .append(
+                                                '<tr><td>'
+                                                + '   <input type="file" name="files['+ fileIndex +']" />'
+                                                + '</td></tr>');
+                            });
+
+                });
+
+
     });
 
 

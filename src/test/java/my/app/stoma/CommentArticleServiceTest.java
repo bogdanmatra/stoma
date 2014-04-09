@@ -5,6 +5,7 @@ import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.CommentService;
+import my.app.stoma.service.DomainService;
 import my.app.stoma.service.security.UserService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class CommentArticleServiceTest {
     ArticleService articleService;
     @Autowired
     UserService userService;
+    @Autowired
+    DomainService domainService;
 
 
     @Test
@@ -66,6 +69,7 @@ public class CommentArticleServiceTest {
         article.setTitle("Title");
         article.setContent("Content");
         article.setComments(list);
+        article.setDomains(domainService.findAll());
         articleService.save(article);
 
         int after = articleService.findAll().size();

@@ -32,6 +32,8 @@ public class Article extends BaseEntity {
     @Column(name = "viewed")
     private Long viewed;
 
+    @NotEmpty
+    @NotNull
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "domains_articles", joinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;

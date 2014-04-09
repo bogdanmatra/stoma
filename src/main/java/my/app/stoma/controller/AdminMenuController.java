@@ -3,11 +3,13 @@ package my.app.stoma.controller;
 import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.News;
+import my.app.stoma.domain.Picture;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.ArticleService;
 import my.app.stoma.service.DomainService;
 import my.app.stoma.service.NewsService;
+import my.app.stoma.service.PictureService;
 import my.app.stoma.service.security.RoleService;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +48,8 @@ public class AdminMenuController {
     NewsService newsService;
     @Autowired
     ArticleService articleService;
+    @Autowired
+    PictureService pictureService;
 
 
 
@@ -107,11 +116,24 @@ public class AdminMenuController {
     }
 
     @RequestMapping(value = "addNorA/saveNews", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveNews(Model model,@ModelAttribute(value = "nOrA") @Valid News news, BindingResult bindingResult, HttpServletRequest request) {
+    public String saveNews(Model model,@ModelAttribute(value = "nOrA") @Valid News news, BindingResult bindingResult, HttpServletRequest request, HttpSession session) throws IOException {
         if (bindingResult.hasErrors()) {
             return "/addNorA";
         }else{
-            newsService.save(news);
+            String path = session.getServletContext().getRealPath("/");
+            List<Picture> pictureList=new ArrayList<Picture>();
+            List<MultipartFile> files = news.getFiles();
+            News savedNews = newsService.save(news);
+            if (null != files && files.size() > 0) {
+                for (MultipartFile multipartFile : files) {
+                    String fileName = multipartFile.getOriginalFilename();
+                    if (!"".equalsIgnoreCase(fileName) && multipartFile.getContentType().startsWith("image")) {
+                        Picture picture =new Picture(multipartFile, path);
+                        picture.setNews(news);
+                        pictureService.save(picture);
+                    }
+                }
+            }
         }
         return "redirect:/news/";
     }
