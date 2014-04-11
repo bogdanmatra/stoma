@@ -13,7 +13,7 @@
     <div class="row-fluid">
 
 
-        <form:form method="POST" action="${action}"  name="addUserForm" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
+        <form:form method="POST" action="${action}"  name="addNewsOrArticle" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
             <div class="col-lg-10">
                 <div class="row">
                 <div class="col-lg-6">
@@ -111,7 +111,7 @@
                                 $('#fileTable')
                                         .append(
                                                 '<tr><td>'
-                                                + '   <input type="file" name="files['+ fileIndex +']" />'
+                                                + '   <input type="file" name="files['+ ++fileIndex +']" />'
                                                 + '</td></tr>');
                             });
 

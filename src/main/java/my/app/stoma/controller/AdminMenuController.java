@@ -106,11 +106,25 @@ public class AdminMenuController {
 
 
     @RequestMapping(value = "addNorA/saveArticle", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveArticle(Model model,@ModelAttribute(value = "nOrA") @Valid Article article, BindingResult bindingResult, HttpServletRequest request) {
+    public String saveArticle(Model model,@ModelAttribute(value = "nOrA") @Valid Article article, BindingResult bindingResult, HttpServletRequest request, HttpSession session) throws IOException {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("action", "saveArticle");
             return "/addNorA";
         }else{
-            articleService.save(article);
+            String path = session.getServletContext().getRealPath("/");
+            List<Picture> pictureList=new ArrayList<Picture>();
+            List<MultipartFile> files = article.getFiles();
+            Article savedArticle = articleService.save(article);
+            if (null != files && files.size() > 0) {
+                for (MultipartFile multipartFile : files) {
+                    String fileName = multipartFile.getOriginalFilename();
+                    if (!"".equalsIgnoreCase(fileName) && multipartFile.getContentType().startsWith("image")) {
+                        Picture picture =new Picture(multipartFile, path);
+                        picture.setArticle(savedArticle);
+                        pictureService.save(picture);
+                    }
+                }
+            }
         }
         return "redirect:/articles/";
     }
@@ -118,6 +132,7 @@ public class AdminMenuController {
     @RequestMapping(value = "addNorA/saveNews", method = {RequestMethod.POST, RequestMethod.GET})
     public String saveNews(Model model,@ModelAttribute(value = "nOrA") @Valid News news, BindingResult bindingResult, HttpServletRequest request, HttpSession session) throws IOException {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("action", "saveNews");
             return "/addNorA";
         }else{
             String path = session.getServletContext().getRealPath("/");
@@ -129,7 +144,7 @@ public class AdminMenuController {
                     String fileName = multipartFile.getOriginalFilename();
                     if (!"".equalsIgnoreCase(fileName) && multipartFile.getContentType().startsWith("image")) {
                         Picture picture =new Picture(multipartFile, path);
-                        picture.setNews(news);
+                        picture.setNews(savedNews);
                         pictureService.save(picture);
                     }
                 }

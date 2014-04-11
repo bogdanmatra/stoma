@@ -7,6 +7,7 @@ import my.app.stoma.domain.security.User;
 import my.app.stoma.service.CommentService;
 import my.app.stoma.service.DomainService;
 import my.app.stoma.service.NewsService;
+import my.app.stoma.service.PictureService;
 import my.app.stoma.service.security.UserService;
 import my.app.stoma.utils.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +44,8 @@ public class NewsController {
     CommentService commentService;
     @Autowired
     UserService userService;
+    @Autowired
+    PictureService pictureService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(Model model, HttpServletRequest request) {
@@ -96,7 +100,9 @@ public class NewsController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable Long id, HttpServletRequest request, Model model) {
+    public String delete(@PathVariable Long id, HttpServletRequest request, Model model, HttpSession session) {
+        String path = session.getServletContext().getRealPath("/");
+        pictureService.deleteListFromHDD(newsService.findById(id).getPictures(),path);
         newsService.delete(id);
         return "redirect:/news/";
     }
