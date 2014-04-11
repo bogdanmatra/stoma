@@ -26,7 +26,7 @@
         <ul id="sharer" class="nav nav-pills pull-left" style="cursor: pointer;">
             <li>
                 <a id="fb">
-                    <img src="http://www.facebook.com/favicon.ico" style="height: 15px; width: 15px;"/>
+                    <img src="https://fbstatic-a.akamaihd.net/rsrc.php/yl/r/H3nktOa7ZMg.ico" style="height: 15px; width: 15px;"/>
                 </a>
             </li>
             <li>
