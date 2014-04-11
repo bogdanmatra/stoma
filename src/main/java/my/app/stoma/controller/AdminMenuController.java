@@ -82,7 +82,7 @@ public class AdminMenuController {
     @ResponseBody
     public void delete(Model model, HttpServletRequest request) {
         Long id=Long.parseLong(request.getParameter("id"));
-        if(userService.findAllWithRole("ROLE_ADMIN").size()>1){
+        if(userService.findAllWithRole("ROLE_ADMIN").size()>=1  ){
             userService.delete(userService.findById(id));
         }
     }

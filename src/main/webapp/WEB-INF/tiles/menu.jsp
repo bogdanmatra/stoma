@@ -22,8 +22,8 @@
 
 
         <br>
-        <sec:authorize access="!hasRole('ROLE_ADMIN')">
-        <ul class="nav nav-pills pull-left">
+
+        <ul id="sharer" class="nav nav-pills pull-left" style="cursor: pointer;">
             <li>
                 <a id="fb">
                     <img src="http://www.facebook.com/favicon.ico" style="height: 15px; width: 15px;"/>
@@ -39,10 +39,12 @@
                     <img src="https://ssl.gstatic.com/s2/oz/images/faviconr2.ico" style="height: 15px; width: 15px;"/>
                 </a>
             </li>
+            <li>
+                <a id="lin">
+                    <img src="https://static.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico" style="height: 15px; width: 15px;"/>
+                </a>
+            </li>
         </ul>
-        </sec:authorize>
-
-
 
 
         <ul class="nav nav-pills pull-right">
@@ -91,6 +93,7 @@
         facebook="http://www.facebook.com/sharer.php?u="+ins+"&t=Visit us!";
         twitter="http://twitter.com/share?text=Visit us!&url="+ins;
         googlePlus="http://plus.google.com/share?url="+ins;
+        linkedin="http://www.linkedin.com/shareArticle?mini=true&url="+ ins +"&title=Visit us!";
         $("#fb").click(function(){
             openWindow(facebook);
         });
@@ -100,6 +103,9 @@
         $("#gp").click(function(){
             openWindow(googlePlus);
         });
+        $("#lin").click(function(){
+            openWindow(linkedin);
+        })
 
 
     });
