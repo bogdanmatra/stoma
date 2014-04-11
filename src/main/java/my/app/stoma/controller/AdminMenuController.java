@@ -190,5 +190,24 @@ public class AdminMenuController {
         return "/contactEdit";
     }
 
+    //Contact Edit
+    @RequestMapping(value = "addDomain", method = RequestMethod.GET)
+    public String addDomain(Model model, HttpServletRequest request) {
+        Domain domain =  new Domain();
+        domain.setLocale("ro");
+        domain.setDomMedical("st");
+        model.addAttribute("domain", domain);
+        return "/addDomain";
+    }
 
+    @RequestMapping(value = "saveDomain", method = {RequestMethod.POST, RequestMethod.GET})
+    public String saveDomain(Model model,@ModelAttribute(value = "domain") @Valid Domain domain, BindingResult bindingResult, HttpServletRequest request, HttpSession session) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            return "/addDomain";
+        }else{
+            domainService.save(domain);
+            return "redirect:/stoma";
+        }
+    }
 }
