@@ -36,7 +36,7 @@
           class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="cookieName" value="locale"/>
         <property name="cookieMaxAge" value="86400"/>
-        <property name="defaultLocale" value="en"/>
+        <property name="defaultLocale" value="ro"/>
     </bean>
 
     <!-- Application Message Bundle -->
