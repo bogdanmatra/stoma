@@ -71,7 +71,7 @@ public class DomainServiceTest {
         Map<String,List<Domain>> map =domainService.getTwoListsStAndGen("ro");
 
         List<Domain> listStoma = map.get("st");
-        List<Domain> listGen = map.get("ge");
+        List<Domain> listGen = map.get("gen");
 
         Assert.assertEquals("st", getDomainFromList(listStoma,"Aparatura stoma").getDomMedical());
         Assert.assertEquals("ge", getDomainFromList(listGen,"Oftalmologie").getDomMedical());

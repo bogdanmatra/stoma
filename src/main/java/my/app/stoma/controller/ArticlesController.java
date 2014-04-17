@@ -55,8 +55,7 @@ public class ArticlesController {
     public ModelAndView index(Model model, HttpServletRequest request) {
 
         Map<String,List<Domain>> map= domainService.getTwoListsStAndGen(LocaleUtils.getLanguage(request));
-        model.addAttribute("st",map.get("st"));
-        model.addAttribute("gen",map.get("ge"));
+        model.addAttribute(map);
         model.addAttribute("newsOrArticles","getArticles");
         return new ModelAndView("/news",model.asMap());
     }

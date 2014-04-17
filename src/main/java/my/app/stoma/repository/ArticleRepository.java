@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by bmatragociu on 3/27/2014.
  */
@@ -19,6 +21,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT article FROM Article article INNER JOIN article.domains dom WHERE dom = :domain")
     Page<Article> findAllNewsByDomain(@Param("domain") Domain domain, Pageable p) throws DataAccessException;
+
+    @Query("SELECT article FROM Article article INNER JOIN article.domains dom WHERE dom = :domain")
+    List<Article> findAllNewsByDomainNotPageable(@Param("domain") Domain domain) throws DataAccessException;
+
 
     @Query("SELECT DISTINCT article FROM Article article INNER JOIN article.domains dom WHERE dom.locale = :language")
     Page<Article> findAllByLanguage(@Param("language") String language, Pageable p) throws DataAccessException;

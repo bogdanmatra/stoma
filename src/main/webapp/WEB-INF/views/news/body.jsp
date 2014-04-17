@@ -10,13 +10,13 @@
             </div>
             <h4>Stoma</h4>
             <div class="list-group">
-                <c:forEach var="domain" items="${st}">
+                <c:forEach var="domain" items="${hashMap.st}">
                 <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
             <h4>Generala</h4>
             <div class="list-group">
-                <c:forEach var="domain" items="${gen}">
+                <c:forEach var="domain" items="${hashMap.gen}">
                     <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>

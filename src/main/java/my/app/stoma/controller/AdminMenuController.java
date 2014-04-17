@@ -210,4 +210,19 @@ public class AdminMenuController {
             return "redirect:/stoma";
         }
     }
+
+
+    @RequestMapping(value = "deleteDomain", method = {RequestMethod.POST, RequestMethod.GET})
+     public String deleteDomain(Model model, HttpServletRequest request, HttpSession session) throws IOException {
+        model.addAttribute("eng", domainService.getTwoListsStAndGen("en"));
+        model.addAttribute("rom",domainService.getTwoListsStAndGen("ro"));
+        return "/deleteDomain";
+    }
+
+    @RequestMapping(value = "deleteAjax", method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteDomainAjax(Model model, HttpServletRequest request, HttpSession session) throws IOException {
+        domainService.delete(Long.parseLong(request.getParameter("id")));
+    }
+
 }

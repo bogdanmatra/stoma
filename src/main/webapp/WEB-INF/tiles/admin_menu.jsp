@@ -10,6 +10,7 @@
             <li class="divider"></li>
             <li><a href="${ctx}/edituser/">Edit user</a></li>
             <li><a href="${ctx}/addDomain">Add domain</a></li>
+            <li><a href="${ctx}/deleteDomain">Delete domains</a></li>
             <li><a href="${ctx}/addNorA/n">Add news</a></li>
             <li><a href="${ctx}/addNorA/a">Add article</a></li>
             <li><a href="${ctx}/contactEdit">Edit contact details</a></li>

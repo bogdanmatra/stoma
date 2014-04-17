@@ -54,4 +54,6 @@ public class NewsService {
     public void delete(Long id) {
         newsRepository.delete(id);
     }
+
+
 }
