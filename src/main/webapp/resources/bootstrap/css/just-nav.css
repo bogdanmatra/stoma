@@ -36,10 +36,10 @@ body {
     box-shadow: inset 0 3px 7px rgba(0,0,0,.15);
 }
 .nav-justified > li:first-child > a {
-    border-radius: 5px 0px 0 0;
+    border-radius: 5px 0 0 5px;
 }
 .nav-justified > li:last-child > a {
-    border-radius: 0px 5px 0 0;
+    border-radius: 0 5px 5px 0;
 }
 
 /* Sticky footer styles
