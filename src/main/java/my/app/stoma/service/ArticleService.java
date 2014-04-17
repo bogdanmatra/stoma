@@ -37,19 +37,22 @@ public class ArticleService {
     @Transactional(readOnly = true)
     public Page<Article> findAllByDomain(Domain domain, int pageNumber){
         return articleRepository.findAllNewsByDomain(domain, new PageRequest(pageNumber, 5, new Sort(
-                Sort.Direction.DESC, "updatedDate")));
+                Sort.Direction.DESC, "createdDate")));
     }
 
     @Transactional(readOnly = true)
     public Page<Article> findAllByLanguage(String language,int pageNumber) {
         return articleRepository.findAllByLanguage(language, new PageRequest(pageNumber, 5, new Sort(
-                Sort.Direction.DESC, "updatedDate")));
+                Sort.Direction.DESC, "createdDate")));
     }
 
 
     @Transactional(readOnly = true)
     public Article findById(long id) {
-        return articleRepository.findOne(id);
+        Article article = articleRepository.findOne(id);
+        article.incrementViewed();
+        articleRepository.saveAndFlush(article);
+        return article;
     }
 
     @Transactional(readOnly = false)

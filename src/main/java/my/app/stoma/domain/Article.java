@@ -35,7 +35,8 @@ public class Article extends BaseEntity {
 
     @NotEmpty
     @NotNull
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "domains_articles", joinColumns = {@JoinColumn(name = "article_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
 
@@ -105,5 +106,14 @@ public class Article extends BaseEntity {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public void incrementViewed(){
+        if (viewed==null){
+            viewed=1L;
+        }
+        else{
+            viewed++;
+        }
     }
 }

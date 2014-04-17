@@ -58,6 +58,8 @@ public class DomainService {
 
     @Transactional(readOnly = false)
     public void delete(Long id) {
+
+        //Delete orphan news or articles
         List<News> listNews=newsRepository.findAllNewsByDomainNotPageable(domainRepository.findOne(id));
         for(News news:listNews){
             if(news.getDomains().size()==1){

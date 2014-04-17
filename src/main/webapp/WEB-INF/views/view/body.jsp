@@ -54,6 +54,12 @@
 <div class="container">
 
     <br><br>
+    <p>
+        <c:forEach var="domain" items="${news.domains}">
+        <button class="btn btn-default disabled"> ${domain.name} </button>
+        </c:forEach>
+        <b class="pull-right">Viewed: ${news.viewed}</b>
+    </p>
 
     <div class="media">
         <a class="pull-left" href="#">

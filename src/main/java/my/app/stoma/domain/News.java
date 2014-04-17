@@ -36,7 +36,8 @@ public class News extends BaseEntity {
 
     @NotEmpty
     @NotNull
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "news_domains", joinColumns = {@JoinColumn(name = "news_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "domain_id", nullable = false, updatable = false)})
     private List<Domain> domains;
 
@@ -105,5 +106,15 @@ public class News extends BaseEntity {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public void incrementViewed(){
+        if (viewed==null){
+            viewed=1L;
+        }
+        else{
+            viewed++;
+        }
+
     }
 }
