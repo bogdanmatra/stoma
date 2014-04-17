@@ -225,4 +225,10 @@ public class AdminMenuController {
         domainService.delete(Long.parseLong(request.getParameter("id")));
     }
 
+    @RequestMapping(value = "addEvent", method = RequestMethod.GET)
+    public String addEvent(Model model, HttpServletRequest request, HttpSession session) throws IOException {
+        return "/addEvent";
+    }
+
+
 }

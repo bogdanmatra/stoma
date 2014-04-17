@@ -68,7 +68,7 @@
                 </div>
 
                 <br>
-                <table id="fileTable">
+                <table id="fileTable" style="border-collapse:separate;border-spacing:15px 10px;">
                     <tr>
                         <td><input name="files[0]" type="file" /></td>
                     </tr>
@@ -76,8 +76,8 @@
                         <td><input name="files[1]" type="file" /></td>
                     </tr>
                 </table>
-                <br />
-                <input id="addFile" type="button" value="Add File" />
+                <br>
+                <button id="addFile" type="button" value="Add File" class="btn btn-default" > Add file </button>
 
                 <br>
                 <br>

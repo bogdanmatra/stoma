@@ -13,6 +13,7 @@
             <li><a href="${ctx}/deleteDomain">Delete domains</a></li>
             <li><a href="${ctx}/addNorA/n">Add news</a></li>
             <li><a href="${ctx}/addNorA/a">Add article</a></li>
+            <li><a href="${ctx}/addEvent">Add event</a></li>
             <li><a href="${ctx}/contactEdit">Edit contact details</a></li>
         </ul>
     </li>
