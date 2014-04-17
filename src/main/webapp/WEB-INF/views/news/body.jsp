@@ -11,13 +11,13 @@
             <h4>Stoma</h4>
             <div class="list-group">
                 <c:forEach var="domain" items="${hashMap.st}">
-                <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
+                <a href="#" class="list-group-item" data-id="${domain.id}" data-toogle="tooltip" title="${domain.details}" data-placement="top" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
             <h4>Generala</h4>
             <div class="list-group">
                 <c:forEach var="domain" items="${hashMap.gen}">
-                    <a href="#" class="list-group-item" data-id="${domain.id}" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
+                    <a href="#" class="list-group-item" data-id="${domain.id}" data-toogle="tooltip" title="${domain.details}" data-placement="top" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
         </div>
@@ -55,6 +55,11 @@
     var currentPage=0;
 
     $(document).ready(function() {
+        //Tooltip
+        $('a[data-toogle="tooltip"]').tooltip({
+            'delay': { show: 500}
+        });
+
         parent.empty();
         poolContent(-1,currentPage);
         //Going for scroll
@@ -133,5 +138,12 @@
         overflow: hidden;
         /* for good looks */
         padding: 10px;
+    }
+
+    /* Fix tooltip */
+    .list-group>a:last-of-type {
+        margin-bottom: 0;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
     }
 </style>

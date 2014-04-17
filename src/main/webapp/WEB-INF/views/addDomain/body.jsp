@@ -9,16 +9,17 @@
         <div class="col-lg-6">
             <div class="radio">
                 <label>
-                    <form:radiobutton  name="lang" id="en" value="en" path="locale"/>
-                    English
-                </label>
-            </div>
-            <div class="radio">
-                <label>
                     <form:radiobutton name="lang" id="ro" value="ro" path="locale"/>
                     Romanian
                 </label>
             </div>
+            <div class="radio">
+                <label>
+                    <form:radiobutton  name="lang" id="en" value="en" path="locale"/>
+                    English
+                </label>
+            </div>
+
         </div>
         <div class="col-lg-6">
             <div class="radio">

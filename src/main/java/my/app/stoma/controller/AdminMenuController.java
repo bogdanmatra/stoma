@@ -207,7 +207,7 @@ public class AdminMenuController {
             return "/addDomain";
         }else{
             domainService.save(domain);
-            return "redirect:/stoma";
+            return "redirect:../stoma";
         }
     }
 

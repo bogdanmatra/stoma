@@ -2,39 +2,49 @@
 
 <div class="container">
 
-
+<h3>Engleza stomatologie</h3>
     <table class="table">
-<thead><tr><th>Engleza stomatologie</th></tr></thead>
+<thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.st}">
-<tr><td>${domain.name}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+<tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
         </table>
 
+        <br><br><br>
 
 
-    <table class="table">
-        <thead><tr><th>Engleza generala</th></tr></thead>
+    <h3>Engleza generala</h3>
+        <table class="table">
+        <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.gen}">
-    <tr><td>${domain.name}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+    <tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
+
         </table>
 
+    <br><br><br>
+
+
+    <h3>Romana stomatologie</h3>
     <table class="table">
-        <thead><tr><th>Romana stomatologie</th></tr></thead>
+        <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.st}">
-    <tr><td>${domain.name}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+    <tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
     </table>
 
+    <br><br><br>
 
+
+    <h3>Romana generala</h3>
     <table class="table">
-        <thead><tr><th>Romana generala</th></tr></thead>
+        <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.gen}">
     <tr><td>${domain.name}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
