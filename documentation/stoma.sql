@@ -36,7 +36,7 @@ CREATE TABLE `answers` (
   KEY `fk_a_question` (`id_question`),
   CONSTRAINT `fk_a_question` FOREIGN KEY (`id_question`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_a_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (22,'da da','2014-03-24 12:24:18','2014-03-24 12:24:18',8,173),(24,'bla','2014-03-24 12:26:36','2014-03-24 12:26:36',8,173),(30,'DA','2014-03-24 13:21:30','2014-03-24 13:21:30',8,185),(194,'answer','2014-04-02 09:21:35','2014-04-02 09:21:35',7,187),(196,'raspuns','2014-04-02 09:23:53','2014-04-02 09:23:53',7,363);
+INSERT INTO `answers` VALUES (194,'answer','2014-04-02 09:21:35','2014-04-02 09:21:35',7,187),(196,'raspuns','2014-04-02 09:23:53','2014-04-02 09:23:53',7,363);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `articles` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=439 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=356 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +73,7 @@ CREATE TABLE `articles` (
 
 LOCK TABLES `articles` WRITE;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (237,'Alt articol','mai  tare',NULL,NULL,NULL);
+INSERT INTO `articles` VALUES (237,'Alt articol','mai  tare',NULL,NULL,NULL),(241,'dd','dd','2014-04-11 08:26:22','2014-04-11 08:26:22',NULL),(242,'gg','gg','2014-04-11 08:27:13','2014-04-11 08:27:13',NULL),(243,'www','www','2014-04-11 08:28:12','2014-04-17 15:01:26',2);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,11 +98,11 @@ CREATE TABLE `comments` (
   KEY `fk_c_news_idx` (`id_news`),
   KEY `fk_c_article_idx` (`id_article`),
   KEY `fk_c_events_idx` (`id_event`),
-  CONSTRAINT `fk_c_events` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_c_events` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_c_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=601 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=773 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (428,'frumos',NULL,NULL,7,NULL,30,NULL),(441,'si mai frumos',NULL,NULL,7,NULL,30,NULL),(478,'da','2014-04-04 07:22:31','2014-04-04 07:22:31',7,NULL,30,NULL),(505,'fsdfsdf','2014-04-04 07:53:27','2014-04-04 07:53:27',7,NULL,30,NULL),(518,'user comments again','2014-04-04 08:32:37','2014-04-04 08:32:37',8,NULL,30,NULL),(535,'gigi','2014-04-04 08:51:40','2014-04-04 08:51:40',8,NULL,30,NULL),(536,'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff','2014-04-04 08:57:57','2014-04-04 08:57:57',8,NULL,30,NULL),(537,'   bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ','2014-04-04 08:58:22','2014-04-04 08:58:22',8,NULL,30,NULL);
+INSERT INTO `comments` VALUES (428,'frumos',NULL,NULL,7,NULL,30,NULL),(441,'si mai frumos',NULL,NULL,7,NULL,30,NULL),(478,'da','2014-04-04 07:22:31','2014-04-04 07:22:31',7,NULL,30,NULL),(505,'fsdfsdf','2014-04-04 07:53:27','2014-04-04 07:53:27',7,NULL,30,NULL),(614,'comment baby','2014-04-08 12:23:42','2014-04-08 12:23:42',7,NULL,101,NULL);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +131,7 @@ CREATE TABLE `domains` (
   `locale` varchar(2) NOT NULL,
   `dom_medical` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `domains` (
 
 LOCK TABLES `domains` WRITE;
 /*!40000 ALTER TABLE `domains` DISABLE KEYS */;
-INSERT INTO `domains` VALUES (53,'Aparatura dentara',NULL,NULL,NULL,'ro','st'),(54,'Pasta de dinti',NULL,NULL,NULL,'ro','st'),(55,'Oftalmologie',NULL,NULL,NULL,'ro','ge'),(131,'Alt domeniu',NULL,NULL,NULL,'ro','ge'),(132,'Alt domeniu 2',NULL,NULL,NULL,'ro','ge'),(133,'Domeniu englez',NULL,NULL,NULL,'en','st'),(134,'Alt domeniu englez',NULL,NULL,NULL,'en','ge'),(135,'Alt domeniu englez 2',NULL,NULL,NULL,'en','ge');
+INSERT INTO `domains` VALUES (53,'Aparatura dentara',NULL,NULL,NULL,'ro','st'),(55,'Oftalmologie',NULL,NULL,NULL,'ro','ge'),(133,'Domeniu englez',NULL,NULL,NULL,'en','st'),(134,'Alt domeniu englez',NULL,NULL,NULL,'en','ge'),(270,'Domeniu cu tooltip','Detalii','2014-04-17 12:28:42','2014-04-17 12:28:42','ro','st'),(272,'domeniu','domeniu cu tooltip','2014-04-17 12:30:25','2014-04-17 12:30:25','en','st'),(287,'cool','cool\r\n','2014-04-17 15:09:19','2014-04-17 15:09:19','ro','st'),(292,'coolsd','coolsd','2014-04-17 15:10:44','2014-04-17 15:10:44','ro','st'),(297,'dda','da','2014-04-17 15:11:40','2014-04-17 15:11:40','ro','st');
 /*!40000 ALTER TABLE `domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,8 +156,8 @@ CREATE TABLE `domains_articles` (
   `article_id` bigint(20) NOT NULL,
   PRIMARY KEY (`domain_id`,`article_id`),
   KEY `fk_da_article_idx` (`article_id`),
-  CONSTRAINT `fk_da_article` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_da_domain` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_da_domain` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_da_article` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -167,7 +167,7 @@ CREATE TABLE `domains_articles` (
 
 LOCK TABLES `domains_articles` WRITE;
 /*!40000 ALTER TABLE `domains_articles` DISABLE KEYS */;
-INSERT INTO `domains_articles` VALUES (135,237);
+INSERT INTO `domains_articles` VALUES (133,241),(133,242),(133,243);
 /*!40000 ALTER TABLE `domains_articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +187,7 @@ CREATE TABLE `events` (
   `viewed` bigint(20) DEFAULT NULL,
   `locale` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `news` (
   `updated_date` datetime DEFAULT NULL,
   `viewed` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (30,'Super news','Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',NULL,NULL,1),(49,'news 5','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(50,'news 6','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(51,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(53,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(54,'news 7 da da da dad a da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(55,' dada da da da dad ad ad da da da da lomg title lomg title lomg title lomg title','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolv',NULL,NULL,NULL),(56,'news 7 da da da da da dad a','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(57,' dadad ada  da da da da da da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(58,'news 7 dad ad ad ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(59,' da da da da da da dad  a da dada ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(62,'news 7 dad ad ad ','da',NULL,NULL,NULL);
+INSERT INTO `news` VALUES (30,'Super news','Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',NULL,'2014-04-17 15:07:23',57),(50,'news 6','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,'2014-04-17 14:51:26',11),(51,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,'2014-04-17 15:04:52',15),(53,'news 7','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(54,'news 7 da da da dad a da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(55,' dada da da da dad ad ad da da da da lomg title lomg title lomg title lomg title','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolv',NULL,NULL,NULL),(56,'news 7 da da da da da dad a','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(57,' dadad ada  da da da da da da da da','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(58,'news 7 dad ad ad ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(59,' da da da da da da dad  a da dada ','cool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool coolcool cool cool cool cool cool coolcool cool cool',NULL,NULL,NULL),(62,'news 7 dad ad ad ','da',NULL,NULL,NULL),(101,'io man','io man','2014-04-08 12:19:59','2014-04-17 12:26:58',1),(151,'da','da','2014-04-09 07:27:36','2014-04-09 07:27:36',NULL),(152,'da','da','2014-04-09 07:27:51','2014-04-09 07:27:51',NULL),(186,'qwqw','qwqw','2014-04-09 09:03:04','2014-04-09 09:03:04',NULL),(258,'bla','bla','2014-04-17 09:22:48','2014-04-17 13:53:10',59);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `news_domains` (
   `domain_id` int(20) NOT NULL,
   PRIMARY KEY (`news_id`,`domain_id`),
   KEY `fk_ed_domain_idx` (`domain_id`),
-  CONSTRAINT `fk_nd_domains` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_nd_domains` FOREIGN KEY (`domain_id`) REFERENCES `domains` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_nd_news` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -251,7 +251,7 @@ CREATE TABLE `news_domains` (
 
 LOCK TABLES `news_domains` WRITE;
 /*!40000 ALTER TABLE `news_domains` DISABLE KEYS */;
-INSERT INTO `news_domains` VALUES (30,53),(49,53),(50,53),(51,53),(53,53),(54,53),(55,53),(56,53),(57,53),(58,53),(59,53),(30,54);
+INSERT INTO `news_domains` VALUES (30,53),(50,53),(51,53),(53,53),(54,53),(55,53),(56,53),(57,53),(58,53),(59,53),(151,133),(152,133),(186,133),(258,133),(101,134);
 /*!40000 ALTER TABLE `news_domains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,10 +273,10 @@ CREATE TABLE `pictures` (
   KEY `fk_p_event_idx` (`id_event`),
   KEY `fk_p_article_idx` (`id_article`),
   KEY `fk_p_news_idx` (`id_news`),
+  CONSTRAINT `fk_p_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_p_event` FOREIGN KEY (`id_event`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_p_article` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=367 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_p_news` FOREIGN KEY (`id_news`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=630 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +285,7 @@ CREATE TABLE `pictures` (
 
 LOCK TABLES `pictures` WRITE;
 /*!40000 ALTER TABLE `pictures` DISABLE KEYS */;
-INSERT INTO `pictures` VALUES (262,'default.jpg',NULL,NULL,30,0),(299,'default.jpg',NULL,NULL,30,0),(300,'default.jpg',NULL,NULL,30,0);
+INSERT INTO `pictures` VALUES (262,'default.jpg',NULL,NULL,30,0),(471,'default.jpg',NULL,NULL,30,0),(472,'default.jpg',NULL,NULL,30,0);
 /*!40000 ALTER TABLE `pictures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +305,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   CONSTRAINT `fk_q_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=412 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=409 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,7 +314,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(185,'topic man','2014-03-24 12:34:36','2014-03-24 12:34:36',8),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(363,'Bla','2014-04-02 09:21:56','2014-04-02 09:21:56',7),(366,'bla1','2014-04-03 12:53:24','2014-04-03 12:53:24',7),(367,'bla2\r\n','2014-04-03 12:53:35','2014-04-03 12:53:35',7),(368,'bla3\r\n','2014-04-03 12:53:43','2014-04-03 12:53:43',7),(369,'bla4\r\n','2014-04-03 12:53:49','2014-04-03 12:53:49',7),(370,'bla5\r\n','2014-04-03 12:54:00','2014-04-03 12:54:00',7);
+INSERT INTO `questions` VALUES (173,'noua intrebare','2014-03-24 09:40:43','2014-03-24 09:40:43',7),(187,'some new Q','2014-03-24 12:44:41','2014-03-24 12:44:41',7),(363,'Bla','2014-04-02 09:21:56','2014-04-02 09:21:56',7),(366,'bla1','2014-04-03 12:53:24','2014-04-03 12:53:24',7),(367,'bla2\r\n','2014-04-03 12:53:35','2014-04-03 12:53:35',7),(368,'bla3\r\n','2014-04-03 12:53:43','2014-04-03 12:53:43',7),(369,'bla4\r\n','2014-04-03 12:53:49','2014-04-03 12:53:49',7),(370,'bla5\r\n','2014-04-03 12:54:00','2014-04-03 12:54:00',7);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,7 +331,7 @@ CREATE TABLE `roles` (
   `created_date` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +363,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,7 +372,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com',NULL,NULL,'Bogdan','Matragociu'),(8,'user','a5700387a0b64f00ff5fe28ee22eb088c2f684a7ad9645d231bdac76b9456c7f','anna.dumitrache@gmail.com',NULL,NULL,'Ana','Dumitrache');
+INSERT INTO `users` VALUES (7,'superuser','2494f0dc95e9b6c92a43651d060042d361f4a0603ffd2ef3e53809415b83b5ea','bogdanmatra@gmail.com','2014-04-07 12:50:45','2014-04-07 12:50:45','Bogdan','Matragociu'),(25,'user','a5700387a0b64f00ff5fe28ee22eb088c2f684a7ad9645d231bdac76b9456c7f','anna.dumitrache@gmail.com','2014-04-11 14:06:26','2014-04-11 14:06:26','Ana','Dumitrache');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,7 +399,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (7,1),(7,2),(8,2);
+INSERT INTO `users_roles` VALUES (7,1),(7,2),(25,2);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -412,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-04 17:00:57
+-- Dump completed on 2014-04-18 15:49:32
