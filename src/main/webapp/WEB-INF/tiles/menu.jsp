@@ -12,7 +12,7 @@
             <li><a href="${ctx}"><spring:message code="home.label" text="Home"/></a></li>
             <li><a href="${ctx}/news/">News</a></li>
             <li><a href="${ctx}/articles/">Articles</a></li>
-            <li><a href="${ctx}/events">Events</a></li>
+            <li><a href="${ctx}/events/">Events</a></li>
             <li><a href="${ctx}/askus">Ask us!</a></li>
             <li><a href="${ctx}/aboutus">About us</a></li>
 
