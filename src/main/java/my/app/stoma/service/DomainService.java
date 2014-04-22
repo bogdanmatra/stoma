@@ -26,6 +26,8 @@ public class DomainService {
     NewsRepository newsRepository;
     @Autowired
     ArticleRepository articleRepository;
+    @Autowired
+    PictureService pictureService;
 
     @Transactional(readOnly = true)
     public List<Domain> findAll() {
@@ -57,19 +59,21 @@ public class DomainService {
 
 
     @Transactional(readOnly = false)
-    public void delete(Long id) {
+    public void delete(Long id, String path) {
 
         //Delete orphan news or articles
         List<News> listNews=newsRepository.findAllNewsByDomainNotPageable(domainRepository.findOne(id));
         for(News news:listNews){
             if(news.getDomains().size()==1){
+                pictureService.deleteListFromHDD(news.getPictures(),path);
                 newsRepository.delete(news.getId());
             }
         }
         List<Article> listArticles=articleRepository.findAllNewsByDomainNotPageable(domainRepository.findOne(id));
         for(Article article:listArticles){
             if(article.getDomains().size()==1){
-                newsRepository.delete(article.getId());
+                pictureService.deleteListFromHDD(article.getPictures(),path);
+                articleRepository.delete(article.getId());
             }
         }
         domainRepository.delete(id);

@@ -218,7 +218,8 @@ public class AdminMenuController {
     @RequestMapping(value = "deleteAjax", method = RequestMethod.POST)
     @ResponseBody
     public void deleteDomainAjax(Model model, HttpServletRequest request, HttpSession session) throws IOException {
-        domainService.delete(Long.parseLong(request.getParameter("id")));
+        String path = session.getServletContext().getRealPath("/");
+        domainService.delete(Long.parseLong(request.getParameter("id")), path);
     }
 
     @RequestMapping(value = "addEvent", method = RequestMethod.GET)
