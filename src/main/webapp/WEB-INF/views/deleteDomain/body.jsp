@@ -3,7 +3,7 @@
 <div class="container">
 
 <h3>Engleza stomatologie</h3>
-    <table class="table">
+    <table class="table table-striped">
 <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.st}">
@@ -16,7 +16,7 @@
 
 
     <h3>Engleza generala</h3>
-        <table class="table">
+        <table class="table table-striped">
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.gen}">
@@ -30,7 +30,7 @@
 
 
     <h3>Romana stomatologie</h3>
-    <table class="table">
+    <table class="table table-striped">
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.st}">
@@ -43,7 +43,7 @@
 
 
     <h3>Romana generala</h3>
-    <table class="table">
+    <table class="table table-striped">
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.gen}">
