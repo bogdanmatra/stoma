@@ -22,7 +22,7 @@
 
         <div class="col-6 col-sm-6 col-lg-4">
             <h2>${item.name}</h2>
-            <p>${item.details}</p>
+            <p class="over">${item.details}</p>
             <p><a class="btn btn-default" href="show/${item.id}" role="button">View details »</a></p>
         </div><!--/span-->
 
@@ -37,3 +37,17 @@
     </div>
 
 </div>
+
+
+
+<style type="text/css">
+    p.over {
+        /* essential */
+        text-overflow: ellipsis;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        /* for good looks */
+        padding: 10px;
+    }
+</style>
