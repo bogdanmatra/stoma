@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 
@@ -21,6 +21,9 @@
         <c:if test="${count.index % 3 == 0}"> <div class="row"> </c:if>
 
         <div class="col-6 col-sm-6 col-lg-4">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <button type="submit" class="close" id="${item.id}">×</button>
+            </sec:authorize>
             <h2>${item.name}</h2>
             <p class="over">${item.details}</p>
             <p><a class="btn btn-default" href="show/${item.id}" role="button">View details »</a></p>
@@ -38,6 +41,18 @@
 
 </div>
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<script>
+
+    $(document).ready(function(){
+        $(".close").click(function(){
+            $.post("deleteEvent/"+$(this).attr("id"));
+            $(this).parent().fadeOut();
+        });
+    });
+
+</script>
+</sec:authorize>
 
 
 <style type="text/css">

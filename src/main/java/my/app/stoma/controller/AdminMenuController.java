@@ -246,12 +246,9 @@ public class AdminMenuController {
                     }
                 }
             }
-
-
-
-
         }
         return "redirect:/events/";
     }
+
 
 }

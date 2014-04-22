@@ -41,4 +41,9 @@ public class EventService {
         return eventRepository.findOne(id);
     }
 
+    @Transactional(readOnly = false)
+    public void delete(Long id) {
+         eventRepository.delete(id);
+    }
+
 }

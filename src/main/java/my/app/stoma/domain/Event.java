@@ -1,5 +1,7 @@
 package my.app.stoma.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,9 +38,11 @@ public class Event extends BaseEntity {
     @Column(name = "locale")
     private String locale;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     List<Picture> pictures;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     List<Comment> comments;
 
