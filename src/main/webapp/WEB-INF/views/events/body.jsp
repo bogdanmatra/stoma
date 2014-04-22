@@ -26,7 +26,7 @@
             <p><a class="btn btn-default" href="show/${item.id}" role="button">View details »</a></p>
         </div><!--/span-->
 
-        <c:if test="${count.index % 3 == 2}"> </div><!--/row--> </c:if>
+        <c:if test="${count.index % 3 == 2 || count.last}"> </div><!--/row--> </c:if>
 
 
 

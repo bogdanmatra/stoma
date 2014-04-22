@@ -1,15 +1,9 @@
 package my.app.stoma.controller;
 
-import my.app.stoma.domain.Article;
-import my.app.stoma.domain.Domain;
-import my.app.stoma.domain.News;
-import my.app.stoma.domain.Picture;
+import my.app.stoma.domain.*;
 import my.app.stoma.domain.security.Role;
 import my.app.stoma.domain.security.User;
-import my.app.stoma.service.ArticleService;
-import my.app.stoma.service.DomainService;
-import my.app.stoma.service.NewsService;
-import my.app.stoma.service.PictureService;
+import my.app.stoma.service.*;
 import my.app.stoma.service.security.RoleService;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +44,8 @@ public class AdminMenuController {
     ArticleService articleService;
     @Autowired
     PictureService pictureService;
+    @Autowired
+    EventService eventService;
 
 
 
@@ -227,7 +223,18 @@ public class AdminMenuController {
 
     @RequestMapping(value = "addEvent", method = RequestMethod.GET)
     public String addEvent(Model model, HttpServletRequest request, HttpSession session) throws IOException {
+        model.addAttribute("event", new Event());
         return "/addEvent";
+    }
+
+    @RequestMapping(value = "saveEvent", method = {RequestMethod.POST, RequestMethod.GET})
+    public String saveEvent(Model model, HttpServletRequest request, HttpSession session,@ModelAttribute Event event, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "/addEvent";
+        }else {
+        eventService.save(event);
+        return "redirect:/events/";
+        }
     }
 
 
