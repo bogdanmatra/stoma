@@ -19,7 +19,7 @@
                     <div class="col-lg-6">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="lang" id="ro" value="ro" checked>
+                                <input type="radio" name="locale" id="ro" value="ro" checked>
                                 Romanian
                             </label>
                         </div>
@@ -27,7 +27,7 @@
                     <div class="col-lg-6">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="lang" id="en" value="en">
+                                <input type="radio" name="locale" id="en" value="en">
                                 English
                             </label>
                         </div>

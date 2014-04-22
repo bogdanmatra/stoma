@@ -228,14 +228,30 @@ public class AdminMenuController {
     }
 
     @RequestMapping(value = "saveEvent", method = {RequestMethod.POST, RequestMethod.GET})
-    public String saveEvent(Model model, HttpServletRequest request, HttpSession session,@ModelAttribute Event event, BindingResult bindingResult) throws IOException {
+    public String saveEvent(Model model, HttpServletRequest request, HttpSession session,@ModelAttribute(value = "event") @Valid Event event, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             return "/addEvent";
         }else {
-        eventService.save(event);
-        return "redirect:/events/";
-        }
-    }
+            String path = session.getServletContext().getRealPath("/");
+            List<Picture> pictureList=new ArrayList<Picture>();
+            List<MultipartFile> files = event.getFiles();
+            Event savedEvent = eventService.save(event);
+            if (null != files && files.size() > 0) {
+                for (MultipartFile multipartFile : files) {
+                    String fileName = multipartFile.getOriginalFilename();
+                    if (!"".equalsIgnoreCase(fileName) && multipartFile.getContentType().startsWith("image")) {
+                        Picture picture =new Picture(multipartFile, path);
+                        picture.setEvent(savedEvent);
+                        pictureService.save(picture);
+                    }
+                }
+            }
 
+
+
+
+        }
+        return "redirect:/events/";
+    }
 
 }
