@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bmatragociu
-  Date: 3/14/14
-  Time: 6:42 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
@@ -26,7 +20,7 @@
             </sec:authorize>
             <h2>${item.name}</h2>
             <p class="over">${item.details}</p>
-            <p><a class="btn btn-default" href="show/${item.id}" role="button">View details »</a></p>
+            <p><a class="btn btn-default" href="show/${item.id}" role="button"><spring:message code="viewDetails.label" text="View details"/> »</a></p>
         </div><!--/span-->
 
         <c:if test="${count.index % 3 == 2 || count.last}"> </div><!--/row--> </c:if>

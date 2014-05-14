@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <div class="container">
 <table class="table table-striped">
     <thead>
@@ -99,7 +100,7 @@
             });
         },
         error: function(){
-            parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
+            parent.html("<h3 class='col-md-offset-1'><spring:message code="nodata.label" text="No data!"/>!</h3>")
         }
     });
     }

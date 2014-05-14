@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div class="container">
 
@@ -6,15 +7,15 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group" id="firstGroup">
-            <a href="#" class="list-group-item"  onclick="emptyParent();poolContent(-1,0)">All</a>
+            <a href="#" class="list-group-item"  onclick="emptyParent();poolContent(-1,0)"><spring:message code="all.label" text="All"/></a>
             </div>
-            <h4>Stoma</h4>
+            <h4><spring:message code="stomatologie.label" text="Stomatologie"/></h4>
             <div class="list-group">
                 <c:forEach var="domain" items="${hashMap.st}">
                 <a href="#" class="list-group-item" data-id="${domain.id}" data-toogle="tooltip" title="${domain.details}" data-placement="top" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
                 </c:forEach>
             </div>
-            <h4>Generala</h4>
+            <h4><spring:message code="generala.label" text="Generala"/></h4>
             <div class="list-group">
                 <c:forEach var="domain" items="${hashMap.gen}">
                     <a href="#" class="list-group-item" data-id="${domain.id}" data-toogle="tooltip" title="${domain.details}" data-placement="top" onclick="emptyParent();poolContent(${domain.id},0)">${domain.name}</a>
@@ -28,7 +29,7 @@
                 <div class="media-body col-md-offset-1 hide multi" >
                     <h2>Heading</h2>
                     <p class="over">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-success" href="#" role="button">View details »</a></p>
+                    <p><a class="btn btn-success" href="#" role="button"><spring:message code="viewDetails.label" text="View details"/> »</a></p>
                 </div><!--/span-->
             </div><!--/row-->
         </div><!--/span-->
@@ -104,7 +105,7 @@
                 element.removeClass("hide");
                 totalPages=data.totalPages;
                 if(totalPages==0){
-                    parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
+                    parent.html("<h3 class='col-md-offset-1'>"+'<spring:message code="nodata.label" text="No data!"/>'+"</h3>")
                     return;
                 }
                 $(data.content).each(function(){
@@ -116,7 +117,7 @@
                 });
             },
             error: function(){
-                parent.html("<h3 class='col-md-offset-1'>No data!</h3>")
+                parent.html("<h3 class='col-md-offset-1'>"+ '<spring:message code="nodata.label" text="No data!"/>' +"</h3>")
             }
         });
     }

@@ -48,7 +48,7 @@
     <div class="navbar-form navbar-right">
         <sec:authentication property="principal.username" var="user"/>
         <div class="form-group">
-            <div style="color: #fff" >Welcome, ${user}!</div>
+            <div style="color: #fff" ><spring:message code="welocome.label" text="Welcome"/>, ${user}!</div>
         </div>
         <a href="<c:url value="/j_spring_security_logout" />">
         <button type="submit" class="btn btn-success"><spring:message code="signout.label" text="Sign out"/></button>
