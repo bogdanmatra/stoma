@@ -24,7 +24,7 @@
             <sec:authorize access="isAnonymous()">
             <form class="navbar-form navbar-right" role="form" action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
                 <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" name="j_username">
+                    <input type="text" placeholder="Username" class="form-control" name="j_username">
                 </div>
                 <div class="form-group">
                     <input type="password" placeholder="Password" class="form-control" name="j_password">
