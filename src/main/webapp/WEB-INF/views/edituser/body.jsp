@@ -40,6 +40,11 @@
     var currentPage;
 
     $(document).ready(function() {
+
+        //remove sharer
+        $("#sharer").fadeOut();
+
+
         parent=$("#parent");
         element=$("#row");
         totalPages;

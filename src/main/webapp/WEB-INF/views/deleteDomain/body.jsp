@@ -61,6 +61,9 @@
 
     $(document).ready(function() {
 
+        //remove sharer
+        $("#sharer").fadeOut();
+
         $(".btn-danger").click(function(){
             $.post( "deleteAjax", { id: $(this).attr("data-id") });
             $(this).closest("tr").fadeOut();

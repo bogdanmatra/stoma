@@ -58,3 +58,12 @@
 
 </form:form>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        //remove sharer
+        $("#sharer").fadeOut();
+
+    })
+</script>

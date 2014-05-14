@@ -103,6 +103,11 @@
         $(document)
                 .ready(
                 function() {
+
+                    //remove sharer
+                    $("#sharer").fadeOut();
+
+
                     //add more file components if Add is clicked
                     $('#addFile')
                             .click(
