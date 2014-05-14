@@ -10,11 +10,11 @@
         <br><br><br>
         <ul id="menu" class="nav nav-justified">
             <li><a href="${ctx}"><spring:message code="home.label" text="Home"/></a></li>
-            <li><a href="${ctx}/news/">News</a></li>
-            <li><a href="${ctx}/articles/">Articles</a></li>
-            <li><a href="${ctx}/events/">Events</a></li>
-            <li><a href="${ctx}/askus">Ask us!</a></li>
-            <li><a href="${ctx}/aboutus">About us</a></li>
+            <li><a href="${ctx}/news/"><spring:message code="news.label" text="News"/></a></li>
+            <li><a href="${ctx}/articles/"><spring:message code="articles.label" text="Articles"/></a></li>
+            <li><a href="${ctx}/events/"><spring:message code="events.label" text="Events"/></a></li>
+            <li><a href="${ctx}/askus"><spring:message code="askus.label" text="Ask us!"/></a></li>
+            <li><a href="${ctx}/aboutus"><spring:message code="about.label" text="About us"/></a></li>
 
             <jsp:include page="admin_menu.jsp"/>
 
