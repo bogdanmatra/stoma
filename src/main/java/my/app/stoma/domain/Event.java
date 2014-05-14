@@ -105,4 +105,15 @@ public class Event extends BaseEntity {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    public void incrementViewed(){
+        if (viewed==null){
+            viewed=1L;
+        }
+        else{
+            viewed++;
+        }
+
+    }
+
 }

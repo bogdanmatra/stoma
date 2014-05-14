@@ -1,17 +1,25 @@
 package my.app.stoma.controller;
 
+import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.Event;
+import my.app.stoma.domain.security.User;
+import my.app.stoma.service.CommentService;
 import my.app.stoma.service.EventService;
 import my.app.stoma.service.PictureService;
+import my.app.stoma.service.security.UserService;
 import my.app.stoma.utils.LocaleUtils;
+import org.apache.poi.ss.formula.functions.Even;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +35,10 @@ public class EventsController {
     EventService eventService;
     @Autowired
     PictureService pictureService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    CommentService commentService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
@@ -36,7 +48,10 @@ public class EventsController {
 
     @RequestMapping(value = "show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable Long id, Model model, HttpServletRequest request) {
-        model.addAttribute("event",eventService.findOne(id));
+        Event chosen = eventService.findOne(id);
+        chosen.incrementViewed();
+        Event saved = eventService.save(chosen);
+        model.addAttribute("event", saved);
         return "/showEvent";
     }
 
@@ -48,6 +63,35 @@ public class EventsController {
         String path = session.getServletContext().getRealPath("/");
         pictureService.deleteListFromHDD(event.getPictures(),path);
         eventService.delete(id);
+    }
+
+    @Secured("ROLE_USER")
+    @RequestMapping(value = "saveEventComment/{id}", method = RequestMethod.POST)
+    public String saveEventComment(@PathVariable Long id, Model model, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes){
+        String content = request.getParameter("content");
+
+        if (content == null || content.equals("") || content.length() > 400) {
+            redirectAttributes.addFlashAttribute("error", true);
+            return "redirect:/events/show/" + id;
+        }
+        Comment comment = new Comment();
+        comment.setContent(content);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userService.findByUsername(userDetails.getUsername());
+        comment.setUser(currentUser);
+        comment.setEvent(eventService.findOne(id));
+        commentService.save(comment);
+
+        return "redirect:/events/show/" + id;
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    public String deleteComment(HttpServletRequest request, Model model) {
+        String commentId =request.getParameter("id");
+        String eventId = request.getParameter("theId");
+        commentService.delete(Long.parseLong(commentId));
+        return "redirect:/events/show/" + eventId;
     }
 
 

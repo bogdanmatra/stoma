@@ -54,6 +54,9 @@
 <div class="container">
 
     <br><br>
+    <p>
+        <b class="pull-right">Viewed: ${event.viewed}</b>
+    </p>
 
     <div class="media">
         <a class="pull-left" href="#">
@@ -87,7 +90,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <form method="POST" action="../../deleteComment">
+                        <form method="POST" action="../deleteComment">
                             <input type="hidden" name="id" value="${com.id}">
                             <input type="hidden" name="theId" value="${event.id}">
                             <button type="submit" class="close pull-right">×</button>
@@ -103,7 +106,7 @@
 
 
     <div class="row col-lg-8 col-lg-offset-4">
-        <form action="../../saveComment/${event.id}" method="POST">
+        <form action="../saveEventComment/${event.id}" method="POST">
             <div class="input-group">
                 <input type="text" name="content" class="form-control">
             <span class="input-group-btn">
