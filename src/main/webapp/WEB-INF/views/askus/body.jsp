@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 
 <div class="container">
@@ -7,15 +8,15 @@
 
     <c:choose>
         <c:when test="${Empty == true}">
-        <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
+        <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"> </span> <spring:message code="newTopic.label" text="New topic!"/>  </button></a>
         <br>
         <br>
-        No questions!
+            <spring:message code="noQuestions.label" text="No questions!"/>
         </c:when>
         <c:otherwise>
 
     <br><br>
-    <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span> New topic!</button></a>
+        <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"> </span> <spring:message code="newTopic.label" text="New topic!"/>  </button></a>
     <c:if
             test="${error == true}">
         <button class="btn btn-danger pull-right" disabled>Please type an answer not longer than 400 characters!</button>
@@ -35,7 +36,7 @@
                         <input type="hidden" name="currentPage" value="${currentPage}">
                     </form>
                 </sec:authorize>
-                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username} said:</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username}&nbsp;<spring:message code="said.label" text="said:"/></h3>
 
             </div>
             <div class="panel-body">
@@ -76,7 +77,7 @@
             <input type="hidden" name="questionId" value="${question.id}">
             <input type="hidden" name="currentPage" value="${currentPage}">
             <span class="input-group-btn">
-            <button type="submit" class="btn btn-default" type="button">Answer!</button>
+            <button type="submit" class="btn btn-default" type="button"><spring:message code="answer.label" text="Answer!"/></button>
           </span>
         </div>
         </form>

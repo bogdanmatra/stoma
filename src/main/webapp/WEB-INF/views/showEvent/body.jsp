@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/uploadedPictures/"/>
 
@@ -76,13 +77,13 @@
     <br>
     <br>
 
-    <h3>Comments:</h3>
+    <h3><spring:message code="comments.label" text="Comments:"/></h3>
 
 
     <br>
     <br>
     <c:if test="${fn:length(event.comments) == 0}">
-        <h4 class="col-md-offset-1">No comments right now...</h4>
+        <h4 class="col-md-offset-1"><spring:message code="noComments.label" text="No comments, please add one!"/></h4>
     </c:if>
 
     <c:forEach var="com" items="${event.comments}">
@@ -110,7 +111,7 @@
             <div class="input-group">
                 <input type="text" name="content" class="form-control">
             <span class="input-group-btn">
-            <button type="submit" class="btn btn-default" type="button">Comment!</button>
+            <button type="submit" class="btn btn-default" type="button"><spring:message code="comment.label" text="Comment!"/></button>
           </span>
             </div>
         </form>

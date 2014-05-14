@@ -1,3 +1,5 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: bmatragociu
@@ -13,7 +15,7 @@
     <form:form method="POST" action="save"  name="addTopicForm" modelAttribute="question">
 
         <div class="input-group">
-            <span class="input-group-addon">New topic</span>
+            <span class="input-group-addon"><spring:message code="newTopic.label" text="New topic!"/></span>
             <textarea class="form-control" name="content" placeholder="Text" rows="5"></textarea>
         </div>
         <br>
