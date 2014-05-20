@@ -4,8 +4,7 @@
 
 home  --   nout ati lonk uri catre celelalte pagini 
 about us  --- text standard 
-footer  - link catre about us cu colaboratori
- 
+footer  - link catre about us cu colaboratori + termeni si conditii
 
 mail cand comenteza la orice
 
