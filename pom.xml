@@ -333,6 +333,24 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <build>
+                <finalName>stoma</finalName>
+                <filters>
+                    <filter>src/main/filters/prod.properties</filter>
+                </filters>
+            </build>
+        </profile>
+
     </profiles>
 
 
