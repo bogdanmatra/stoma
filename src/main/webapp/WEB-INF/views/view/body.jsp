@@ -64,7 +64,7 @@
 
     <div class="media">
         <a class="pull-left" href="#">
-            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/stoma/resources/uploadedPictures/default.jpg" style="width: 64px; height: 64px;">
+            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="${resources}default.jpg" style="width: 64px; height: 64px;">
         </a>
         <div class="media-body">
             <h4 class="media-heading">${news.title}</h4>
