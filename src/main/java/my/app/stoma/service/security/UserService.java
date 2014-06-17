@@ -65,6 +65,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional(readOnly = false)
+    public User update(User user) {
+        return userRepository.save(user);
+    }
+
+
     /**
      * List all the Users from the database
      *
