@@ -1,0 +1,11 @@
+# IntelliJ #
+.idea
+stoma.iml
+
+# Eclipse #
+.settings
+.classpath
+.project
+
+# Maven #
+target

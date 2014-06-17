@@ -1,0 +1,12 @@
+DONE            ----  1. daca nu esti logat poti sa vezi doar primele 50 de randuri
+GREU realizabil ----  2. domeniu gol la articole / news sa nu fie  aratat daca e gol
+3. poza sa aiba descriere 
+
+home  --   nout ati lonk uri catre celelalte pagini 
+about us  --- text standard 
+footer  - link catre about us cu colaboratori + termeni si conditii
+
+mail cand comenteza la orice
+
+
+vizualizari numar ?
