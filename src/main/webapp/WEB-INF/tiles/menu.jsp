@@ -9,7 +9,7 @@
     <div class="masthead">
         <br><br><br>
         <ul id="menu" class="nav nav-justified">
-            <li><a href="${ctx}"><spring:message code="home.label" text="Home"/></a></li>
+            <li><a href="${ctx}/"><spring:message code="home.label" text="Home"/></a></li>
             <li><a href="${ctx}/news/"><spring:message code="news.label" text="News"/></a></li>
             <li><a href="${ctx}/articles/"><spring:message code="articles.label" text="Articles"/></a></li>
             <li><a href="${ctx}/events/"><spring:message code="events.label" text="Events"/></a></li>
