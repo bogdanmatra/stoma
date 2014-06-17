@@ -67,11 +67,10 @@ public class AdminMenuController {
     public void promote(Model model, HttpServletRequest request) {
         Long id=Long.parseLong(request.getParameter("id"));
         User selectedUser=userService.findById(id);
-        Role adminRole=roleService.getRoleByAuthority("ROLE_ADMIN");
         List<Role> roles = selectedUser.getRoles();
-        roles.add(adminRole);
+        roles.add(roleService.getRoleByAuthority("ROLE_ADMIN"));
         selectedUser.setRoles(roles);
-        userService.save(selectedUser);
+        userService.update(selectedUser);
     }
 
     @RequestMapping(value = "edituser/delete", method = RequestMethod.POST)
