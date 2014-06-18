@@ -1,10 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="container">
-    <input  type="text" class="form-control" placeholder="Host" name="host" id="host" value="localhost"/>
-    <br>
-    <br>
-    <input  type="text" class="form-control" placeholder="Port" name="port" name="port" id="port" value="3306"/>
+    <input  type="text" class="form-control" placeholder="Host" name="host" id="hostport" value="localhost:3306"/>
     <br>
     <br>
     <input  type="text" class="form-control" placeholder="User" name="user"  name="user" id="user" value="root"/>
@@ -18,7 +15,7 @@
 
 </div>
 <div class="container">
-<div>
+<div class="col-lg-6">
     <table class="table table-striped">
         <thead><tr><th>Master</th></tr></thead>
         <tbody>
@@ -29,7 +26,7 @@
 
     </table>
 </div>
-<div>
+<div class="col-lg-6">
     <table class="table table-striped" >
         <thead><tr><th>Slave</th></tr></thead>
         <tbody id="table">
@@ -44,19 +41,19 @@
     $(document)
             .ready(
             function() {
+                line =  $(".toupdate");
+                table = $("#table");
+                table.empty();
                 $(".btn-primary").click(function(){
-                    line =  $(".toupdate");
-                    table = $("#table");
-                    $.post( "retrieveData", { host: $("#host").val(), port : $("#port").val(), user: $("#user").val(), pass: $("#pass").val() }).done(function( data ) {
+
+                    $.post( "retrieveData", { hostport: $("#hostport").val(), user: $("#user").val(), pass: $("#pass").val() }).done(function( data ) {
                         $("#table").empty();
                         $.each(data, function(key, value){
                             line.find("td").html(value);
                             table.append(line);
                             line=line.clone();
                         });
-                        $(".btn-primary").addClass("disabled");
-                        $(".btn-primary").click(function() { return false; });
-                    });
+                    }).error(function() { alert('Error'); });
             });
     });
 </script>
