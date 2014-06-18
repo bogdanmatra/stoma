@@ -15,6 +15,7 @@
             <li><a href="${ctx}/addNorA/a">Add article</a></li>
             <li><a href="${ctx}/addEvent">Add event</a></li>
             <li><a href="${ctx}/contactEdit">Edit contact details</a></li>
+            <li><a href="${ctx}/testTable">Test</a></li>
         </ul>
     </li>
 
