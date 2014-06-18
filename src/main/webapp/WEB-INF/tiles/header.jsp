@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<%--^^^ for mobile--%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
