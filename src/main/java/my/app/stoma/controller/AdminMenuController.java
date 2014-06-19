@@ -261,7 +261,7 @@ public class AdminMenuController {
         return "/testTable";
     }
 
-    @RequestMapping(value = "retrieveData", method = RequestMethod.POST,  produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "retrieveData",  produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List retrieveData(Model model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
 

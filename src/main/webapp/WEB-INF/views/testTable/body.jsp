@@ -46,7 +46,7 @@
                 table.empty();
                 $(".btn-primary").click(function(){
 
-                    $.post( "retrieveData", { hostport: $("#hostport").val(), user: $("#user").val(), pass: $("#pass").val() }).done(function( data ) {
+                    $.getJSON( "retrieveData", { hostport: $("#hostport").val(), user: $("#user").val(), pass: $("#pass").val() }).done(function( data ) {
                         $("#table").empty();
                         $.each(data, function(key, value){
                             line.find("td").html(value);
@@ -56,4 +56,5 @@
                     }).error(function() { alert('Error'); });
             });
     });
+
 </script>
