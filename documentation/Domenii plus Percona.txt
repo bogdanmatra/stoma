@@ -1,0 +1,36 @@
+DNS: 					server-master1
+IP retea virtuala: 		172.16.0.4
+IP public: 				23.100.13.77
+server-id				1
+
+
+DNS: 					server-ms1
+IP retea virtuala: 		172.16.0.5
+IP public: 				23.100.13.140
+server-id				2
+
+
+DNS: 					server-ms12
+IP retea virtuala: 		172.16.0.6
+IP public: 				23.100.12.155
+server-id				3
+
+DNS: 					server-slave111
+IP retea virtuala: 		172.16.0.7
+IP public: 				23.100.14.111
+server-id				4
+
+
+DNS: 					server-slave112
+IP retea virtuala: 		172.16.0.8
+IP public: 				23.100.14.220
+server-id				5
+
+
+Checksums commanda :		 pt-table-checksum --replicate percona.checksums h=localhost
+Sincronizare deiferente:   	 pt-table-sync --replicate percona.checksums --print h=localhost
+							 pt-table-sync --replicate percona.checksums --execute h=localhost
+
+Update pe master : pt-heartbeat -D licenta --update h=localhost
+
+Verificare timp  :   pt-heartbeat -D licenta --check h=172.16.0.8 --master-server-id=1
