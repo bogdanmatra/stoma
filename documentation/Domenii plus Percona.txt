@@ -34,3 +34,13 @@ Sincronizare deiferente:   	 pt-table-sync --replicate percona.checksums --print
 Update pe master : pt-heartbeat -D licenta --update h=localhost
 
 Verificare timp  :   pt-heartbeat -D licenta --check h=172.16.0.8 --master-server-id=1
+
+
+
+Plan prezentare:
+1. Aplicatii web
+2. Baze de date
+3. Topologii in MySQL/MariaDB
+4. Implementarea topologiei in cloud
+5. Testarea replicarii
+6. Testarea integritatii si a intarzierii folosind Percona
