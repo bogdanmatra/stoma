@@ -263,7 +263,7 @@ public class AdminMenuController {
 
     @RequestMapping(value = "retrieveData",  produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List retrieveData(Model model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
+    public List<String> retrieveData(Model model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
 
         String host = request.getParameter("hostport");
         String user = request.getParameter("user");
