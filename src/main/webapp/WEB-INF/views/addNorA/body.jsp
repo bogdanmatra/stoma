@@ -1,5 +1,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="resources" value="${pageContext.request.contextPath}/resources/"/>
+
+
+<link href="${resources}jqueryte/jquery-te-1.4.0.css" rel="stylesheet" media="screen"/>
+<script src="${resources}jqueryte/jquery-te-1.4.0.min.js"></script>
 
 <div class="container">
 
@@ -62,9 +67,9 @@
                 </div>
 
                 <br>
-                <div class="input-group ">
-                    <span class="input-group-addon" >Content</span>
-                    <form:textarea cols="100" rows="15" type="text" class="form-control" placeholder="Content" name="content" path="content"/>
+                <div >
+                    <span  >Content</span>
+                    <form:textarea cols="100" rows="700" type="text" class="jqte-test" placeholder="Content" name="content" path="content" id="richedit"/>
                     <form:errors cssClass="input-group-addon alert-danger" path="content"/>
                 </div>
 
@@ -95,6 +100,9 @@
 <script>
 
     $(document).ready(function(){
+        $("#richedit").jqte();
+        $(".jqte_tool_9").hide();
+        $(".jqte_tool_10").hide();
         populateMSelect();
         $('input:radio').change(function(){
             populateMSelect();
