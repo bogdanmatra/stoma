@@ -68,8 +68,8 @@
 
                 <br>
                 <div >
-                    <span  >Content</span>
-                    <form:textarea cols="100" rows="700" type="text" class="jqte-test" placeholder="Content" name="content" path="content" id="richedit"/>
+                    <span >Content:</span>
+                    <form:textarea cols="100" rows="700" type="text"  placeholder="Content" name="content" path="content" id="richedit"/>
                     <form:errors cssClass="input-group-addon alert-danger" path="content"/>
                 </div>
 
