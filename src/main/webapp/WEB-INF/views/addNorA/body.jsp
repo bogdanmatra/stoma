@@ -62,7 +62,7 @@
 
                 <div class="input-group ">
                     <span class="input-group-addon" >Title</span>
-                    <form:textarea rows="2"  type="text" class="form-control" placeholder="Title" name="title" path="title"/>
+                    <form:textarea rows="2"  type="text" class="form-control" colls="100" cssStyle="max-width: 868px;" placeholder="Title" name="title" path="title"/>
                     <form:errors cssClass="input-group-addon alert-danger" path="title"/>
                 </div>
 
