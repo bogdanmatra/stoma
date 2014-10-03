@@ -68,11 +68,12 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">${news.title}</h4>
-            <sec:authorize access="isAuthenticated()">
-                ${news.content}
-            </sec:authorize >
+            <div id="contentStrip"> ${news.content} </div>
             <sec:authorize access="isAnonymous()">
-                ${fn:substring(news.content,0,500)}...
+                <script>
+                $("#contentStrip").children().hide();
+                $("#contentStrip").children().first().show();
+                </script>
                 <p><b>Log in to find out more...</b></p>
                 <a href="../../../login"><button class="btn btn-success"> Log in page </button></a>
 
