@@ -252,40 +252,4 @@ public class AdminMenuController {
         }
         return "redirect:/events/";
     }
-
-
-    @RequestMapping(value = "testTable", method = RequestMethod.GET)
-    public String testTable(Model model, HttpServletRequest request, HttpSession session)  {
-        List<Comment> comments = commentService.findAll();
-        model.addAttribute("comments", comments);
-        return "/testTable";
-    }
-
-    @RequestMapping(value = "retrieveData",  produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public List<String> retrieveData(Model model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
-
-        String host = request.getParameter("hostport");
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        final String DB_URL = "jdbc:mysql://" + host + "/licenta";
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(DB_URL, user, pass);
-        Statement stmt = connection.createStatement();
-        String sql = "SELECT * FROM comments";
-        ResultSet rs = stmt.executeQuery(sql);
-        //STEP 5: Extract data from result set
-        List<String> contents = new ArrayList<>();
-        while(rs.next()){
-            String content  = rs.getString("content");
-            contents.add(content);
-        }
-        rs.close();
-        connection.close();
-        model.addAttribute("contents", contents);
-        return contents;
-    }
-
-
 }
