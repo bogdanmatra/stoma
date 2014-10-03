@@ -141,7 +141,7 @@
                         </div>
                         <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
                     </div>
-                    <div id="editor" style="height: 1000px; width: 1000px; overflow-y: auto; overflow-x: hidden;">
+                    <div id="editor" style="height: 1000px; width: 1000px; overflow-y: auto; overflow-x: hidden;outline: black auto 1px;">
                         Go ahead&hellip;
                     </div>
 
