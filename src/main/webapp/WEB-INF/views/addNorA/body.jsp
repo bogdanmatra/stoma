@@ -179,6 +179,7 @@
 <script>
 
     $(document).ready(function(){
+        $('[data-edit="createLink"]').css("width","170px");
         $("#editor").html(($("#richedit").val()));
         $("#editor").bind("DOMSubtreeModified",function(){
             $("#richedit").html($("#editor").html());  // copy div to textarea

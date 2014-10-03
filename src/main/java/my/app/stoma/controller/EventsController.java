@@ -5,6 +5,7 @@ import my.app.stoma.domain.Event;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.CommentService;
 import my.app.stoma.service.EventService;
+import my.app.stoma.service.MailService;
 import my.app.stoma.service.PictureService;
 import my.app.stoma.service.security.UserService;
 import my.app.stoma.utils.LocaleUtils;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by bmatragociu on 3/14/14.
@@ -39,6 +41,8 @@ public class EventsController {
     UserService userService;
     @Autowired
     CommentService commentService;
+    @Autowired
+    MailService mailService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, HttpServletRequest request) {
@@ -67,7 +71,7 @@ public class EventsController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "saveEventComment/{id}", method = RequestMethod.POST)
-    public String saveEventComment(@PathVariable Long id, Model model, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes){
+    public String saveEventComment(@PathVariable Long id, Model model, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
         String content = request.getParameter("content");
 
         if (content == null || content.equals("") || content.length() > 400) {
@@ -81,7 +85,7 @@ public class EventsController {
         comment.setUser(currentUser);
         comment.setEvent(eventService.findOne(id));
         commentService.save(comment);
-
+        mailService.sendToAllAdmin("New events comment!", "New events comment: " + comment.getContent());
         return "redirect:/events/show/" + id;
     }
 

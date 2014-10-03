@@ -27,13 +27,14 @@
         <div class="col-xs-9 col-sm-9">
             <div class="row" id="contents">
                 <div class="media-body col-md-offset-1 hide multi col-sm-offset-1 col-xs-offset-1" >
-                    <h2>Heading</h2>
-                    <p class="over">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <hr>
+                    <h2><a>Heading</a></h2>
+                    <p class="over" style="max-height: 100px; padding-left: 0">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     <p><a class="btn btn-success " href="#" role="button" style="float: right"><spring:message code="viewDetails.label" text="View details" /> »</a></p>
                     <br>
                     <br>
-
                 </div><!--/span-->
+
             </div><!--/row-->
         </div><!--/span-->
 
@@ -114,8 +115,9 @@
                 $(data.content).each(function(){
                     element=element.clone()
                     parent.append(element);
-                    element.find("h2").html(this.title);
-                    element.find("p:first").html("<br>");
+                    element.find("h2 a").html(this.title);
+                    element.find("h2 a").attr("href","./" + "${newsOrArticles}" + "/view/" + this.id);
+                    element.find("p:first").html(this.content);
                     element.find("p:last").find("a").attr("href","./" + "${newsOrArticles}" + "/view/" + this.id);
                 });
             },

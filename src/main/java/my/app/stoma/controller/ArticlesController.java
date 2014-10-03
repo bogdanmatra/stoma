@@ -4,10 +4,7 @@ import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.Domain;
 import my.app.stoma.domain.security.User;
-import my.app.stoma.service.ArticleService;
-import my.app.stoma.service.CommentService;
-import my.app.stoma.service.DomainService;
-import my.app.stoma.service.PictureService;
+import my.app.stoma.service.*;
 import my.app.stoma.service.security.UserService;
 import my.app.stoma.utils.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +48,8 @@ public class ArticlesController {
     CommentService commentService;
     @Autowired
     PictureService pictureService;
+    @Autowired
+    MailService mailService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(Model model, HttpServletRequest request) {
@@ -81,7 +81,7 @@ public class ArticlesController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "/saveComment/{id}", method = RequestMethod.POST)
-    public String saveComment(@PathVariable Long id, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+    public String saveComment(@PathVariable Long id, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
 
         String content = request.getParameter("content");
 
@@ -97,7 +97,7 @@ public class ArticlesController {
         comment.setUser(currentUser);
         comment.setArticle(articleService.findById(id));
         commentService.save(comment);
-
+        mailService.sendToAllAdmin("New article comment!", "New article comment: " + comment.getContent());
         return "redirect:/articles/getArticles/view/" + id;
 
     }
