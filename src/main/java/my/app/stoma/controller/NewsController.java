@@ -6,6 +6,7 @@ import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.*;
 import my.app.stoma.service.security.UserService;
+import my.app.stoma.utils.JSoupStripClass;
 import my.app.stoma.utils.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,9 +62,16 @@ public class NewsController {
     @ResponseBody
     public Page<News> getNews(@PathVariable Long id,@PathVariable int pageNumber, HttpServletRequest request) {
         if (id==-1){
-            return newsService.findAllByLanguage(LocaleUtils.getLanguage(request),pageNumber);
+            Page<News> pagesAll =newsService.findAllByLanguage(LocaleUtils.getLanguage(request),pageNumber);
+            for (News n : pagesAll.getContent()){
+                n.setContent(JSoupStripClass.jsoupStrip(n.getContent()));
+            }
+            return pagesAll;
         }
         Page<News> page = newsService.findAllByDomain(domainService.findById(id),pageNumber);
+        for (News n : page.getContent()){
+            n.setContent(JSoupStripClass.jsoupStrip(n.getContent()));
+        }
         return page;
     }
 

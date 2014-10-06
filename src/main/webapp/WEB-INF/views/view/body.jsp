@@ -1,3 +1,9 @@
+<%@ page import="org.jsoup.nodes.Document" %>
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="org.jsoup.nodes.Element" %>
+<%@ page import="my.app.stoma.domain.Article" %>
+<%@ page import="com.sun.org.apache.xml.internal.serialize.Printer" %>
+<%@ page import="my.app.stoma.domain.News" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -68,14 +74,38 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">${news.title}</h4>
+
+            <sec:authorize access="isAuthenticated()">
             <div id="contentStrip"> ${news.content} </div>
+            </sec:authorize>
+
             <sec:authorize access="isAnonymous()">
-                <script>
-                $("#contentStrip").children().hide();
-                $("#contentStrip").children().first().show();
-                </script>
-                <p><b>Log in to find out more...</b></p>
-                <a href="../../../login"><button class="btn btn-success"> Log in page </button></a>
+
+                <%
+                    String result = "";
+                    if(request.getAttribute("news") instanceof Article) {
+                        Article article = (Article) request.getAttribute("news");
+                        Document doc = Jsoup.parseBodyFragment(article.getContent());
+                        Element body = doc.body();
+                        if (!body.children().isEmpty()) {
+                            result = body.children().first().outerHtml();
+                        }else{
+                            result=body.outerHtml();
+                        }
+                        if (result == null) result = body.outerHtml();
+                        out.println(result);
+                    } else{
+                        out.println(((News)request.getAttribute("news")).getContent());
+                    }
+                %>
+                <%
+                    if(request.getAttribute("news") instanceof Article) {
+                %>
+                <p><b><spring:message code="login.text" text="Log in"/></b></p>
+                <a href="../../../login"><button class="btn btn-success"> Log in </button></a>
+                <%
+                    }
+                %>
 
             </sec:authorize>
 

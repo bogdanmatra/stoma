@@ -3,9 +3,11 @@ package my.app.stoma.controller;
 import my.app.stoma.domain.Article;
 import my.app.stoma.domain.Comment;
 import my.app.stoma.domain.Domain;
+import my.app.stoma.domain.News;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.*;
 import my.app.stoma.service.security.UserService;
+import my.app.stoma.utils.JSoupStripClass;
 import my.app.stoma.utils.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -65,9 +67,16 @@ public class ArticlesController {
     @ResponseBody
     public Page<Article> getArticles(@PathVariable Long id,@PathVariable int pageNumber, HttpServletRequest request) {
         if (id==-1){
-            return articleService.findAllByLanguage(LocaleUtils.getLanguage(request),pageNumber);
+            Page<Article> pagesAll=articleService.findAllByLanguage(LocaleUtils.getLanguage(request),pageNumber);
+            for (Article n : pagesAll.getContent()){
+                n.setContent(JSoupStripClass.jsoupStrip(n.getContent()));
+            }
+            return pagesAll;
         }
         Page<Article> page = articleService.findAllByDomain(domainService.findById(id),pageNumber);
+        for (Article n : page.getContent()){
+            n.setContent(JSoupStripClass.jsoupStrip(n.getContent()));
+        }
         return page;
     }
 
