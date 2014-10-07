@@ -302,8 +302,6 @@
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
         </dependency>
-
-
     </dependencies>
 
 
@@ -341,26 +339,6 @@
             </build>
         </profile>
 
-        <profile>
-            <id>openshift</id>
-            <build>
-                <finalName>travel</finalName>
-				<filters>
-                    <filter>src/main/filters/openshift.properties</filter>
-                </filters>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>2.1.1</version>
-                        <configuration>
-                            <outputDirectory>webapps</outputDirectory>
-                            <warName>ROOT</warName>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-		
 		<profile>
             <id>prod</id>
             <activation>
@@ -375,6 +353,21 @@
                 <filters>
                     <filter>src/main/filters/prod.properties</filter>
                 </filters>
+                <plugins>
+                    <!-- Deploy to tomcat -->
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.1</version>
+                        <configuration>
+                            <url>http://54.68.149.235:8080/manager/html</url>
+                            <server>AmazonWS</server>
+                            <path>/stoma</path>
+                            <username>ubuntu</username>
+                            <password>bmatragociu</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
 
