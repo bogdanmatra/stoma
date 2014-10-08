@@ -5,6 +5,26 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <c:set value="${pageContext.request.contextPath}" var="ctx"/>
 
+<style>
+    a {
+        text-decoration: none !important;
+    }
+    #mytablest img {
+        height: 70px;
+    }
+    @media screen and (max-width:768px) {
+        #mytablest{
+            position: fixed;
+            left:   0;
+            top: 0;
+        }
+        #mytablest img {
+            height: 50px;
+        }
+    }
+
+</style>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="opacity: .85;">
     <div class="container">
         <div class="navbar-header">
@@ -15,10 +35,10 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${ctx}">
-                <table style="border-collapse:separate;border-spacing:15px 1px;">
+                <table style="border-collapse:separate;border-spacing:15px 1px;" id="mytablest">
                     <tr>
-                        <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" style="height: 70px;"></td>
-                        <td><img src="${pageContext.request.contextPath}/resources/picture/med.png" style="height: 70px;"></td>
+                        <td><img src="${pageContext.request.contextPath}/resources/picture/tooth.png" ></td>
+                        <td><img src="${pageContext.request.contextPath}/resources/picture/med.png" ></td>
                     </tr>
 
                 </table></a>

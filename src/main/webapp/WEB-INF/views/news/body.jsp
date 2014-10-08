@@ -1,6 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<style>
+    @media screen and (max-width:768px) {
+        #sidebar{
+           margin-left: 45px;
+        }
+        #mysidest{
+            margin-left: 35px;
+        }
+    }
+
+</style>
+
 <div class="container">
 
     <div class="row row-offcanvas row-offcanvas-right">
@@ -24,7 +36,7 @@
         </div>
 
 
-        <div class="col-xs-9 col-sm-9">
+        <div class="col-xs-9 col-sm-9" id="mysidest">
             <div class="row" id="contents">
                 <div class="media-body col-md-offset-1 hide multi col-sm-offset-1 col-xs-offset-1" >
                     <hr>

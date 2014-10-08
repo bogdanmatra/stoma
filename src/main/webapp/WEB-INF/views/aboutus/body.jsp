@@ -7,10 +7,10 @@
 --%>
 
 <div class="container">
-<div class="jumbotron">
+<div class="jumbotron" style="box-shadow: 10px 10px 65px black;">
 
-    <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-    <span>To see the difference between static and fixed top navbars, just scroll.</span>
+    <p>In curand ...</p>
+    <span>Soon ...</span>
 
 </div>
 </div>

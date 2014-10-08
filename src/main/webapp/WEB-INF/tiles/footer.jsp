@@ -2,10 +2,11 @@
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/"/>
 
 <div id="footer">
-    <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+    <div class="container" style="padding-top: 20px;">
 
-
+        <div class="pull-left">
+            <a href="#"> Termeni si conditii </a>
+        </div>
         <div class="pull-right">
             <a href="http://ro.linkedin.com/in/bogdanmatra" target="_blank" data-toogle="tooltip" title="Developer" id="tooltip" data-placement="left">
                 <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_profile_greytxt_80x15.png" width="80" height="15" border="0" alt="View Bogdan Petru Matragociu's profile on LinkedIn">

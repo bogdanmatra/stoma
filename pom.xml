@@ -353,21 +353,6 @@
                 <filters>
                     <filter>src/main/filters/prod.properties</filter>
                 </filters>
-                <plugins>
-                    <!-- Deploy to tomcat -->
-                    <plugin>
-                        <groupId>org.apache.tomcat.maven</groupId>
-                        <artifactId>tomcat7-maven-plugin</artifactId>
-                        <version>2.1</version>
-                        <configuration>
-                            <url>http://54.68.149.235:8080/manager/html</url>
-                            <server>AmazonWS</server>
-                            <path>/stoma</path>
-                            <username>ubuntu</username>
-                            <password>bmatragociu</password>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
         </profile>
 

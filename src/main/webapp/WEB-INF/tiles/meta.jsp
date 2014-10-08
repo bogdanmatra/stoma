@@ -2,7 +2,7 @@
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/"/>
 
 <link rel="shortcut icon" href="${resources}picture/favicon.ico">
-
+<title>Medbox</title>
 <!-- CSS -->
 <link href="${resources}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 <link href="${resources}bootstrap/css/just-nav.css" rel="stylesheet" media="screen"/>

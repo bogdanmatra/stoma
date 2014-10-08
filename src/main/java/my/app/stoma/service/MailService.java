@@ -5,6 +5,7 @@ import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
@@ -23,20 +24,13 @@ import java.util.Properties;
 @Service
 public class MailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+
     @Autowired
     private InternetAddress emailReceiver;
     @Autowired
     UserService userService;
 
 
-    static final String FROM = "mail.stoma.app@gmail.com";   // Replace with your "From" address. This address must be verified.
-    static final String TO = "bogdanmatra@gmail.com";  // Replace with a "To" address. If you have not yet requested
-    // production access, this address must be verified.
-
-    static final String BODY = "This email was sent through the Amazon SES SMTP interface by using Java.";
-    static final String SUBJECT = "Amazon SES test (SMTP interface accessed using Java)";
 
     // Supply your SMTP credentials below. Note that your SMTP credentials are different from your AWS credentials.
     static final String SMTP_USERNAME = "AKIAIWMNJYMTTPCF54GQ";  // Replace with your SMTP username.
@@ -70,10 +64,10 @@ public class MailService {
 
         // Create a message with the specified information.
         MimeMessage msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress(FROM));
-        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
-        msg.setSubject(SUBJECT);
-        msg.setContent(BODY,"text/plain");
+        msg.setFrom(new InternetAddress(emailReceiver.getAddress()));
+        msg.setRecipient(Message.RecipientType.TO, to);
+        msg.setSubject(subject);
+        msg.setContent(text,"text/plain");
 
         // Create a transport.
         Transport transport = session.getTransport();
@@ -101,11 +95,11 @@ public class MailService {
         }
     }
 
+    @Async
     public void sendToAllAdmin(String subject, String content) throws UnsupportedEncodingException {
         for (User user : userService.findAllWithRole("ROLE_ADMIN")) {
-           // sendMail(new InternetAddress(user.getEmail(), "New Post!"), subject, content);
             try {
-                sendMail(null,null,null);
+                sendMail(new InternetAddress(user.getEmail(), "New Post!"), subject, content);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
