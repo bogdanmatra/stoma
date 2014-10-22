@@ -67,7 +67,7 @@ public class MailService {
         msg.setFrom(new InternetAddress(emailReceiver.getAddress()));
         msg.setRecipient(Message.RecipientType.TO, to);
         msg.setSubject(subject);
-        msg.setContent(text,"text/plain");
+        msg.setContent(text,"text/plain; charset=UTF-8");
 
         // Create a transport.
         Transport transport = session.getTransport();

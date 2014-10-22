@@ -74,42 +74,42 @@
         </a>
         <div class="media-body" style="overflow-x: auto;">
             <h4 class="media-heading">${news.title}</h4>
-
-            <sec:authorize access="isAuthenticated()">
-            <div id="contentStrip"> ${news.content} </div>
-            </sec:authorize>
-
-            <sec:authorize access="isAnonymous()">
-
-                <%
-                    String result = "";
-                    if(request.getAttribute("news") instanceof Article) {
-                        Article article = (Article) request.getAttribute("news");
-                        Document doc = Jsoup.parseBodyFragment(article.getContent());
-                        Element body = doc.body();
-                        if (!body.children().isEmpty()) {
-                            result = body.children().first().outerHtml();
-                        }else{
-                            result=body.outerHtml();
-                        }
-                        if (result == null) result = body.outerHtml();
-                        out.println(result);
-                    } else{
-                        out.println(((News)request.getAttribute("news")).getContent());
-                    }
-                %>
-                <%
-                    if(request.getAttribute("news") instanceof Article) {
-                %>
-                <p><b><spring:message code="login.text" text="Log in"/></b></p>
-                <a href="../../../login"><button class="btn btn-success"> Log in </button></a>
-                <%
-                    }
-                %>
-
-            </sec:authorize>
-
         </div>
+        <br>
+        <br>
+        <sec:authorize access="isAuthenticated()">
+            <div id="contentStrip"> ${news.content} </div>
+        </sec:authorize>
+
+        <sec:authorize access="isAnonymous()">
+
+            <%
+                String result = "";
+                if(request.getAttribute("news") instanceof Article) {
+                    Article article = (Article) request.getAttribute("news");
+                    Document doc = Jsoup.parseBodyFragment(article.getContent());
+                    Element body = doc.body();
+                    if (!body.children().isEmpty()) {
+                        result = body.children().first().outerHtml();
+                    }else{
+                        result=body.outerHtml();
+                    }
+                    if (result == null) result = body.outerHtml();
+                    out.println(result);
+                } else{
+                    out.println(((News)request.getAttribute("news")).getContent());
+                }
+            %>
+            <%
+                if(request.getAttribute("news") instanceof Article) {
+            %>
+            <p><b><spring:message code="login.text" text="Log in"/></b></p>
+            <a href="../../../login"><button class="btn btn-success"> Log in </button></a>
+            <%
+                }
+            %>
+
+        </sec:authorize>
     </div>
 
     <br>
