@@ -12,7 +12,7 @@
 
 
 		<h5 class="span4 pull-left">
-			Sorry there was an error with code:
+			Ooops... Ne pare rau, a avut loc o eroare cu codul
 			${errorCode}! <a href="/afipark/contact"></a>
 		</h5>
 

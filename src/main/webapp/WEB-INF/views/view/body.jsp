@@ -72,11 +72,12 @@
         <a class="pull-left" href="#">
             <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="${resources}default.jpg" style="width: 64px; height: 64px;">
         </a>
-        <div class="media-body" style="overflow-x: auto;">
+        <div class="media-body">
             <h4 class="media-heading">${news.title}</h4>
         </div>
         <br>
         <br>
+        <div  style="overflow-x: auto;">
         <sec:authorize access="isAuthenticated()">
             <div id="contentStrip"> ${news.content} </div>
         </sec:authorize>
@@ -110,6 +111,7 @@
             %>
 
         </sec:authorize>
+        </div>
     </div>
 
     <br>

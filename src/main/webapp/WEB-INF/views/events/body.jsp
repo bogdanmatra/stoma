@@ -1,10 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
-
-
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div class="container">
 
@@ -30,6 +27,9 @@
 
     </c:forEach>
 
+    <c:if test="${fn:length(events) eq 0}">
+        <h3 class='col-md-offset-1'><spring:message code="nodata.label" text="No data!"/>!</h3>
+    </c:if>
 
     </div>
 
