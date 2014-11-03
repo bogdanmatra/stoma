@@ -1,10 +1,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <div class="container">
 
     <h3>Add domain</h3>
 
-<form:form method="POST" action="saveDomain"  name="addDomain" modelAttribute="domain" role="form" enctype="multipart/form-data">
-
+<form:form method="POST" action="${pageContext.request.contextPath}/saveDomain"  name="addDomain" modelAttribute="domain" role="form" enctype="multipart/form-data">
+    <form:hidden path="id"/>
     <div class="row">
         <div class="col-lg-6">
             <div class="radio">

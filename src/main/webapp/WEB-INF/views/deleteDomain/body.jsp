@@ -7,7 +7,9 @@
 <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.st}">
-<tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+<tr><td>${domain.name}</td><td>${domain.details}</td>
+<td><a href="editDomain/${domain.id}"> <button class="btn btn-warning pull-right" >Edit</button></a></td>
+<td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
         </table>
@@ -20,7 +22,9 @@
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${eng.gen}">
-    <tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+    <tr><td>${domain.name}</td><td>${domain.details}</td>
+        <td><a href="editDomain/${domain.id}"> <button class="btn btn-warning pull-right" >Edit</button></a></td>
+	<td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
 
@@ -34,7 +38,9 @@
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.st}">
-    <tr><td>${domain.name}</td><td>${domain.details}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+    <tr><td>${domain.name}</td><td>${domain.details}</td>
+        <td><a href="editDomain/${domain.id}"> <button class="btn btn-warning pull-right" >Edit</button></a></td>
+        <td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
         </tbody>
     </table>
@@ -47,7 +53,9 @@
         <thead><tr><th>Title</th><th>Details</th></tr></thead>
         <tbody>
 <c:forEach var="domain" items="${rom.gen}">
-    <tr><td>${domain.name}</td><td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
+    <tr><td>${domain.name}</td>
+        <td><a href="editDomain/${domain.id}"> <button class="btn btn-warning pull-right" >Edit</button></a></td>
+	<td><button class="btn btn-danger pull-right" data-id="${domain.id}">Delete</button></td></tr>
 </c:forEach>
     </tbody>
     </table>

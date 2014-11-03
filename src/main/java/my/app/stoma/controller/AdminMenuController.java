@@ -208,7 +208,16 @@ public class AdminMenuController {
             return "redirect:../stoma";
         }
     }
-
+	
+	 @RequestMapping(value = "editDomain/{id}", method = RequestMethod.GET)
+    public String addDomain(@PathVariable long id, Model model, HttpServletRequest request) {
+        Domain domain =  domainService.findById(id);
+        domain.setLocale(domain.getLocale());
+        domain.setDomMedical(domain.getDomMedical());
+        model.addAttribute("domain", domain);
+        return "/addDomain";
+    }
+	
 
     @RequestMapping(value = "deleteDomain", method = {RequestMethod.POST, RequestMethod.GET})
      public String deleteDomain(Model model, HttpServletRequest request, HttpSession session) throws IOException {
