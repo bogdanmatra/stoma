@@ -32,7 +32,8 @@
 
 
 
-        <form:form method="POST" action="${action}"  name="addNewsOrArticle" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
+        <form:form method="POST" action="${pageContext.request.contextPath}/addNorA/${action}"  name="addNewsOrArticle" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
+            <form:hidden path="id"/>
             <div class="col-lg-10">
                 <div class="row">
                 <div class="col-lg-6">
@@ -211,7 +212,7 @@
         domMed = $('input[name=st_med]:checked').val();
         multipleSelect=$("#mselect");
         multipleSelect.empty();
-        $.post( "../fetchDomainList", { locale: language, domMed: domMed  }, function(data){
+        $.post( "${pageContext.request.contextPath}/fetchDomainList", { locale: language, domMed: domMed  }, function(data){
             $(data).each(function(){
                 multipleSelect.append("<option value=" + this.id + ">" + this.name +"</option>");
             });

@@ -15,6 +15,9 @@
 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 <div class="row">
+    <a href="../../editNorA/${news.id}">
+        <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+    </a>
     <a href="../../delete/${news.id}">
 <button type="button" class="btn btn-default btn-lg pull-right"><span class="glyphicon glyphicon-trash"></span> Delete</button>
     </a>

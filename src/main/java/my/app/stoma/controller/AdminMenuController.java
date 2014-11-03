@@ -102,6 +102,17 @@ public class AdminMenuController {
         return "/addNorA";
     }
 
+    @RequestMapping(value = "{newsOrArticle}/editNorA/{id}")
+    public String edit(@PathVariable String newsOrArticle,@PathVariable long id, Model model, HttpServletRequest request) {
+        if(newsOrArticle.equals("news")){
+            model.addAttribute("nOrA", newsService.findById(id));
+            model.addAttribute("action", "saveNews");
+        }else if(newsOrArticle.equals("articles")){
+            model.addAttribute("nOrA", articleService.findById(id));
+            model.addAttribute("action", "saveArticle");
+        }
+        return "/addNorA";
+    }
 
     @RequestMapping(value = "addNorA/saveArticle", method = {RequestMethod.POST, RequestMethod.GET})
     public String saveArticle(Model model,@ModelAttribute(value = "nOrA") @Valid Article article, BindingResult bindingResult, HttpServletRequest request, HttpSession session) throws IOException {
