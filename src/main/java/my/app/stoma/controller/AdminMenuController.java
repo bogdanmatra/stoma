@@ -9,6 +9,7 @@ import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -170,6 +172,15 @@ public class AdminMenuController {
         return domainService.getByLocaleAndDomMed(locale,deomMed);
     }
 
+    @RequestMapping(value = "deletePicture/{id}/{noraId}/{nora}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void deletePictures(@PathVariable long id,@PathVariable long noraId, @PathVariable String nora, Model model, HttpServletRequest request, HttpSession session) {
+        String path = session.getServletContext().getRealPath("/");
+        Picture picture = pictureService.findOne(id);
+        List<Picture> list = new LinkedList<>();
+        list.add(picture);
+        pictureService.deleteListFromHDD(list, path);
+    }
 
 
     @InitBinder

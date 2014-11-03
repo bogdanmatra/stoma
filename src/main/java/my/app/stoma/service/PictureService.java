@@ -29,9 +29,11 @@ public class PictureService {
         return pictureRepository.save(picture);
     }
 
+    @Transactional(readOnly = false)
     public void deleteListFromHDD(List<Picture> pictures, String path){
         if(pictures.size()>0){
             for (Picture picture : pictures){
+                pictureRepository.customDelete(picture.getId());
                 String destination=path.replace("\\","/") + "resources/uploadedPictures/" + picture.getPath();
                 File file=new File(destination);
                 if (file.exists() && !picture.getPath().equals("default.jpg")){
@@ -39,6 +41,10 @@ public class PictureService {
                 }
             }
         }
+    }
+
+    public Picture findOne(long id){
+        return pictureRepository.findOne(id);
     }
 
 

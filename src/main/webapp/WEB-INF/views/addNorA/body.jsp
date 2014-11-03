@@ -1,7 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="resources" value="${pageContext.request.contextPath}/resources/"/>
-
+<c:set var="resourcesPic" value="${pageContext.request.contextPath}/resources/uploadedPictures/"/>
 
 <%--<link href="${resources}jqueryte/jquery-te-1.4.0.css" rel="stylesheet" media="screen"/>--%>
 <%--<script src="${resources}jqueryte/jquery-te-1.4.0.min.js"></script>--%>
@@ -37,7 +37,7 @@
                 <div class="col-lg-6">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="lang" id="ro" value="ro" checked>
+                            <input type="radio" name="lang" id="ro" value="ro">
                             Romanian
                         </label>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-6">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="st_med" id="st" value="st" checked>
+                        <input type="radio" name="st_med" id="st" value="st">
                         Stomatologie
                     </label>
                 </div>
@@ -144,14 +144,25 @@
                         Go ahead&hellip;
                     </div>
 
-
-
                     <form:textarea  type="text"  placeholder="Content" name="content" path="content" id="richedit" cssStyle="visibility: hidden;"/>
                     <form:errors cssClass="input-group-addon alert-danger" path="content"/>
                 </div>
 
                 <br>
                 <table id="fileTable" style="border-collapse:separate;border-spacing:15px 10px;">
+
+                    <c:forEach items="${nOrA.pictures}" var="picture" varStatus="loopStatus">
+
+                        <tr><td>
+                        <img src="${resourcesPic}${picture.path}" style="height: 100px;">
+                        </td>
+                            <td>
+                                <a id="${picture.id}"  class="btn btn-danger deleteMe" >Delete</a>
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+
                     <tr>
                         <td><input name="files[0]" type="file" /></td>
                     </tr>
@@ -178,6 +189,19 @@
 <script>
 
     $(document).ready(function(){
+
+        $(".deleteMe").click( function(){
+            varb = "news"
+            <c:if test="${action == 'saveArticle'}">
+            varb = "article"
+            </c:if>
+
+            $(this).closest("tr").fadeOut();
+            $.post( "${pageContext.request.contextPath}/deletePicture/" + $(this).attr("id") + "/${nOrA.id}/" + varb, function(){
+            });
+        });
+
+
         $('[data-edit="createLink"]').css("width","170px");
         $("#editor").html(($("#richedit").val()));
         $("#editor").bind("DOMSubtreeModified",function(){
