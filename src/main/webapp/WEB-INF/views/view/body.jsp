@@ -178,6 +178,7 @@
         $('.carousel-indicators :first-child').addClass("active");
         $('.carousel-inner :first-child').addClass("active");
         $('#carousel-example-generic').carousel();
+        $(".nav.nav-pills.pull-right").fadeOut();
     });
 
 </script>

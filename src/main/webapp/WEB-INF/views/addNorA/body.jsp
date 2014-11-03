@@ -30,8 +30,6 @@
 
     <div class="row-fluid">
 
-
-
         <form:form method="POST" action="${pageContext.request.contextPath}/addNorA/${action}"  name="addNewsOrArticle" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
             <form:hidden path="id"/>
             <div class="col-lg-10">
