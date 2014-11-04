@@ -101,7 +101,7 @@
                             <button type="submit" class="close pull-right">×</button>
                         </form>
                     </sec:authorize>
-                    <h3 class="panel-title">${com.user.username}</h3>
+                    <h3 class="panel-title">${com.user.firstName}&nbsp;${com.user.lastName}&nbsp;(${com.user.username})</h3>
                 </div>
                 <div class="panel-body">${com.content}
                 </div>

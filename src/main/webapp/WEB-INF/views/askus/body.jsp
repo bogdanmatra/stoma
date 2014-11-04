@@ -36,7 +36,7 @@
                         <input type="hidden" name="currentPage" value="${currentPage}">
                     </form>
                 </sec:authorize>
-                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span> ${question.user.username}&nbsp;<spring:message code="said.label" text="said:"/></h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-star"></span>${question.user.firstName}&nbsp;${question.user.lastName}&nbsp;(${question.user.username})&nbsp;<spring:message code="said.label" text="said:"/></h3>
 
             </div>
             <div class="panel-body">
@@ -61,7 +61,7 @@
                     </sec:authorize>
 
 
-                    <h3 class="panel-title">${answer.user.username} said:</h3>
+                    <h3 class="panel-title">${answer.user.firstName}&nbsp;${answer.user.lastName}&nbsp;(${answer.user.username})&nbsp;<spring:message code="said.label" text="said:"/></h3>
                 </div>
                 <div class="panel-body">
                     <b>A:</b>    ${answer.content}
