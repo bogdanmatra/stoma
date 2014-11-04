@@ -86,7 +86,7 @@ public class AskUsController {
             User currentUser = userService.findByUsername(userDetails.getUsername());
             question.setUser(currentUser);
             questionService.save(question);
-            mailService.sendToAllAdmin("New Answer!", "New question posted: " + question.getContent());
+            mailService.sendToAllAdmin("New Answer!", "New question posted: " + question.getContent() + "\nhttp://www.medbox.info/stoma/askus/0");
             return "redirect:/askus";
         } else {
             return "/addTopic";
@@ -111,7 +111,7 @@ public class AskUsController {
         answer.setQuestion(question);
         answer.setUser(currentUser);
         answerService.save(answer);
-        mailService.sendToAllAdmin("New Answer!", "New answer posted: " + answer.getContent());
+        mailService.sendToAllAdmin("New Answer!", "New answer posted: " + answer.getContent()+ "\nhttp://www.medbox.info/stoma/askus/" + request.getParameter("currentPage"));
         return "redirect:/askus/" + request.getParameter("currentPage");
 
     }

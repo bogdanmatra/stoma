@@ -85,7 +85,7 @@ public class EventsController {
         comment.setUser(currentUser);
         comment.setEvent(eventService.findOne(id));
         commentService.save(comment);
-        mailService.sendToAllAdmin("New events comment!", "New events comment: " + comment.getContent());
+        mailService.sendToAllAdmin("New events comment!", "New events comment: " + comment.getContent() + "\nhttp://www.medbox.info/stoma/events/show/" + id);
         return "redirect:/events/show/" + id;
     }
 

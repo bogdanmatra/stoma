@@ -11,7 +11,7 @@
         <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"> </span> <spring:message code="newTopic.label" text="New topic!"/>  </button></a>
         <br>
         <br>
-            <spring:message code="noQuestions.label" text="No questions!"/>
+            <h3 class="col-md-offset-1"><spring:message code="noQuestions.label" text="No questions!"/></h3>
         </c:when>
         <c:otherwise>
 

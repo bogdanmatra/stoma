@@ -100,7 +100,7 @@ public class NewsController {
             comment.setUser(currentUser);
             comment.setNews(newsService.findById(id));
             commentService.save(comment);
-            mailService.sendToAllAdmin("New news comment!", "New news comment: " + comment.getContent());
+            mailService.sendToAllAdmin("New news comment!", "New news comment: " + comment.getContent() + "\nhttp://www.medbox.info/stoma/news/getNews/view/" + id);
         return "redirect:/news/getNews/view/" + id;
 
     }

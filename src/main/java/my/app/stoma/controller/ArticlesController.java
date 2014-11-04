@@ -106,7 +106,7 @@ public class ArticlesController {
         comment.setUser(currentUser);
         comment.setArticle(articleService.findById(id));
         commentService.save(comment);
-        mailService.sendToAllAdmin("New article comment!", "New article comment: " + comment.getContent());
+        mailService.sendToAllAdmin("New article comment!", "New article comment: " + comment.getContent() + "\nhttp://www.medbox.info/stoma/articles/getArticles/view/" + id);
         return "redirect:/articles/getArticles/view/" + id;
 
     }
