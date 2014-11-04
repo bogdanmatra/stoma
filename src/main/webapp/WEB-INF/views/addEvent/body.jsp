@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="resourcesPic" value="${pageContext.request.contextPath}/resources/uploadedPictures/"/>
 
 <div class="container">
 
@@ -13,13 +14,14 @@
     <div class="row-fluid">
 
 
-        <form:form method="POST" action="saveEvent"  name="addEvent" modelAttribute="event" role="form" enctype="multipart/form-data">
+        <form:form method="POST" action="${pageContext.request.contextPath}/saveEvent"  name="addEvent" modelAttribute="event" role="form" enctype="multipart/form-data">
+            <form:hidden path="id"/>
             <div class="col-lg-10">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="locale" id="ro" value="ro" checked>
+                                <form:radiobutton  name="locale" id="ro" value="ro" path="locale"/>
                                 Romanian
                             </label>
                         </div>
@@ -27,7 +29,7 @@
                     <div class="col-lg-6">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="locale" id="en" value="en">
+                                <form:radiobutton  name="locale" id="en" value="en" path="locale"/>
                                 English
                             </label>
                         </div>
@@ -52,6 +54,19 @@
 
                 <br>
                 <table id="fileTable" style="border-collapse:separate;border-spacing:15px 10px;">
+
+                    <c:forEach items="${event.pictures}" var="picture" varStatus="loopStatus">
+
+                        <tr><td>
+                            <img src="${resourcesPic}${picture.path}" style="height: 100px;">
+                        </td>
+                            <td>
+                                <a id="${picture.id}"  class="btn btn-danger deleteMe" >Delete</a>
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+
                     <tr>
                         <td><input name="files[0]" type="file" /></td>
                     </tr>
@@ -78,6 +93,14 @@
     $(document)
             .ready(
             function() {
+
+
+                $(".deleteMe").click( function(){
+                    $(this).closest("tr").fadeOut();
+                    $.post( "${pageContext.request.contextPath}/deletePicture/" + $(this).attr("id") , function(){
+                    });
+                });
+
 
                 //remove sharer
                 $("#sharer").fadeOut();

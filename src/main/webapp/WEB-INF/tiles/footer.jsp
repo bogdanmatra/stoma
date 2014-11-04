@@ -5,7 +5,7 @@
     <div class="container" style="padding-top: 20px;">
 
         <div class="pull-left">
-            <a href="#"> Termeni si conditii </a>
+            <a href="${pageContext.request.contextPath}/aboutus"> Termeni si conditii </a>
         </div>
         <div class="pull-right">
             <a href="http://ro.linkedin.com/in/bogdanmatra" target="_blank" data-toogle="tooltip" title="Developer" id="tooltip" data-placement="left">

@@ -40,7 +40,7 @@ public class QuestionService {
     @Transactional(readOnly = true)
     public Page<Question> findAllPage(int currentPage) {
 
-        Page<Question> page = questionRepository.findAll(new PageRequest(currentPage, 2, new Sort(
+        Page<Question> page = questionRepository.findAll(new PageRequest(currentPage, 5, new Sort(
                 Sort.Direction.DESC, "updatedDate")));
 
         List<Question> questions = page.getContent();

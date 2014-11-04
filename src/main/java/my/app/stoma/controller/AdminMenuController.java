@@ -82,7 +82,7 @@ public class AdminMenuController {
     @ResponseBody
     public void delete(Model model, HttpServletRequest request) {
         Long id=Long.parseLong(request.getParameter("id"));
-        if(userService.findAllWithRole("ROLE_ADMIN").size()>=1  ){
+        if(userService.findAllWithRole("ROLE_ADMIN").size()>1 || userService.findById(id).getRoles().size()==1 ){
             userService.delete(userService.findById(id));
         }
     }
@@ -283,4 +283,11 @@ public class AdminMenuController {
         }
         return "redirect:/events/";
     }
+
+    @RequestMapping(value = "editEvent/{id}", method = RequestMethod.GET)
+    public String editEvent(@PathVariable long id,Model model, HttpServletRequest request, HttpSession session) throws IOException {
+        model.addAttribute("event", eventService.findOne(id));
+        return "/addEvent";
+    }
+
 }

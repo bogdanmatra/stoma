@@ -46,7 +46,7 @@
         <div class="carousel-inner">
             <c:forEach var="picture" items="${news.pictures}">
             <div class="item">
-                <img src="${resources}${picture.path}" style="height: 300px;" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+                <img src="${resources}${picture.path}" style="height: 300px; width:auto;" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
             </div>
             </c:forEach>
         </div>

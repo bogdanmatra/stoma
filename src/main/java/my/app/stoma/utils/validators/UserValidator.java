@@ -3,6 +3,8 @@ package my.app.stoma.utils.validators;
 import my.app.stoma.domain.security.User;
 import my.app.stoma.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -91,12 +93,29 @@ public class UserValidator implements Validator {
      * Validates the username of the added/edited user.
      */
     private void validateUsername(String username, Long id, Errors errors) {
+        if (id != null && username.equals("")) {
+            errors.rejectValue("username", "addUser.invalidUser");
+            return;
+        }
         if (!isValidString(username) && id == null) {
             errors.rejectValue("username", "addUser.invalidUser");
             return;
         }
         User user = userService.findByUsername(username);
-        if (user != null && id == null) {
+        String current=null;
+        if ( SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+
+            if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserDetails)
+                current = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+
+            if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String)
+                current = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+
+        if (user != null && current!=null && !current.equals(user.getUsername()) && !(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String)) {
+            errors.rejectValue("username", "addUser.duplicateUser");
+        }
+        if (user != null && current!=null && current.equals("anonymousUser") ) {
             errors.rejectValue("username", "addUser.duplicateUser");
         }
     }
@@ -105,6 +124,9 @@ public class UserValidator implements Validator {
      * Validates the password of the added/edited user.
      */
     private void validatePassword(String password, Long id, Errors errors) {
+        if (id != null && password.equals("")) {
+            errors.rejectValue("password", "addUser.invalidPassword");
+        }
         if (id == null && !isValidString(password)) {
             errors.rejectValue("password", "addUser.invalidPassword");
         }

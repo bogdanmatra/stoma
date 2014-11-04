@@ -9,6 +9,10 @@
 
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <div class="row">
+            <a href="${pageContext.request.contextPath}/editEvent/${event.id}">
+                <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+            </a>
+
             <a href="../../delete/${event.id}">
                 <button type="button" class="btn btn-default btn-lg pull-right"><span class="glyphicon glyphicon-trash"></span> Delete</button>
             </a>
@@ -37,7 +41,7 @@
         <div class="carousel-inner">
             <c:forEach var="picture" items="${event.pictures}">
                 <div class="item">
-                    <img src="${resources}${picture.path}" style="height: 300px;" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+                    <img src="${resources}${picture.path}" style="height: 300px; width:auto;" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
                 </div>
             </c:forEach>
         </div>

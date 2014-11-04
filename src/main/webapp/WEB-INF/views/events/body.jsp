@@ -28,7 +28,7 @@
     </c:forEach>
 
     <c:if test="${fn:length(events) eq 0}">
-        <h3 class='col-md-offset-1'><spring:message code="nodata.label" text="No data!"/>!</h3>
+        <h3 class='col-md-offset-1'><spring:message code="nodata.label" text="No data!"/></h3>
     </c:if>
 
     </div>

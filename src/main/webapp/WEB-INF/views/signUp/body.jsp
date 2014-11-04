@@ -6,7 +6,8 @@
 <div class="row-fluid">
 
 
-        <form:form method="POST" action="saveUser"  name="addUserForm" modelAttribute="user" role="form">
+        <form:form method="POST" action="${pageContext.request.contextPath}/signup/saveUser"  name="addUserForm" modelAttribute="user" role="form">
+            <form:hidden path="id"/>
     <div class="col-lg-8">
     <div class="input-group ">
         <span class="input-group-addon" ><spring:message code="signUp.fname" text="fname"/></span>
@@ -36,7 +37,7 @@
             <br>
             <div class="input-group ">
                 <span class="input-group-addon" ><spring:message code="signUp.mail" text="mail"/></span>
-                <input type="text" class="form-control"  name="email">
+                <form:input type="text" class="form-control" name="email"  path="email"/>
                 <form:errors cssClass="input-group-addon alert-danger" path="email"/>
             </div>
             <br>
@@ -51,3 +52,9 @@
 
 </div>
 </div>
+
+<script>
+    $("#password").val("");
+    //remove sharer
+    $("#sharer").fadeOut();
+</script>

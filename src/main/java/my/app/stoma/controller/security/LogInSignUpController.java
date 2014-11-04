@@ -6,14 +6,13 @@ import my.app.stoma.repository.security.RoleRepository;
 import my.app.stoma.service.security.UserService;
 import my.app.stoma.utils.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,6 +72,18 @@ public class LogInSignUpController {
         return "/signUp";
     }
 
+    @RequestMapping(value = "editme/{username}")
+    public String signUp(@PathVariable String username, Model model, HttpServletRequest request) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userService.findByUsername(userDetails.getUsername());
+        if(currentUser.getUsername().equals(username)) {
+            model.addAttribute("user", userService.findByUsername(username));
+        }else{
+            return null;
+        }
+        return "/signUp";
+    }
+
 
     @RequestMapping(value = "signup/saveUser", method = {RequestMethod.POST, RequestMethod.GET})
     public String saveUser(Model model, @ModelAttribute(value = "user") @Valid User user, BindingResult bindingResult, HttpServletRequest request) {
@@ -80,9 +91,13 @@ public class LogInSignUpController {
         if (bindingResult.hasErrors()) {
             return "/signUp";
         }
-        List<Role> list = new ArrayList<Role>();
-        list.add(roleRepository.findByAuthority("ROLE_USER"));
-        user.setRoles(list);
+        if (user.getId()!=null){
+            user.setRoles(userService.findById(user.getId()).getRoles());
+        }else{
+            List < Role > list = new ArrayList<Role>();
+            list.add(roleRepository.findByAuthority("ROLE_USER"));
+            user.setRoles(list);
+        }
         userService.save(user);
         return "redirect:/";
     }

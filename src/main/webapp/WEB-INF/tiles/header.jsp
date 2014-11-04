@@ -72,6 +72,9 @@
         <div class="form-group">
             <div style="color: #fff" ><spring:message code="welocome.label" text="Welcome"/>, ${user}!</div>
         </div>
+        <a href="${ctx}/editme/${user}">
+        <button type="submit" class="btn btn-default"><spring:message code="editme.label" text="Sign out"/></button>
+        </a>
         <a href="<c:url value="/j_spring_security_logout" />">
         <button type="submit" class="btn btn-success"><spring:message code="signout.label" text="Sign out"/></button>
         </a>

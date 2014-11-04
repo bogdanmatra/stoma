@@ -37,13 +37,13 @@
                 <div class="col-lg-6">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="lang" id="ro" value="ro">
+                            <form:radiobutton name="lang" id="ro" value="ro" path="domains[0].locale"/>
                             Romanian
                         </label>
                     </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="lang" id="en" value="en">
+                        <form:radiobutton name="lang" id="en" value="en" path="domains[0].locale"/>
                         English
                     </label>
                 </div>
@@ -52,13 +52,13 @@
                 <div class="col-lg-6">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="st_med" id="st" value="st">
+                        <form:radiobutton name="st_med" id="st" value="st" path="domains[0].domMedical"/>
                         Stomatologie
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="st_med" id="gen" value="ge">
+                        <form:radiobutton name="st_med" id="gen" value="ge" path="domains[0].domMedical"/>
                         Generala
                     </label>
                 </div>
@@ -183,7 +183,11 @@
 
     </div>
 </div>
-
+<div class="hidden list-domain">
+    <c:forEach var="domain" items="${nOrA.domains}">
+       <div class="child">${domain.name}</div>
+    </c:forEach>
+</div>
 
 
 <script>
@@ -191,13 +195,8 @@
     $(document).ready(function(){
 
         $(".deleteMe").click( function(){
-            varb = "news"
-            <c:if test="${action == 'saveArticle'}">
-            varb = "article"
-            </c:if>
-
             $(this).closest("tr").fadeOut();
-            $.post( "${pageContext.request.contextPath}/deletePicture/" + $(this).attr("id") + "/${nOrA.id}/" + varb, function(){
+            $.post( "${pageContext.request.contextPath}/deletePicture/" + $(this).attr("id"), function(){
             });
         });
 
@@ -230,13 +229,25 @@
 
 
     function populateMSelect(){
-        language =$('input[name=lang]:checked').val();
-        domMed = $('input[name=st_med]:checked').val();
+        language =$("input[name='domains[0].locale']:checked").val();
+        domMed = $("input[name='domains[0].domMedical']:checked").val();
         multipleSelect=$("#mselect");
         multipleSelect.empty();
         $.post( "${pageContext.request.contextPath}/fetchDomainList", { locale: language, domMed: domMed  }, function(data){
             $(data).each(function(){
-                multipleSelect.append("<option value=" + this.id + ">" + this.name +"</option>");
+                var option = "<option value=" + this.id + ">" + this.name +"</option>";
+                var theValue = this.name;
+                var isIn = false;
+                $(".list-domain .child").each(function(){
+                    if(theValue == $(this).html()){
+                        isIn=true;
+                    }
+                });
+
+                if (isIn){
+                    var option = "<option value=" + this.id + " checked='checked' selected='selected'>" + this.name +"</option>";
+                }
+                multipleSelect.append(option);
             });
         });
     }
