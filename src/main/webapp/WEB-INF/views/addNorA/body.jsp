@@ -32,6 +32,7 @@
 
         <form:form method="POST" action="${pageContext.request.contextPath}/addNorA/${action}"  name="addNewsOrArticle" modelAttribute="nOrA" role="form" enctype="multipart/form-data">
             <form:hidden path="id"/>
+            <form:hidden path="viewed"/>
             <div class="col-lg-10">
                 <div class="row">
                 <div class="col-lg-6">

@@ -16,6 +16,7 @@
 
         <form:form method="POST" action="${pageContext.request.contextPath}/saveEvent"  name="addEvent" modelAttribute="event" role="form" enctype="multipart/form-data">
             <form:hidden path="id"/>
+            <form:hidden path="viewed"/>
             <div class="col-lg-10">
                 <div class="row">
                     <div class="col-lg-6">

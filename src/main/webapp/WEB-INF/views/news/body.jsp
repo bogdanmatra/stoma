@@ -9,6 +9,9 @@
         #mysidest{
             margin-left: 35px;
         }
+        .media-body.col-md-offset-1.multi h2{
+            font-size: 20px;
+        }
     }
 
 </style>
@@ -164,4 +167,5 @@
         border-bottom-right-radius: 4px;
         border-bottom-left-radius: 4px;
     }
+
 </style>
