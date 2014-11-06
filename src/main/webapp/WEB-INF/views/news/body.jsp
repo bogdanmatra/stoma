@@ -40,8 +40,8 @@
             <div class="row" id="contents">
                 <div class="media-body col-md-offset-1 hide multi col-sm-offset-1 col-xs-offset-1" >
                     <hr>
-                    <h2><a>Heading</a></h2>
-                    <p class="over" style="max-height: 100px; padding-left: 0">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <h2><a></a></h2>
+                    <p class="over" style="max-height: 100px; padding-left: 0"></p>
                     <p><a class="btn btn-success " href="#" role="button" style="float: right"><spring:message code="viewDetails.label" text="View details" /> »</a></p>
                     <br>
                     <br>
