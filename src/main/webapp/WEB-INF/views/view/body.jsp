@@ -28,7 +28,7 @@
         test="${error == true}">
 
         <div class="row pull-right">
-        <button class="btn btn-danger" disabled>Please type a comment not longer than 400 characters!</button>
+        <button class="btn btn-danger" disabled><spring:message code="pleaseMsg.label" text="400 char"/></button>
     </div>
     <br><br>
 </c:if>
@@ -69,8 +69,9 @@
         <button class="btn btn-default disabled"> ${domain.name} </button>
         </c:forEach>
         <b class="pull-right"><spring:message code="viewed.label" text="Viewed:"/> ${news.viewed}</b>
-    </p>
 
+    </p>
+    <br>
     <div class="media">
         <a class="pull-left" href="#">
             <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="${resources}default.jpg" style="width: 64px; height: 64px;">

@@ -19,7 +19,7 @@
         <a href="addTopic"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"> </span> <spring:message code="newTopic.label" text="New topic!"/>  </button></a>
     <c:if
             test="${error == true}">
-        <button class="btn btn-danger pull-right" disabled>Please type an answer not longer than 400 characters!</button>
+        <button class="btn btn-danger pull-right" disabled><spring:message code="pleaseMsg.label" text="400 char"/></button>
     </c:if>
     <br><br>
 

@@ -23,7 +23,7 @@
             test="${error == true}">
 
         <div class="row pull-right">
-            <button class="btn btn-danger" disabled>Please type a comment not longer than 400 characters!</button>
+            <button class="btn btn-danger" disabled><spring:message code="pleaseMsg.label" text="400 char"/></button>
         </div>
         <br><br>
     </c:if>
