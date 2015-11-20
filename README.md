@@ -1,4 +1,4 @@
 stoma
 =====
-Openshift TEST
-Stomatology application
+Bachelor Thesis
+http://medbox.info/stoma/
