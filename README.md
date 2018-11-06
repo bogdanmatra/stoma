@@ -7,4 +7,3 @@ Medbox - Java web based application which uses the MariaDB distributed database 
 Java, Spring Core, Spring MVC, Spring Data, Spring Security, JPA, Hibernate, Maven, Git, Bootstrap, AJAX, JavaScript, jQuery, CSS3, HTML5, Maria DB.
 <br/>
 <br/>
-*Hosted on Amazon EC2.*
